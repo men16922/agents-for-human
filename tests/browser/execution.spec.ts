@@ -6,7 +6,7 @@ import { resolve } from 'node:path';
 import { createServer } from 'node:net';
 import { parseExecution } from '../../web/src/Execution';
 
-const retained = resolve('evidence/cw07-reactive-comparison/runs/changed-B1-r1/execution');
+const retained = resolve('tests/fixtures/executions/changed-B1-r1/execution');
 const root = resolve('.local/cw06-execution-browser');
 const dir = `${root}/execution`;
 const spec = JSON.parse(readFileSync(`${retained}/spec.json`, 'utf8'));

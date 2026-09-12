@@ -17,8 +17,8 @@ def main():
     args = parser.parse_args()
     s = boto3.Session(profile_name="q-user", region_name="us-west-2")
     assert s.client("sts").get_caller_identity()["Account"] == "908601828278"
-    folder = Path("evidence/preflight")
-    folder.mkdir(exist_ok=True)
+    folder = Path(".local/preflight-audit")
+    folder.mkdir(parents=True, exist_ok=True)
     resources = s.client("cloudformation").list_stack_resources(
         StackName="rehearsal-serverless-app"
     )["StackResourceSummaries"]

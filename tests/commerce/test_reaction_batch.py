@@ -202,7 +202,7 @@ def test_changed_reaction_runtime_cannot_settle_or_release_reserved_budget(setup
 
 
 def test_historical_nonreactive_manifest_and_retained_results_are_unchanged():
-    path = ROOT / "evidence/cw07-notification-events"
+    path = ROOT / "tests/fixtures/notifications-batch"
     manifest = batch.load(path)
     assert "external_reactions" not in manifest
     assert all(batch.reaction_for(manifest, m) is None for m in ("B0", "B1", "B2", "B3"))

@@ -1,11 +1,9 @@
-# Local credentials and environment overrides (keep the documented template).
+# Credentials and machine-local state
 .env
 .env.*
 *.env
 .envrc
 !.env.example
-# Audited, credential-free model/rate settings retained with experiment evidence.
-!/evidence/cw03-nova-live/nova.env
 *.pem
 *.key
 *.p12
@@ -16,15 +14,13 @@ credentials.json
 buyer-config.json
 observer-buyer.json
 
-# Repository-local runtimes, downloaded dependencies and disposable runs.
+# Dependencies, runtimes and build output
 /.tooling/
 /.local/
 .venv/
 venv/
 .direnv/
 node_modules/
-
-# Python caches and packaging output.
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -35,12 +31,6 @@ __pycache__/
 *.egg-info/
 /build/
 /dist/
-.coverage
-.coverage.*
-htmlcov/
-coverage.xml
-
-# Web, Medusa and browser-test output.
 /web/dist/
 /web/dist-cloud/
 /services/medusa/.medusa/
@@ -48,38 +38,50 @@ coverage.xml
 *.tsbuildinfo
 .vite/
 coverage/
+.coverage*
+htmlcov/
+coverage.xml
 playwright-report/
 test-results/
 
-# Runtime logs/databases. Retained evidence is deliberately versioned:
-# its logs and SQLite snapshots support independent audit/reproduction.
+# Generated experiment data and submission materials
+/evidence/
+/submissions/
 *.log
 *.db
 *.sqlite
 *.sqlite3
-*.db-journal
-*.db-wal
-*.db-shm
-*.sqlite-journal
-*.sqlite-wal
-*.sqlite-shm
-*.sqlite3-journal
-*.sqlite3-wal
-*.sqlite3-shm
-!/evidence/**/*.log
-!/evidence/**/*.db
-!/evidence/**/*.sqlite
-!/evidence/**/*.sqlite3
+# Fixed accounting input required by regression tests (not a runtime database).
+!/tests/fixtures/notifications-batch/batch.sqlite3
+*-journal
+*-wal
+*-shm
 
-# Machine-specific agent settings and unattended-run state.
-.claude/settings.local.json
-.codex/config.local.toml
-/scripts/overnight/logs/
-/scripts/overnight/STOP
-/scripts/overnight/DONE
-/docs/test/history/*-overnight-review-checklist.md
+# Local agent workflows and historical design assets
+/.claude/
+/.codex/
+/.kiro/
+/AGENTS.md
+/assets/
+/archive/
+/scripts/overnight/
+/docs/*
+!/docs/ARCHITECTURE.md
+!/docs/DEVELOPMENT.md
+!/docs/TESTING.md
+!/docs/VERIFICATION.md
+!/docs/assets/
 
-# Editor/OS leftovers.
+# Media-production tools are local to the submission workflow
+/scripts/dev/build_chrome_demo.py
+/scripts/dev/build_submission_video.py
+/scripts/dev/capture_preflight_demo.mjs
+/scripts/dev/check_video.mjs
+/scripts/dev/chrome_video_frames.mjs
+/scripts/dev/video_cards.mjs
+/scripts/dev/serverless_diagram.py
+
+# Editor and OS files
 .DS_Store
 .AppleDouble/
 Thumbs.db
@@ -87,6 +89,3 @@ Desktop.ini
 *.swp
 *.swo
 *~
-
-# Keep source, lockfiles, shared agent config, evidence and submissions tracked.
-# Do not blanket-ignore evidence/, media files, .claude/, .codex/ or .kiro/.

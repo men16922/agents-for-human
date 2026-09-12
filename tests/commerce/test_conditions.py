@@ -88,7 +88,7 @@ def artifact_for(case, original, snapshot):
 
 @pytest.fixture
 def condition():
-    raw = json.loads((ROOT / "evidence/cw05-model-session/idle/evidence.json").read_text())
+    raw = json.loads((ROOT / "tests/fixtures/commerce/session.json").read_text())
     case = json.loads((ROOT / "scenarios/normal-v1.json").read_text())
     case["goal"] = raw["binding"]["goal"] | {"budget": raw["binding"]["budget"]}
     before = {

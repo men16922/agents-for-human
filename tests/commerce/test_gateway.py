@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 @pytest.fixture
 def evidence():
-    return json.loads((ROOT / "evidence/cw05-medusa/evidence.json").read_text())
+    return json.loads((ROOT / "tests/fixtures/commerce/gateway.json").read_text())
 
 
 class RecordedStore(StoreAPI):

@@ -10,7 +10,7 @@ from test_gateway import prepared as prepared
 from rehearsal.world.storage import ContractError
 
 ROOT = Path(__file__).parents[2]
-CAPTURE = ROOT / "evidence/cw05-delivery-transition/capture"
+CAPTURE = ROOT / "tests/fixtures/commerce/delivery-transition"
 
 
 @pytest.fixture

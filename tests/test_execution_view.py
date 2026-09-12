@@ -12,7 +12,7 @@ from fastapi.testclient import TestClient
 from rehearsal.execution_view import MAX_ARTIFACT_BYTES, execution_routes, review_execution
 
 ROOT = Path(__file__).resolve().parents[1]
-RETAINED = ROOT / "evidence/cw07-reactive-comparison/runs"
+RETAINED = ROOT / "tests/fixtures/executions"
 
 
 def write(path, value):

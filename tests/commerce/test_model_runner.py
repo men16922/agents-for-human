@@ -15,7 +15,7 @@ from rehearsal.experiments.policy import Policy
 from rehearsal.operating.client import OperatingClient
 
 ROOT = Path(__file__).parents[2]
-RETAINED = ROOT / "evidence/cw05-b0-rerun/revised-price-loss/medusa"
+RETAINED = ROOT / "tests/fixtures/commerce/model-run"
 
 
 @pytest.fixture

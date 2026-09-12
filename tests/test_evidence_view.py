@@ -11,7 +11,7 @@ from fastapi.testclient import TestClient
 from rehearsal.evidence_view import MAX_ARTIFACT_BYTES, evidence_routes, review_export
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "evidence/cw06-observer/observer-evidence.json"
+SOURCE = ROOT / "tests/fixtures/commerce/observer.json"
 RUN = "cw00-3f3dac1b04a9-buyer"
 GOAL = {"items": {"tent": 3, "light": 6}, "deadline_tick": 120, "recipient": "venue"}
 

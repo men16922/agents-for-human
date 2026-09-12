@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 @pytest.fixture
 def evidence():
-    return json.loads((ROOT / "evidence/cw06-evidence-ui/observer-evidence.json").read_text())
+    return json.loads((ROOT / "tests/fixtures/commerce/observer-detail.json").read_text())
 
 
 class ReadStore(StoreAPI):
@@ -26,7 +26,7 @@ class ReadStore(StoreAPI):
         self.customer = evidence["binding"]["customer_id"]
         self.orders = copy.deepcopy(evidence["external_orders"])
         self.products = json.loads(
-            (ROOT / "evidence/cw06-catalog-contract/products.json").read_text()
+            (ROOT / "tests/fixtures/commerce/products.json").read_text()
         )
         self.calls = []
         self.fail_catalog = False

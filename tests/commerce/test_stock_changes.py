@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parents[2]
 
 @pytest.fixture
 def stock_backend(tmp_path):
-    evidence = json.loads((ROOT / "evidence/cw05-medusa/evidence.json").read_text())
-    contract = json.loads((ROOT / "evidence/cw00/2026-09-07-medusa-contract.json").read_text())
+    evidence = json.loads((ROOT / "tests/fixtures/commerce/gateway.json").read_text())
+    contract = json.loads((ROOT / "tests/fixtures/commerce/contract.json").read_text())
     rejection = next(
         r
         for r in contract["requests"]

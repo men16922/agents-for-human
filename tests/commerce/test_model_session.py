@@ -28,7 +28,7 @@ def module(monkeypatch):
 @pytest.fixture
 def setup(module, tmp_path, monkeypatch):
     base = tmp_path / ".local/commerce/cw00-test"
-    original = json.loads((ROOT / "evidence/cw05-metered-http/evidence.json").read_text())
+    original = json.loads((ROOT / "tests/fixtures/commerce/metered.json").read_text())
     run_id = original["binding"]["run_id"]
     initial = {
         "tick": 0,
@@ -230,7 +230,7 @@ def test_shutdown_preserves_unknown_reservation_from_retained_race_evidence(setu
     module, _, _, _, _ = setup
     session = module.Session(fixture=True)
     path = session.start()
-    original = (ROOT / "evidence/cw05-race/race-evidence-0.json").read_bytes()
+    original = (ROOT / "tests/fixtures/commerce/race-unknown.json").read_bytes()
     evidence = json.loads(original)
     session.run["binding"] = copy.deepcopy(evidence["binding"])
     monkeypatch.setattr(module, "export_run", lambda *a: copy.deepcopy(evidence))
@@ -239,7 +239,7 @@ def test_shutdown_preserves_unknown_reservation_from_retained_race_evidence(setu
     assert session.record["verdict"]["reserved"] == 310
     saved = json.loads((path / "evidence.json").read_text())
     assert saved["tables"] == evidence["tables"]
-    assert (ROOT / "evidence/cw05-race/race-evidence-0.json").read_bytes() == original
+    assert (ROOT / "tests/fixtures/commerce/race-unknown.json").read_bytes() == original
 
 
 def test_unsupported_session_case_is_rejected_before_bootstrap(module, monkeypatch):

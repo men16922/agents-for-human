@@ -2,7 +2,7 @@
 
 The deployed English demo is at **https://d1u9yhii3gor6j.cloudfront.net**. Its current deployment uses account `908601828278`, region `us-west-2`, and the `q-user` profile for operator commands. Model inference uses the global Amazon Nova 2 Lite profile. Account credentials are never included in the browser or deployment package.
 
-The CloudFormation stacks are `rehearsal-serverless-base` (retained DynamoDB/S3 data) and `rehearsal-serverless-app` (API, Lambda, Step Functions, AgentCore and CloudFront). [Editable draw.io](../../submissions/architecture/rehearsal-serverless.drawio) · [SVG preview](../../submissions/architecture/rehearsal-serverless.svg) · [actual AWS evidence](../../docs/test/serverless-deployment.md).
+The CloudFormation stacks are `rehearsal-serverless-base` (retained DynamoDB/S3 data) and `rehearsal-serverless-app` (API, Lambda, Step Functions, AgentCore and CloudFront). [Editable draw.io](../../docs/assets/architecture.drawio) · [SVG preview](../../docs/assets/architecture.svg) · [actual AWS evidence](../../docs/VERIFICATION.md).
 
 ## Reproduce a deployment
 
@@ -32,7 +32,7 @@ The separate preview AgentCore role has no commerce Lambda invocation or commerc
 
 An acceptance binds the selected plan hash and final report hash. A fifteen-minute expiry and source recheck guard the handoff; source validation and the decision write share one DynamoDB transaction. Repeated decisions return the original brief, including its original expiry. The export is evidence for execution review, not a production payment authorization.
 
-`?legacy=1` retains the earlier experiment UI and the separate workflow below. Do not confuse its synthetic commerce-table purchases with the preview, which creates no commerce-table rows. [Actual preview audit](../../docs/test/preflight-impact.md).
+`?legacy=1` retains the earlier experiment UI and the separate workflow below. Do not confuse its synthetic commerce-table purchases with the preview, which creates no commerce-table rows. [Actual preview audit](../../docs/VERIFICATION.md).
 
 ## Legacy experiment execution and shutdown
 

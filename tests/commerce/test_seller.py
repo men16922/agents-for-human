@@ -57,7 +57,7 @@ class AdminStandIn:
 def setup(tmp_path):
     evidence = json.loads(
         (
-            Path(__file__).resolve().parents[2] / "evidence/cw05-medusa-operating/evidence.json"
+            Path(__file__).resolve().parents[2] / "tests/fixtures/commerce/seller.json"
         ).read_text()
     )
     external = evidence["external_orders"][0]

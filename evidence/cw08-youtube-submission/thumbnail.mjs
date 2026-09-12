@@ -1,8 +1,0 @@
-import { chromium } from '@playwright/test';
-import { readFile } from 'node:fs/promises';
-const browser = await chromium.launch({headless:true});
-const page = await browser.newPage({viewport:{width:1280,height:720}});
-const shot = (await readFile('evidence/cw08-youtube-submission/capture/browser/initial.png')).toString('base64');
-await page.setContent(`<!doctype html><html lang="en"><style>*{box-sizing:border-box}body{margin:0;background:#101c2c;color:#f2f6ec;font-family:Arial;width:1280px;height:720px;overflow:hidden;padding:66px}.brand{font-size:26px;letter-spacing:5px;color:#d9fca6;font-weight:bold}h1{font-size:94px;line-height:1.06;width:670px;margin:45px 0 26px;position:relative;z-index:2}p{font-size:28px;line-height:1.5;color:#d1daca;width:600px;position:relative;z-index:2}.badge{display:inline-block;margin-top:22px;background:#d9fca6;color:#101c2c;border-radius:10px;padding:15px 22px;font-size:24px;font-weight:bold}.shot{position:absolute;left:755px;top:140px;width:640px;height:500px;object-fit:cover;object-position:top;border:9px solid #344b54;border-radius:20px;transform:rotate(3deg);opacity:.8}.label{position:absolute;bottom:32px;right:50px;font-size:17px;color:#b4c2ca}</style><body><div class="brand">REHEARSAL</div><img class="shot" src="data:image/png;base64,${shot}"><h1>Did the goods<br>arrive?</h1><p>Test purchasing agents.<br>Verify the transaction.</p><div class="badge">AMAZON NOVA 2 LITE · ACTUAL DEMO</div><div class="label">Agents for Humans · Local POC · Synthetic credits</div></body></html>`);
-await page.screenshot({path:'.local/youtube-submission-20260912/thumbnail.png'});
-await browser.close();
