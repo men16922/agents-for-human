@@ -1,0 +1,14 @@
+--- executed-session-source
++++ current-session-source
+@@ -284,7 +284,10 @@
+             for sig, handler in original_handlers.items():
+                 signal.signal(sig, handler)
+     if session.path:
+-        print(f"STOPPED: {session.path}; databases and reservations retained.", flush=True)
++        print(
++            f"{session.record['state']}: {session.path}; databases and reservations retained.",
++            flush=True,
++        )
+     return (
+         1
+         if failed

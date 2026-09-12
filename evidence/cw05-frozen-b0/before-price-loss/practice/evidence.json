@@ -1,0 +1,203 @@
+{
+  "format": "rehearsal-evidence-v1",
+  "run_id": "practice",
+  "scenario": {
+    "scenario_version": "known-frozen-b0-price-loss-v1",
+    "seed": 42,
+    "goal": {
+      "budget": 500,
+      "deadline_tick": 120,
+      "recipient": "venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "suppliers": {
+      "A": {
+        "shipping": 10,
+        "lead_ticks": 4,
+        "items": {
+          "tent": {
+            "price": 60,
+            "stock": 10
+          },
+          "light": {
+            "price": 20,
+            "stock": 10
+          }
+        }
+      },
+      "B": {
+        "shipping": 20,
+        "lead_ticks": 6,
+        "items": {
+          "tent": {
+            "price": 70,
+            "stock": 10
+          },
+          "light": {
+            "price": 25,
+            "stock": 10
+          }
+        }
+      },
+      "C": {
+        "shipping": 15,
+        "lead_ticks": 8,
+        "items": {
+          "tent": {
+            "price": 90,
+            "stock": 10
+          },
+          "light": {
+            "price": 35,
+            "stock": 10
+          }
+        }
+      }
+    }
+  },
+  "tables": {
+    "runs": [
+      {
+        "id": "practice",
+        "tick": 0,
+        "goal": "{\"budget\":500,\"deadline_tick\":120,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"venue\"}",
+        "metadata": "{\"environment\":\"practice\",\"policy_version\":\"frozen-de2ba500f4d730801ce7e2602ed528eeb5790e77fd1e2a53399366d1399fa01c\",\"run_id\":\"practice\",\"scenario_version\":\"known-frozen-b0-price-loss-v1\",\"seed\":42}",
+        "fixture": "{\"goal\":{\"budget\":500,\"deadline_tick\":120,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"venue\"},\"scenario_version\":\"known-frozen-b0-price-loss-v1\",\"seed\":42,\"suppliers\":{\"A\":{\"items\":{\"light\":{\"price\":20,\"stock\":10},\"tent\":{\"price\":60,\"stock\":10}},\"lead_ticks\":4,\"shipping\":10},\"B\":{\"items\":{\"light\":{\"price\":25,\"stock\":10},\"tent\":{\"price\":70,\"stock\":10}},\"lead_ticks\":6,\"shipping\":20},\"C\":{\"items\":{\"light\":{\"price\":35,\"stock\":10},\"tent\":{\"price\":90,\"stock\":10}},\"lead_ticks\":8,\"shipping\":15}}}"
+      }
+    ],
+    "offers": [
+      {
+        "run_id": "practice",
+        "supplier": "A",
+        "item": "light",
+        "price": 20,
+        "stock": 10,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "practice",
+        "supplier": "A",
+        "item": "tent",
+        "price": 100,
+        "stock": 10,
+        "reserved": 0,
+        "version": 2
+      },
+      {
+        "run_id": "practice",
+        "supplier": "B",
+        "item": "light",
+        "price": 25,
+        "stock": 10,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "practice",
+        "supplier": "B",
+        "item": "tent",
+        "price": 70,
+        "stock": 10,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "practice",
+        "supplier": "C",
+        "item": "light",
+        "price": 35,
+        "stock": 10,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "practice",
+        "supplier": "C",
+        "item": "tent",
+        "price": 90,
+        "stock": 10,
+        "reserved": 0,
+        "version": 1
+      }
+    ],
+    "quotes": [
+      {
+        "id": "quote_dc8ff84c9c6f4187837997a53857d1b7",
+        "run_id": "practice",
+        "data": "{\"amount\":310,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_dc8ff84c9c6f4187837997a53857d1b7\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":4,\"quote_version\":{\"light\":1,\"tent\":1},\"run_id\":\"practice\",\"shipping\":10,\"supplier\":\"A\",\"unit_prices\":{\"light\":20,\"tent\":60}}"
+      },
+      {
+        "id": "quote_4e74dfc5e5d64e68ae455045ce314841",
+        "run_id": "practice",
+        "data": "{\"amount\":380,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_4e74dfc5e5d64e68ae455045ce314841\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":6,\"quote_version\":{\"light\":1,\"tent\":1},\"run_id\":\"practice\",\"shipping\":20,\"supplier\":\"B\",\"unit_prices\":{\"light\":25,\"tent\":70}}"
+      },
+      {
+        "id": "quote_bcc26b8fd51d43a791d79639748bdc29",
+        "run_id": "practice",
+        "data": "{\"amount\":495,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_bcc26b8fd51d43a791d79639748bdc29\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":8,\"quote_version\":{\"light\":1,\"tent\":1},\"run_id\":\"practice\",\"shipping\":15,\"supplier\":\"C\",\"unit_prices\":{\"light\":35,\"tent\":90}}"
+      }
+    ],
+    "orders": [],
+    "inventory": [],
+    "shop_events": [
+      {
+        "seq": 1,
+        "event_id": "evt_24d4a13428b644108be14adc5dd25cf6",
+        "run_id": "practice",
+        "source": "shop",
+        "aggregate_id": "practice",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "run.created",
+        "payload": "{\"environment\":\"practice\",\"goal\":{\"budget\":500,\"deadline_tick\":120,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"venue\"},\"policy_version\":\"frozen-de2ba500f4d730801ce7e2602ed528eeb5790e77fd1e2a53399366d1399fa01c\",\"run_id\":\"practice\",\"scenario_version\":\"known-frozen-b0-price-loss-v1\",\"seed\":42}"
+      },
+      {
+        "seq": 2,
+        "event_id": "evt_0f9368b0566440e3a5fd7c3fa8fff793",
+        "run_id": "practice",
+        "source": "shop",
+        "aggregate_id": "A/tent",
+        "aggregate_version": 2,
+        "occurred_tick": 0,
+        "event_type": "offer.price_changed",
+        "payload": "{\"after\":100,\"before\":60,\"item\":\"tent\",\"supplier\":\"A\"}"
+      }
+    ],
+    "accounts": [
+      {
+        "run_id": "practice",
+        "budget": 500,
+        "spent": 0,
+        "reserved": 0,
+        "metadata": "{\"environment\":\"practice\",\"policy_version\":\"frozen-de2ba500f4d730801ce7e2602ed528eeb5790e77fd1e2a53399366d1399fa01c\",\"run_id\":\"practice\",\"scenario_version\":\"known-frozen-b0-price-loss-v1\",\"seed\":42}"
+      }
+    ],
+    "intents": [],
+    "payment_events": [
+      {
+        "seq": 1,
+        "event_id": "evt_3345ca96140447ef968ab7fd8c68d44b",
+        "run_id": "practice",
+        "source": "payments",
+        "aggregate_id": "practice",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "account.created",
+        "payload": "{\"budget\":500}"
+      }
+    ]
+  },
+  "verdict": {
+    "status": "INCOMPLETE",
+    "reasons": [
+      "GOAL_NOT_RECEIVED"
+    ],
+    "spent": 0,
+    "reserved": 0,
+    "received": {}
+  }
+}

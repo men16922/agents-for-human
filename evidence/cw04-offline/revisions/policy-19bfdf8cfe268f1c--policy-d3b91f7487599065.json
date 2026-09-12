@@ -1,0 +1,40 @@
+{
+  "before_version": "policy-19bfdf8cfe268f1c",
+  "after_version": "policy-d3b91f7487599065",
+  "before": {
+    "supplier_preference": "lowest_total",
+    "refresh_quote_before_order": false,
+    "max_quote_candidates": 3,
+    "wait_ticks": 5,
+    "uncertain_payment_action": "query_same_order"
+  },
+  "after": {
+    "supplier_preference": "lowest_total",
+    "refresh_quote_before_order": true,
+    "max_quote_candidates": 3,
+    "wait_ticks": 5,
+    "uncertain_payment_action": "query_same_order"
+  },
+  "diff": {
+    "refresh_quote_before_order": {
+      "before": false,
+      "after": true
+    }
+  },
+  "review": {
+    "review_id": "known-price-change-review",
+    "round": 1,
+    "reviewer_kind": "scripted-fixture",
+    "counterexamples": [
+      "before"
+    ],
+    "reason": "The quote went stale; refresh candidate quotes before creating the order."
+  },
+  "experiments": [
+    {
+      "experiment_id": "before",
+      "sha256": "cb711f950c5b3edb5538d46a9b954c283fb6b6700f7a7d7506a7b07c0521ade0"
+    }
+  ],
+  "status": "PROPOSED_REQUIRES_REEXPERIMENT"
+}

@@ -1,0 +1,859 @@
+{
+  "binding": {
+    "run_id": "cw00-d6c09eac6808-buyer",
+    "customer_id": "cus_01M1YR3BH53XK89R3M6KB2SEE7",
+    "region_id": "reg_01M1XXH30AVSPNFKR799JC7HD6",
+    "suppliers": {
+      "A": {
+        "variants": {
+          "tent": "variant_01M1YR3BB8NEPNFQ6EHCWK51MQ",
+          "light": "variant_01M1YR3BE5PYE1DY9ZTQ6PZBKK"
+        },
+        "shipping_option_id": "so_01M1YR3B7W2DG2ASTG1MR12EWP",
+        "lead_ticks": 4
+      },
+      "B": {
+        "variants": {
+          "tent": "variant_01M1YR3BSSYSXVEY4B8X4XA2N6",
+          "light": "variant_01M1YR3BWEVEEV5799TJ6G2XK0"
+        },
+        "shipping_option_id": "so_01M1YR3BQF2MQ8X3JPB14EMYP5",
+        "lead_ticks": 6
+      },
+      "C": {
+        "variants": {
+          "tent": "variant_01M1YR3C02D0XYPFDRHVG3HYR6",
+          "light": "variant_01M1YR3C2EP0E42V5GR08KCC2N"
+        },
+        "shipping_option_id": "so_01M1YR3BY16TDE77GDCN972ENX",
+        "lead_ticks": 8
+      }
+    },
+    "goal": {
+      "items": {
+        "tent": 3,
+        "light": 6
+      },
+      "deadline_tick": 120,
+      "recipient": "venue"
+    },
+    "budget": 500,
+    "quote_ttl": 30
+  },
+  "tables": {
+    "purchases": [
+      {
+        "id": "order_836f65e029fb4cecb6312255ad5ecf16",
+        "key": "ui-alternative-buy",
+        "quote_id": "quote_16e95643bca44885bbb95b63b908dce8",
+        "stage": "MAPPED",
+        "external_id": "order_01M1YR3F87JYT02NFQ8C8VPTYJ",
+        "received_tick": 9,
+        "created_tick": 2
+      }
+    ],
+    "quotes": [
+      {
+        "id": "quote_7f1c920ec99a43e0b835bf8061f7b8a3",
+        "cart_id": "cart_01M1YR3DRYZ1C5K919QJCB5AS1",
+        "data": "{\"amount\":310,\"based_on_tick\":1,\"expires_tick\":31,\"id\":\"quote_7f1c920ec99a43e0b835bf8061f7b8a3\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":4,\"quote_version\":\"f46b3894fbccfa59eb18e2a8fa05c48ee1e3a3fafcb2cb13b87955b4ae5173a1\",\"run_id\":\"cw00-d6c09eac6808-buyer\",\"shipping\":10,\"supplier\":\"A\",\"supplier_content\":{\"items\":{\"light\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false},\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"A\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"light\":20,\"tent\":60}}"
+      },
+      {
+        "id": "quote_16e95643bca44885bbb95b63b908dce8",
+        "cart_id": "cart_01M1YR3E6YTC5BPHA31JER0DP8",
+        "data": "{\"amount\":380,\"based_on_tick\":2,\"expires_tick\":32,\"id\":\"quote_16e95643bca44885bbb95b63b908dce8\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":6,\"quote_version\":\"1ba13ddcf1f7580f0b19d7cee01261d1dd07be86b251d8382a924bc9e1272e21\",\"run_id\":\"cw00-d6c09eac6808-buyer\",\"shipping\":20,\"supplier\":\"B\",\"supplier_content\":{\"items\":{\"light\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false},\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"B\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"light\":25,\"tent\":70}}"
+      }
+    ],
+    "accounts": [
+      {
+        "run_id": "cw00-d6c09eac6808-buyer",
+        "budget": 500,
+        "spent": 380,
+        "reserved": 0,
+        "metadata": "{\"backend\":\"medusa\"}"
+      }
+    ],
+    "intents": [
+      {
+        "id": "pay_ec34d56da71d4e2b92ca533e24cc50cf",
+        "run_id": "cw00-d6c09eac6808-buyer",
+        "order_id": "order_836f65e029fb4cecb6312255ad5ecf16",
+        "idempotency_key": "ui-alternative-pay",
+        "recipient": "B",
+        "amount": 380,
+        "status": "SETTLED",
+        "version": 2,
+        "created_tick": 3,
+        "settled_tick": 4
+      }
+    ]
+  },
+  "external_orders": [
+    {
+      "id": "order_01M1YR3F87JYT02NFQ8C8VPTYJ",
+      "display_id": 25,
+      "custom_display_id": null,
+      "status": "pending",
+      "version": 4,
+      "summary": {
+        "paid_total": 380,
+        "raw_paid_total": {
+          "value": "380",
+          "precision": 20
+        },
+        "refunded_total": 0,
+        "accounting_total": 380,
+        "credit_line_total": 0,
+        "transaction_total": 380,
+        "pending_difference": 0,
+        "raw_refunded_total": {
+          "value": "0",
+          "precision": 20
+        },
+        "current_order_total": 380,
+        "original_order_total": 380,
+        "raw_accounting_total": {
+          "value": "380",
+          "precision": 20
+        },
+        "raw_credit_line_total": {
+          "value": "0",
+          "precision": 20
+        },
+        "raw_transaction_total": {
+          "value": "380",
+          "precision": 20
+        },
+        "raw_pending_difference": {
+          "value": "0",
+          "precision": 20
+        },
+        "raw_current_order_total": {
+          "value": "380",
+          "precision": 20
+        },
+        "raw_original_order_total": {
+          "value": "380",
+          "precision": 20
+        }
+      },
+      "total": 380,
+      "metadata": {
+        "rehearsal_run": "cw00-d6c09eac6808-buyer",
+        "rehearsal_quote": "quote_16e95643bca44885bbb95b63b908dce8"
+      },
+      "locale": null,
+      "created_at": "2026-09-07T20:14:09.673Z",
+      "updated_at": "2026-09-07T20:14:16.059Z",
+      "region_id": "reg_01M1XXH30AVSPNFKR799JC7HD6",
+      "subtotal": 380,
+      "tax_total": 0,
+      "discount_total": 0,
+      "discount_tax_total": 0,
+      "original_total": 380,
+      "original_subtotal": 380,
+      "original_tax_total": 0,
+      "item_total": 360,
+      "item_subtotal": 360,
+      "item_tax_total": 0,
+      "original_item_total": 360,
+      "original_item_subtotal": 360,
+      "original_item_tax_total": 0,
+      "shipping_total": 20,
+      "shipping_subtotal": 20,
+      "shipping_tax_total": 0,
+      "original_shipping_tax_total": 0,
+      "original_shipping_subtotal": 20,
+      "original_shipping_total": 20,
+      "credit_line_total": 0,
+      "credit_line_subtotal": 0,
+      "credit_line_tax_total": 0,
+      "customer_id": "cus_01M1YR3BH53XK89R3M6KB2SEE7",
+      "currency_code": "usd",
+      "items": [
+        {
+          "id": "ordli_01M1YR3F88XFQDHQ5P5P18H9K5",
+          "title": "cw00-d6c09eac6808-B-tent",
+          "subtitle": "tent",
+          "thumbnail": null,
+          "variant_id": "variant_01M1YR3BSSYSXVEY4B8X4XA2N6",
+          "product_id": "prod_01M1YR3BS2T0WCE33C1EDT5678",
+          "product_title": "cw00-d6c09eac6808-B-tent",
+          "product_description": null,
+          "product_subtitle": null,
+          "product_type": null,
+          "product_type_id": null,
+          "product_collection": null,
+          "product_handle": "cw00-d6c09eac6808-b-tent",
+          "variant_sku": "cw00-d6c09eac6808-B-tent",
+          "variant_barcode": null,
+          "variant_title": "tent",
+          "variant_option_values": null,
+          "requires_shipping": true,
+          "is_giftcard": false,
+          "is_discountable": true,
+          "is_tax_inclusive": false,
+          "is_custom_price": false,
+          "metadata": {},
+          "raw_compare_at_unit_price": null,
+          "raw_unit_price": {
+            "value": "70",
+            "precision": 20
+          },
+          "created_at": "2026-09-07T20:14:09.673Z",
+          "updated_at": "2026-09-07T20:14:09.673Z",
+          "deleted_at": null,
+          "tax_lines": [],
+          "adjustments": [],
+          "compare_at_unit_price": null,
+          "unit_price": 70,
+          "quantity": 3,
+          "raw_quantity": {
+            "value": "3",
+            "precision": 20
+          },
+          "line_item_metadata": {},
+          "detail": {
+            "id": "orditem_01M1YR3NFSY0D1DZEZ9TJ1VKTT",
+            "version": 4,
+            "metadata": {},
+            "order_id": "order_01M1YR3F87JYT02NFQ8C8VPTYJ",
+            "raw_unit_price": {
+              "value": "70",
+              "precision": 20
+            },
+            "raw_compare_at_unit_price": null,
+            "raw_quantity": {
+              "value": "3",
+              "precision": 20
+            },
+            "raw_fulfilled_quantity": {
+              "value": "3",
+              "precision": 20
+            },
+            "raw_delivered_quantity": {
+              "value": "3",
+              "precision": 20
+            },
+            "raw_shipped_quantity": {
+              "value": "3",
+              "precision": 20
+            },
+            "raw_return_requested_quantity": {
+              "value": "0",
+              "precision": 20
+            },
+            "raw_return_received_quantity": {
+              "value": "0",
+              "precision": 20
+            },
+            "raw_return_dismissed_quantity": {
+              "value": "0",
+              "precision": 20
+            },
+            "raw_written_off_quantity": {
+              "value": "0",
+              "precision": 20
+            },
+            "created_at": "2026-09-07T20:14:16.059Z",
+            "updated_at": "2026-09-07T20:14:16.059Z",
+            "deleted_at": null,
+            "item_id": "ordli_01M1YR3F88XFQDHQ5P5P18H9K5",
+            "unit_price": 70,
+            "compare_at_unit_price": null,
+            "quantity": 3,
+            "fulfilled_quantity": 3,
+            "delivered_quantity": 3,
+            "shipped_quantity": 3,
+            "return_requested_quantity": 0,
+            "return_received_quantity": 0,
+            "return_dismissed_quantity": 0,
+            "written_off_quantity": 0
+          },
+          "subtotal": 210,
+          "total": 210,
+          "original_subtotal": 210,
+          "original_total": 210,
+          "discount_subtotal": 0,
+          "discount_tax_total": 0,
+          "discount_total": 0,
+          "tax_total": 0,
+          "original_tax_total": 0,
+          "refundable_total_per_unit": 70,
+          "refundable_total": 210,
+          "fulfilled_total": 210,
+          "shipped_total": 210,
+          "return_requested_total": 0,
+          "return_received_total": 0,
+          "return_dismissed_total": 0,
+          "write_off_total": 0,
+          "raw_subtotal": {
+            "value": "210",
+            "precision": 20
+          },
+          "raw_total": {
+            "value": "210",
+            "precision": 20
+          },
+          "raw_original_subtotal": {
+            "value": "210",
+            "precision": 20
+          },
+          "raw_original_total": {
+            "value": "210",
+            "precision": 20
+          },
+          "raw_discount_subtotal": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_discount_tax_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_discount_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_tax_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_original_tax_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_refundable_total_per_unit": {
+            "value": "70",
+            "precision": 20
+          },
+          "raw_refundable_total": {
+            "value": "210",
+            "precision": 20
+          },
+          "raw_fulfilled_total": {
+            "value": "210",
+            "precision": 20
+          },
+          "raw_shipped_total": {
+            "value": "210",
+            "precision": 20
+          },
+          "raw_return_requested_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_return_received_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_return_dismissed_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_write_off_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "variant": {
+            "id": "variant_01M1YR3BSSYSXVEY4B8X4XA2N6",
+            "title": "tent",
+            "sku": "cw00-d6c09eac6808-B-tent",
+            "barcode": null,
+            "ean": null,
+            "upc": null,
+            "allow_backorder": false,
+            "manage_inventory": true,
+            "hs_code": null,
+            "origin_country": null,
+            "mid_code": null,
+            "material": null,
+            "weight": null,
+            "length": null,
+            "height": null,
+            "width": null,
+            "metadata": null,
+            "variant_rank": 0,
+            "thumbnail": null,
+            "product_id": "prod_01M1YR3BS2T0WCE33C1EDT5678",
+            "product": {
+              "id": "prod_01M1YR3BS2T0WCE33C1EDT5678",
+              "title": "cw00-d6c09eac6808-B-tent",
+              "handle": "cw00-d6c09eac6808-b-tent",
+              "subtitle": null,
+              "description": null,
+              "is_giftcard": false,
+              "status": "published",
+              "thumbnail": null,
+              "weight": null,
+              "length": null,
+              "height": null,
+              "width": null,
+              "origin_country": null,
+              "hs_code": null,
+              "mid_code": null,
+              "material": null,
+              "discountable": true,
+              "external_id": null,
+              "metadata": null,
+              "type_id": null,
+              "type": null,
+              "collection_id": null,
+              "collection": null,
+              "created_at": "2026-09-07T20:14:06.115Z",
+              "updated_at": "2026-09-07T20:14:06.115Z",
+              "deleted_at": null
+            },
+            "created_at": "2026-09-07T20:14:06.137Z",
+            "updated_at": "2026-09-07T20:14:06.137Z",
+            "deleted_at": null
+          }
+        },
+        {
+          "id": "ordli_01M1YR3F88TTCF7PQ0K72VMNYX",
+          "title": "cw00-d6c09eac6808-B-light",
+          "subtitle": "light",
+          "thumbnail": null,
+          "variant_id": "variant_01M1YR3BWEVEEV5799TJ6G2XK0",
+          "product_id": "prod_01M1YR3BVRC6MRFB1V6SJ500AN",
+          "product_title": "cw00-d6c09eac6808-B-light",
+          "product_description": null,
+          "product_subtitle": null,
+          "product_type": null,
+          "product_type_id": null,
+          "product_collection": null,
+          "product_handle": "cw00-d6c09eac6808-b-light",
+          "variant_sku": "cw00-d6c09eac6808-B-light",
+          "variant_barcode": null,
+          "variant_title": "light",
+          "variant_option_values": null,
+          "requires_shipping": true,
+          "is_giftcard": false,
+          "is_discountable": true,
+          "is_tax_inclusive": false,
+          "is_custom_price": false,
+          "metadata": {},
+          "raw_compare_at_unit_price": null,
+          "raw_unit_price": {
+            "value": "25",
+            "precision": 20
+          },
+          "created_at": "2026-09-07T20:14:09.673Z",
+          "updated_at": "2026-09-07T20:14:09.673Z",
+          "deleted_at": null,
+          "tax_lines": [],
+          "adjustments": [],
+          "compare_at_unit_price": null,
+          "unit_price": 25,
+          "quantity": 6,
+          "raw_quantity": {
+            "value": "6",
+            "precision": 20
+          },
+          "line_item_metadata": {},
+          "detail": {
+            "id": "orditem_01M1YR3NFSJD1RYQWHXGT6KH58",
+            "version": 4,
+            "metadata": {},
+            "order_id": "order_01M1YR3F87JYT02NFQ8C8VPTYJ",
+            "raw_unit_price": {
+              "value": "25",
+              "precision": 20
+            },
+            "raw_compare_at_unit_price": null,
+            "raw_quantity": {
+              "value": "6",
+              "precision": 20
+            },
+            "raw_fulfilled_quantity": {
+              "value": "6",
+              "precision": 20
+            },
+            "raw_delivered_quantity": {
+              "value": "6",
+              "precision": 20
+            },
+            "raw_shipped_quantity": {
+              "value": "6",
+              "precision": 20
+            },
+            "raw_return_requested_quantity": {
+              "value": "0",
+              "precision": 20
+            },
+            "raw_return_received_quantity": {
+              "value": "0",
+              "precision": 20
+            },
+            "raw_return_dismissed_quantity": {
+              "value": "0",
+              "precision": 20
+            },
+            "raw_written_off_quantity": {
+              "value": "0",
+              "precision": 20
+            },
+            "created_at": "2026-09-07T20:14:16.059Z",
+            "updated_at": "2026-09-07T20:14:16.059Z",
+            "deleted_at": null,
+            "item_id": "ordli_01M1YR3F88TTCF7PQ0K72VMNYX",
+            "unit_price": 25,
+            "compare_at_unit_price": null,
+            "quantity": 6,
+            "fulfilled_quantity": 6,
+            "delivered_quantity": 6,
+            "shipped_quantity": 6,
+            "return_requested_quantity": 0,
+            "return_received_quantity": 0,
+            "return_dismissed_quantity": 0,
+            "written_off_quantity": 0
+          },
+          "subtotal": 150,
+          "total": 150,
+          "original_subtotal": 150,
+          "original_total": 150,
+          "discount_subtotal": 0,
+          "discount_tax_total": 0,
+          "discount_total": 0,
+          "tax_total": 0,
+          "original_tax_total": 0,
+          "refundable_total_per_unit": 25,
+          "refundable_total": 150,
+          "fulfilled_total": 150,
+          "shipped_total": 150,
+          "return_requested_total": 0,
+          "return_received_total": 0,
+          "return_dismissed_total": 0,
+          "write_off_total": 0,
+          "raw_subtotal": {
+            "value": "150",
+            "precision": 20
+          },
+          "raw_total": {
+            "value": "150",
+            "precision": 20
+          },
+          "raw_original_subtotal": {
+            "value": "150",
+            "precision": 20
+          },
+          "raw_original_total": {
+            "value": "150",
+            "precision": 20
+          },
+          "raw_discount_subtotal": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_discount_tax_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_discount_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_tax_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_original_tax_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_refundable_total_per_unit": {
+            "value": "25",
+            "precision": 20
+          },
+          "raw_refundable_total": {
+            "value": "150",
+            "precision": 20
+          },
+          "raw_fulfilled_total": {
+            "value": "150",
+            "precision": 20
+          },
+          "raw_shipped_total": {
+            "value": "150",
+            "precision": 20
+          },
+          "raw_return_requested_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_return_received_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_return_dismissed_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_write_off_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "variant": {
+            "id": "variant_01M1YR3BWEVEEV5799TJ6G2XK0",
+            "title": "light",
+            "sku": "cw00-d6c09eac6808-B-light",
+            "barcode": null,
+            "ean": null,
+            "upc": null,
+            "allow_backorder": false,
+            "manage_inventory": true,
+            "hs_code": null,
+            "origin_country": null,
+            "mid_code": null,
+            "material": null,
+            "weight": null,
+            "length": null,
+            "height": null,
+            "width": null,
+            "metadata": null,
+            "variant_rank": 0,
+            "thumbnail": null,
+            "product_id": "prod_01M1YR3BVRC6MRFB1V6SJ500AN",
+            "product": {
+              "id": "prod_01M1YR3BVRC6MRFB1V6SJ500AN",
+              "title": "cw00-d6c09eac6808-B-light",
+              "handle": "cw00-d6c09eac6808-b-light",
+              "subtitle": null,
+              "description": null,
+              "is_giftcard": false,
+              "status": "published",
+              "thumbnail": null,
+              "weight": null,
+              "length": null,
+              "height": null,
+              "width": null,
+              "origin_country": null,
+              "hs_code": null,
+              "mid_code": null,
+              "material": null,
+              "discountable": true,
+              "external_id": null,
+              "metadata": null,
+              "type_id": null,
+              "type": null,
+              "collection_id": null,
+              "collection": null,
+              "created_at": "2026-09-07T20:14:06.200Z",
+              "updated_at": "2026-09-07T20:14:06.200Z",
+              "deleted_at": null
+            },
+            "created_at": "2026-09-07T20:14:06.222Z",
+            "updated_at": "2026-09-07T20:14:06.222Z",
+            "deleted_at": null
+          }
+        }
+      ],
+      "credit_lines": [],
+      "shipping_address": {
+        "id": "ordaddr_01M1YR3F86J812256VDAK36506",
+        "customer_id": null,
+        "company": null,
+        "first_name": "Test",
+        "last_name": "Buyer",
+        "address_1": "Synthetic venue",
+        "address_2": null,
+        "city": "Test",
+        "country_code": "us",
+        "province": null,
+        "postal_code": "10001",
+        "phone": null,
+        "metadata": null,
+        "created_at": "2026-09-07T20:14:08.607Z",
+        "updated_at": "2026-09-07T20:14:08.607Z",
+        "deleted_at": null
+      },
+      "shipping_methods": [
+        {
+          "id": "ordsm_01M1YR3F8749PFFNN855TKPDFC",
+          "name": "cw00-d6c09eac6808-B",
+          "description": null,
+          "is_tax_inclusive": false,
+          "is_custom_amount": false,
+          "shipping_option_id": "so_01M1YR3BQF2MQ8X3JPB14EMYP5",
+          "data": {},
+          "metadata": null,
+          "raw_amount": {
+            "value": "20",
+            "precision": 20
+          },
+          "created_at": "2026-09-07T20:14:09.673Z",
+          "updated_at": "2026-09-07T20:14:09.673Z",
+          "deleted_at": null,
+          "tax_lines": [],
+          "adjustments": [],
+          "amount": 20,
+          "order_id": "order_01M1YR3F87JYT02NFQ8C8VPTYJ",
+          "detail": {
+            "id": "ordspmv_01M1YR3NFS5VV43W55ZV7R9X6Q",
+            "version": 4,
+            "order_id": "order_01M1YR3F87JYT02NFQ8C8VPTYJ",
+            "return_id": null,
+            "exchange_id": null,
+            "claim_id": null,
+            "created_at": "2026-09-07T20:14:09.673Z",
+            "updated_at": "2026-09-07T20:14:09.673Z",
+            "deleted_at": null,
+            "shipping_method_id": "ordsm_01M1YR3F8749PFFNN855TKPDFC"
+          },
+          "subtotal": 20,
+          "total": 20,
+          "original_subtotal": 20,
+          "original_total": 20,
+          "discount_total": 0,
+          "discount_subtotal": 0,
+          "discount_tax_total": 0,
+          "tax_total": 0,
+          "original_tax_total": 0,
+          "raw_subtotal": {
+            "value": "20",
+            "precision": 20
+          },
+          "raw_total": {
+            "value": "20",
+            "precision": 20
+          },
+          "raw_original_subtotal": {
+            "value": "20",
+            "precision": 20
+          },
+          "raw_original_total": {
+            "value": "20",
+            "precision": 20
+          },
+          "raw_discount_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_discount_subtotal": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_discount_tax_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_tax_total": {
+            "value": "0",
+            "precision": 20
+          },
+          "raw_original_tax_total": {
+            "value": "0",
+            "precision": 20
+          }
+        }
+      ],
+      "payment_collections": [
+        {
+          "id": "pay_col_01M1YR3F4J00SVH6EPGK1MJ1GT",
+          "currency_code": "usd",
+          "completed_at": "2026-09-07T20:14:09.898Z",
+          "status": "completed",
+          "metadata": null,
+          "raw_amount": {
+            "value": "380",
+            "precision": 20
+          },
+          "raw_authorized_amount": {
+            "value": "380",
+            "precision": 20
+          },
+          "raw_captured_amount": {
+            "value": "380",
+            "precision": 20
+          },
+          "raw_refunded_amount": {
+            "value": "0",
+            "precision": 20
+          },
+          "created_at": "2026-09-07T20:14:09.554Z",
+          "updated_at": "2026-09-07T20:14:09.900Z",
+          "deleted_at": null,
+          "payments": [
+            {
+              "id": "pay_01M1YR3F9Y0P2GJJZ15N7ZA01H",
+              "currency_code": "usd",
+              "provider_id": "pp_system_default",
+              "data": {},
+              "metadata": null,
+              "captured_at": "2026-09-07T20:14:09.889Z",
+              "canceled_at": null,
+              "payment_collection_id": "pay_col_01M1YR3F4J00SVH6EPGK1MJ1GT",
+              "payment_session": {
+                "id": "payses_01M1YR3F616K74W9WD17F65RXJ"
+              },
+              "raw_amount": {
+                "value": "380",
+                "precision": 20
+              },
+              "created_at": "2026-09-07T20:14:09.726Z",
+              "updated_at": "2026-09-07T20:14:09.891Z",
+              "deleted_at": null,
+              "payment_session_id": "payses_01M1YR3F616K74W9WD17F65RXJ",
+              "refunds": [],
+              "captures": [
+                {
+                  "id": "capt_01M1YR3FEZ94S60DBKGM6XR6NG",
+                  "payment_id": "pay_01M1YR3F9Y0P2GJJZ15N7ZA01H",
+                  "metadata": null,
+                  "created_by": null,
+                  "raw_amount": {
+                    "value": "380",
+                    "precision": 20
+                  },
+                  "created_at": "2026-09-07T20:14:09.887Z",
+                  "updated_at": "2026-09-07T20:14:09.887Z",
+                  "deleted_at": null,
+                  "amount": 380
+                }
+              ],
+              "amount": 380
+            }
+          ],
+          "amount": 380,
+          "authorized_amount": 380,
+          "captured_amount": 380,
+          "refunded_amount": 0
+        }
+      ],
+      "fulfillments": [
+        {
+          "id": "ful_01M1YR3FHC11NWTSZBQTF8TMC7",
+          "location_id": "sloc_01M1YR3B5HVH9ATE0SJTH3N0NV",
+          "packed_at": "2026-09-07T20:14:09.958Z",
+          "shipped_at": "2026-09-07T20:14:10.078Z",
+          "marked_shipped_by": "user_01M1YR3AYXHPK2J7CD8MF15QK7",
+          "created_by": "user_01M1YR3AYXHPK2J7CD8MF15QK7",
+          "delivered_at": "2026-09-07T20:14:16.026Z",
+          "canceled_at": null,
+          "data": {},
+          "requires_shipping": true,
+          "provider": {
+            "id": "manual_manual"
+          },
+          "shipping_option_id": "so_01M1YR3BQF2MQ8X3JPB14EMYP5",
+          "shipping_option": {
+            "id": "so_01M1YR3BQF2MQ8X3JPB14EMYP5"
+          },
+          "delivery_address": {
+            "id": "fuladdr_01M1YR3FHCNGVX9JXZMMB07JKG"
+          },
+          "metadata": null,
+          "created_at": "2026-09-07T20:14:09.964Z",
+          "updated_at": "2026-09-07T20:14:16.035Z",
+          "deleted_at": null,
+          "provider_id": "manual_manual",
+          "delivery_address_id": "fuladdr_01M1YR3FHCNGVX9JXZMMB07JKG"
+        }
+      ],
+      "payment_status": "captured",
+      "fulfillment_status": "delivered"
+    }
+  ],
+  "captured_at_tick": 23,
+  "scope": "live-medusa-browser-stock-scripted-purchase"
+}

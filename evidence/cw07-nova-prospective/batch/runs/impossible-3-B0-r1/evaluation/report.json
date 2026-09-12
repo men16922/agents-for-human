@@ -1,0 +1,259 @@
+{
+  "scope": "B0-fixed-rule-not-model",
+  "verdict": {
+    "status": "INCOMPLETE",
+    "reasons": [
+      "GOAL_NOT_RECEIVED"
+    ],
+    "spent": 0,
+    "reserved": 0,
+    "received": {}
+  },
+  "execution_status": "INCOMPLETE",
+  "frozen_id": "frozen-8288fb6ff6a531395461305405c93677998fa40bef7569859e8426791ba6def9",
+  "tool_calls": 10,
+  "trace": [
+    {
+      "seq": 1,
+      "tool": "observe_world",
+      "arguments": {},
+      "result": {
+        "goal": {
+          "budget": 500,
+          "deadline_tick": 60,
+          "items": {
+            "light": 6,
+            "tent": 3
+          },
+          "recipient": "event-venue"
+        },
+        "tick": 0,
+        "clock_mode": "accelerated-practice",
+        "inventory": {},
+        "balance": {
+          "budget": 500,
+          "spent": 0,
+          "reserved": 0,
+          "available": 500
+        },
+        "suppliers": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "elapsed_seconds": 0.0007412920022034086
+    },
+    {
+      "seq": 2,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0008473750021948945
+    },
+    {
+      "seq": 3,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0009407920006196946
+    },
+    {
+      "seq": 4,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.001029459002893418
+    },
+    {
+      "seq": 5,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "light": 6
+        }
+      },
+      "result": {
+        "id": "quote_4f7942219fc24382ab77035017422426",
+        "run_id": "evaluation",
+        "supplier": "A",
+        "items": {
+          "light": 6
+        },
+        "unit_prices": {
+          "light": 14
+        },
+        "quote_version": {
+          "light": 1
+        },
+        "shipping": 9,
+        "amount": 93,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 10,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "A",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.0015444590026163496
+    },
+    {
+      "seq": 6,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "light": 6
+        }
+      },
+      "result": {
+        "id": "quote_08f8cbb60df14e288e9acd67fe58644f",
+        "run_id": "evaluation",
+        "supplier": "B",
+        "items": {
+          "light": 6
+        },
+        "unit_prices": {
+          "light": 33
+        },
+        "quote_version": {
+          "light": 1
+        },
+        "shipping": 13,
+        "amount": 211,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 15,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "B",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.0021104170009493828
+    },
+    {
+      "seq": 7,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "light": 6
+        }
+      },
+      "result": {
+        "id": "quote_f74762034a6440259f2126b832327e2c",
+        "run_id": "evaluation",
+        "supplier": "C",
+        "items": {
+          "light": 6
+        },
+        "unit_prices": {
+          "light": 27
+        },
+        "quote_version": {
+          "light": 1
+        },
+        "shipping": 20,
+        "amount": 182,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 20,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "C",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.002637708999827737
+    },
+    {
+      "seq": 8,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0027862919996550772
+    },
+    {
+      "seq": 9,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.002904500001022825
+    },
+    {
+      "seq": 10,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0030115420013316907
+    }
+  ],
+  "success": false
+}

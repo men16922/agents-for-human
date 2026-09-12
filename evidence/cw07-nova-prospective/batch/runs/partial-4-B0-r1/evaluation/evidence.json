@@ -1,0 +1,492 @@
+{
+  "format": "rehearsal-evidence-v1",
+  "run_id": "evaluation",
+  "scenario": {
+    "scenario_version": "prospective-partial-4-v1",
+    "seed": 42,
+    "goal": {
+      "budget": 500,
+      "deadline_tick": 60,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "suppliers": {
+      "A": {
+        "shipping": 19,
+        "lead_ticks": 10,
+        "items": {
+          "tent": {
+            "price": 84,
+            "stock": 3
+          },
+          "light": {
+            "price": 15,
+            "stock": 0
+          }
+        }
+      },
+      "B": {
+        "shipping": 18,
+        "lead_ticks": 15,
+        "items": {
+          "tent": {
+            "price": 46,
+            "stock": 0
+          },
+          "light": {
+            "price": 19,
+            "stock": 6
+          }
+        }
+      },
+      "C": {
+        "shipping": 5,
+        "lead_ticks": 20,
+        "items": {
+          "tent": {
+            "price": 46,
+            "stock": 0
+          },
+          "light": {
+            "price": 28,
+            "stock": 0
+          }
+        }
+      }
+    }
+  },
+  "tables": {
+    "runs": [
+      {
+        "id": "evaluation",
+        "tick": 25,
+        "goal": "{\"budget\":500,\"deadline_tick\":60,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"}",
+        "metadata": "{\"environment\":\"practice\",\"policy_version\":\"frozen-8288fb6ff6a531395461305405c93677998fa40bef7569859e8426791ba6def9\",\"run_id\":\"evaluation\",\"scenario_version\":\"prospective-partial-4-v1\",\"seed\":42}",
+        "fixture": "{\"goal\":{\"budget\":500,\"deadline_tick\":60,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"},\"scenario_version\":\"prospective-partial-4-v1\",\"seed\":42,\"suppliers\":{\"A\":{\"items\":{\"light\":{\"price\":15,\"stock\":0},\"tent\":{\"price\":84,\"stock\":3}},\"lead_ticks\":10,\"shipping\":19},\"B\":{\"items\":{\"light\":{\"price\":19,\"stock\":6},\"tent\":{\"price\":46,\"stock\":0}},\"lead_ticks\":15,\"shipping\":18},\"C\":{\"items\":{\"light\":{\"price\":28,\"stock\":0},\"tent\":{\"price\":46,\"stock\":0}},\"lead_ticks\":20,\"shipping\":5}}}"
+      }
+    ],
+    "offers": [
+      {
+        "run_id": "evaluation",
+        "supplier": "A",
+        "item": "light",
+        "price": 15,
+        "stock": 0,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "A",
+        "item": "tent",
+        "price": 84,
+        "stock": 0,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "B",
+        "item": "light",
+        "price": 19,
+        "stock": 0,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "B",
+        "item": "tent",
+        "price": 46,
+        "stock": 0,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "C",
+        "item": "light",
+        "price": 28,
+        "stock": 0,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "C",
+        "item": "tent",
+        "price": 46,
+        "stock": 0,
+        "reserved": 0,
+        "version": 1
+      }
+    ],
+    "quotes": [
+      {
+        "id": "quote_7be3b7b53ed3407b9f0e16cd564b7d3e",
+        "run_id": "evaluation",
+        "data": "{\"amount\":132,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_7be3b7b53ed3407b9f0e16cd564b7d3e\",\"items\":{\"light\":6},\"lead_ticks\":15,\"quote_version\":{\"light\":1},\"run_id\":\"evaluation\",\"shipping\":18,\"supplier\":\"B\",\"supplier_content\":{\"items\":{\"light\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"B\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"light\":19}}"
+      },
+      {
+        "id": "quote_4557301aec254252ab003123354258e3",
+        "run_id": "evaluation",
+        "data": "{\"amount\":271,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_4557301aec254252ab003123354258e3\",\"items\":{\"tent\":3},\"lead_ticks\":10,\"quote_version\":{\"tent\":1},\"run_id\":\"evaluation\",\"shipping\":19,\"supplier\":\"A\",\"supplier_content\":{\"items\":{\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"A\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"tent\":84}}"
+      },
+      {
+        "id": "quote_9475af59864346a487a69501584d3018",
+        "run_id": "evaluation",
+        "data": "{\"amount\":132,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_9475af59864346a487a69501584d3018\",\"items\":{\"light\":6},\"lead_ticks\":15,\"quote_version\":{\"light\":1},\"run_id\":\"evaluation\",\"shipping\":18,\"supplier\":\"B\",\"supplier_content\":{\"items\":{\"light\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"B\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"light\":19}}"
+      },
+      {
+        "id": "quote_93cbed240bd144279ed27829d98f014f",
+        "run_id": "evaluation",
+        "data": "{\"amount\":271,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_93cbed240bd144279ed27829d98f014f\",\"items\":{\"tent\":3},\"lead_ticks\":10,\"quote_version\":{\"tent\":1},\"run_id\":\"evaluation\",\"shipping\":19,\"supplier\":\"A\",\"supplier_content\":{\"items\":{\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"A\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"tent\":84}}"
+      },
+      {
+        "id": "quote_2a1f44d716394d9a8d52b780483b057a",
+        "run_id": "evaluation",
+        "data": "{\"amount\":271,\"based_on_tick\":15,\"expires_tick\":20,\"id\":\"quote_2a1f44d716394d9a8d52b780483b057a\",\"items\":{\"tent\":3},\"lead_ticks\":10,\"quote_version\":{\"tent\":1},\"run_id\":\"evaluation\",\"shipping\":19,\"supplier\":\"A\",\"supplier_content\":{\"items\":{\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"A\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"tent\":84}}"
+      },
+      {
+        "id": "quote_a763a53ccfe24704b1ba31d09f7e9cf9",
+        "run_id": "evaluation",
+        "data": "{\"amount\":271,\"based_on_tick\":15,\"expires_tick\":20,\"id\":\"quote_a763a53ccfe24704b1ba31d09f7e9cf9\",\"items\":{\"tent\":3},\"lead_ticks\":10,\"quote_version\":{\"tent\":1},\"run_id\":\"evaluation\",\"shipping\":19,\"supplier\":\"A\",\"supplier_content\":{\"items\":{\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"A\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"tent\":84}}"
+      }
+    ],
+    "orders": [
+      {
+        "id": "order_13dfe8ce8e214590a2d72e55e50b615b",
+        "run_id": "evaluation",
+        "key": "evaluation:buy-0",
+        "quote_id": "quote_9475af59864346a487a69501584d3018",
+        "supplier": "B",
+        "recipient": "event-venue",
+        "items": "{\"light\":6}",
+        "amount": 132,
+        "lead_ticks": 15,
+        "status": "DELIVERED",
+        "version": 5,
+        "payment_intent_id": "pay_d9eeaeb7dca74a4a8b555574b25dccda",
+        "payment_version": 2,
+        "created_tick": 0,
+        "due_tick": 15,
+        "delivered_tick": 15
+      },
+      {
+        "id": "order_45b6f75210104e3aaaf7bbdce4a2b93e",
+        "run_id": "evaluation",
+        "key": "evaluation:buy-1",
+        "quote_id": "quote_a763a53ccfe24704b1ba31d09f7e9cf9",
+        "supplier": "A",
+        "recipient": "event-venue",
+        "items": "{\"tent\":3}",
+        "amount": 271,
+        "lead_ticks": 10,
+        "status": "DELIVERED",
+        "version": 5,
+        "payment_intent_id": "pay_0ad33a43e41544768915b8b733055e07",
+        "payment_version": 2,
+        "created_tick": 15,
+        "due_tick": 25,
+        "delivered_tick": 25
+      }
+    ],
+    "inventory": [
+      {
+        "run_id": "evaluation",
+        "recipient": "event-venue",
+        "item": "light",
+        "quantity": 6
+      },
+      {
+        "run_id": "evaluation",
+        "recipient": "event-venue",
+        "item": "tent",
+        "quantity": 3
+      }
+    ],
+    "shop_events": [
+      {
+        "seq": 1,
+        "event_id": "evt_655737b2ac0c4fbc97c89c18f74fbc0e",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "run.created",
+        "payload": "{\"environment\":\"practice\",\"goal\":{\"budget\":500,\"deadline_tick\":60,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"},\"policy_version\":\"frozen-8288fb6ff6a531395461305405c93677998fa40bef7569859e8426791ba6def9\",\"run_id\":\"evaluation\",\"scenario_version\":\"prospective-partial-4-v1\",\"seed\":42}"
+      },
+      {
+        "seq": 2,
+        "event_id": "evt_00754f6e494845fa95a495392f7bab71",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_13dfe8ce8e214590a2d72e55e50b615b",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "order.accepted",
+        "payload": "{\"amount\":132,\"created_tick\":0,\"delivered_tick\":null,\"due_tick\":null,\"id\":\"order_13dfe8ce8e214590a2d72e55e50b615b\",\"items\":{\"light\":6},\"key\":\"evaluation:buy-0\",\"lead_ticks\":15,\"payment_intent_id\":null,\"payment_version\":0,\"quote_id\":\"quote_9475af59864346a487a69501584d3018\",\"recipient\":\"event-venue\",\"run_id\":\"evaluation\",\"status\":\"ACCEPTED\",\"supplier\":\"B\",\"version\":1}"
+      },
+      {
+        "seq": 3,
+        "event_id": "evt_38a22c49e9044e6d8b3099665cfb9bdc",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_13dfe8ce8e214590a2d72e55e50b615b",
+        "aggregate_version": 2,
+        "occurred_tick": 0,
+        "event_type": "order.payment_pending",
+        "payload": "{\"payment_intent_id\":\"pay_d9eeaeb7dca74a4a8b555574b25dccda\"}"
+      },
+      {
+        "seq": 4,
+        "event_id": "evt_a37f19701b68494597fd47e05d1a1c1a",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_13dfe8ce8e214590a2d72e55e50b615b",
+        "aggregate_version": 3,
+        "occurred_tick": 0,
+        "event_type": "order.paid",
+        "payload": "{\"payment_intent_id\":\"pay_d9eeaeb7dca74a4a8b555574b25dccda\"}"
+      },
+      {
+        "seq": 5,
+        "event_id": "evt_2b74be1394c04b4c83670c6bc331f699",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_13dfe8ce8e214590a2d72e55e50b615b",
+        "aggregate_version": 4,
+        "occurred_tick": 0,
+        "event_type": "order.fulfilling",
+        "payload": "{\"due_tick\":15}"
+      },
+      {
+        "seq": 6,
+        "event_id": "evt_bd241ebf041245d8a80a47883c57800d",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 6,
+        "occurred_tick": 5,
+        "event_type": "clock.advanced",
+        "payload": "{\"tick\":5}"
+      },
+      {
+        "seq": 7,
+        "event_id": "evt_b299ecd133154fc687ea190d5d267082",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 11,
+        "occurred_tick": 10,
+        "event_type": "clock.advanced",
+        "payload": "{\"tick\":10}"
+      },
+      {
+        "seq": 8,
+        "event_id": "evt_343e62df117c4ba6962c9757b2dbc54e",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_13dfe8ce8e214590a2d72e55e50b615b",
+        "aggregate_version": 5,
+        "occurred_tick": 15,
+        "event_type": "order.delivered",
+        "payload": "{\"items\":{\"light\":6},\"recipient\":\"event-venue\"}"
+      },
+      {
+        "seq": 9,
+        "event_id": "evt_cb67e2b4a67841c88900ad3ce6814e81",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 16,
+        "occurred_tick": 15,
+        "event_type": "clock.advanced",
+        "payload": "{\"tick\":15}"
+      },
+      {
+        "seq": 10,
+        "event_id": "evt_0176bbbda8aa495da1595b657c7da051",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_45b6f75210104e3aaaf7bbdce4a2b93e",
+        "aggregate_version": 1,
+        "occurred_tick": 15,
+        "event_type": "order.accepted",
+        "payload": "{\"amount\":271,\"created_tick\":15,\"delivered_tick\":null,\"due_tick\":null,\"id\":\"order_45b6f75210104e3aaaf7bbdce4a2b93e\",\"items\":{\"tent\":3},\"key\":\"evaluation:buy-1\",\"lead_ticks\":10,\"payment_intent_id\":null,\"payment_version\":0,\"quote_id\":\"quote_a763a53ccfe24704b1ba31d09f7e9cf9\",\"recipient\":\"event-venue\",\"run_id\":\"evaluation\",\"status\":\"ACCEPTED\",\"supplier\":\"A\",\"version\":1}"
+      },
+      {
+        "seq": 11,
+        "event_id": "evt_ec4d95a3afd44b719fcc53bfb75c5aba",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_45b6f75210104e3aaaf7bbdce4a2b93e",
+        "aggregate_version": 2,
+        "occurred_tick": 15,
+        "event_type": "order.payment_pending",
+        "payload": "{\"payment_intent_id\":\"pay_0ad33a43e41544768915b8b733055e07\"}"
+      },
+      {
+        "seq": 12,
+        "event_id": "evt_38010f47caa64cc4990c6c54a2b2abd1",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_45b6f75210104e3aaaf7bbdce4a2b93e",
+        "aggregate_version": 3,
+        "occurred_tick": 15,
+        "event_type": "order.paid",
+        "payload": "{\"payment_intent_id\":\"pay_0ad33a43e41544768915b8b733055e07\"}"
+      },
+      {
+        "seq": 13,
+        "event_id": "evt_3e05164da08d4320a154f986b2af6302",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_45b6f75210104e3aaaf7bbdce4a2b93e",
+        "aggregate_version": 4,
+        "occurred_tick": 15,
+        "event_type": "order.fulfilling",
+        "payload": "{\"due_tick\":25}"
+      },
+      {
+        "seq": 14,
+        "event_id": "evt_cca77fac765044ad804a45246d4d0820",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 21,
+        "occurred_tick": 20,
+        "event_type": "clock.advanced",
+        "payload": "{\"tick\":20}"
+      },
+      {
+        "seq": 15,
+        "event_id": "evt_ef9dd9278f104949aa858863af407654",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_45b6f75210104e3aaaf7bbdce4a2b93e",
+        "aggregate_version": 5,
+        "occurred_tick": 25,
+        "event_type": "order.delivered",
+        "payload": "{\"items\":{\"tent\":3},\"recipient\":\"event-venue\"}"
+      },
+      {
+        "seq": 16,
+        "event_id": "evt_1de2620034c8495b835816154948e8c1",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 26,
+        "occurred_tick": 25,
+        "event_type": "clock.advanced",
+        "payload": "{\"tick\":25}"
+      }
+    ],
+    "accounts": [
+      {
+        "run_id": "evaluation",
+        "budget": 500,
+        "spent": 403,
+        "reserved": 0,
+        "metadata": "{\"environment\":\"practice\",\"policy_version\":\"frozen-8288fb6ff6a531395461305405c93677998fa40bef7569859e8426791ba6def9\",\"run_id\":\"evaluation\",\"scenario_version\":\"prospective-partial-4-v1\",\"seed\":42}"
+      }
+    ],
+    "intents": [
+      {
+        "id": "pay_d9eeaeb7dca74a4a8b555574b25dccda",
+        "run_id": "evaluation",
+        "order_id": "order_13dfe8ce8e214590a2d72e55e50b615b",
+        "idempotency_key": "evaluation:pay-0",
+        "recipient": "B",
+        "amount": 132,
+        "status": "SETTLED",
+        "version": 2,
+        "created_tick": 0,
+        "settled_tick": 0
+      },
+      {
+        "id": "pay_0ad33a43e41544768915b8b733055e07",
+        "run_id": "evaluation",
+        "order_id": "order_45b6f75210104e3aaaf7bbdce4a2b93e",
+        "idempotency_key": "evaluation:pay-1",
+        "recipient": "A",
+        "amount": 271,
+        "status": "SETTLED",
+        "version": 2,
+        "created_tick": 15,
+        "settled_tick": 15
+      }
+    ],
+    "payment_events": [
+      {
+        "seq": 1,
+        "event_id": "evt_609386335949432090199a341956f80a",
+        "run_id": "evaluation",
+        "source": "payments",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "account.created",
+        "payload": "{\"budget\":500}"
+      },
+      {
+        "seq": 2,
+        "event_id": "evt_a013374b511c45598ff3c7de83160f5e",
+        "run_id": "evaluation",
+        "source": "payments",
+        "aggregate_id": "pay_d9eeaeb7dca74a4a8b555574b25dccda",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "payment.reserved",
+        "payload": "{\"amount\":132,\"created_tick\":0,\"id\":\"pay_d9eeaeb7dca74a4a8b555574b25dccda\",\"idempotency_key\":\"evaluation:pay-0\",\"order_id\":\"order_13dfe8ce8e214590a2d72e55e50b615b\",\"recipient\":\"B\",\"run_id\":\"evaluation\",\"settled_tick\":null,\"status\":\"RESERVED\",\"version\":1}"
+      },
+      {
+        "seq": 3,
+        "event_id": "evt_e2b6d2bb0593436580d3b825f37347fb",
+        "run_id": "evaluation",
+        "source": "payments",
+        "aggregate_id": "pay_d9eeaeb7dca74a4a8b555574b25dccda",
+        "aggregate_version": 2,
+        "occurred_tick": 0,
+        "event_type": "payment.settled",
+        "payload": "{\"amount\":132,\"created_tick\":0,\"id\":\"pay_d9eeaeb7dca74a4a8b555574b25dccda\",\"idempotency_key\":\"evaluation:pay-0\",\"order_id\":\"order_13dfe8ce8e214590a2d72e55e50b615b\",\"recipient\":\"B\",\"run_id\":\"evaluation\",\"settled_tick\":0,\"status\":\"SETTLED\",\"version\":2}"
+      },
+      {
+        "seq": 4,
+        "event_id": "evt_cc464bb5b38c4cad93e8d57ecdb66c90",
+        "run_id": "evaluation",
+        "source": "payments",
+        "aggregate_id": "pay_0ad33a43e41544768915b8b733055e07",
+        "aggregate_version": 1,
+        "occurred_tick": 15,
+        "event_type": "payment.reserved",
+        "payload": "{\"amount\":271,\"created_tick\":15,\"id\":\"pay_0ad33a43e41544768915b8b733055e07\",\"idempotency_key\":\"evaluation:pay-1\",\"order_id\":\"order_45b6f75210104e3aaaf7bbdce4a2b93e\",\"recipient\":\"A\",\"run_id\":\"evaluation\",\"settled_tick\":null,\"status\":\"RESERVED\",\"version\":1}"
+      },
+      {
+        "seq": 5,
+        "event_id": "evt_e64f787211f244aeb65be64800769215",
+        "run_id": "evaluation",
+        "source": "payments",
+        "aggregate_id": "pay_0ad33a43e41544768915b8b733055e07",
+        "aggregate_version": 2,
+        "occurred_tick": 15,
+        "event_type": "payment.settled",
+        "payload": "{\"amount\":271,\"created_tick\":15,\"id\":\"pay_0ad33a43e41544768915b8b733055e07\",\"idempotency_key\":\"evaluation:pay-1\",\"order_id\":\"order_45b6f75210104e3aaaf7bbdce4a2b93e\",\"recipient\":\"A\",\"run_id\":\"evaluation\",\"settled_tick\":15,\"status\":\"SETTLED\",\"version\":2}"
+      }
+    ]
+  },
+  "verdict": {
+    "status": "COMPLETE",
+    "reasons": [],
+    "spent": 403,
+    "reserved": 0,
+    "received": {
+      "light": 6,
+      "tent": 3
+    }
+  }
+}

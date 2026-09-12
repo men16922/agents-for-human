@@ -1,0 +1,85 @@
+{
+  "scope": "CW05-local-HTTP-not-Medusa-transfer",
+  "checks": {
+    "unauthenticated": 401,
+    "cross_run": 403,
+    "observer_write": 403,
+    "stale_quote": {
+      "error": "STALE_QUOTE"
+    },
+    "other_customer_order": 404,
+    "lost_response": "UNKNOWN",
+    "reconciled_payment": "SETTLED",
+    "autonomous_clock_and_delivery": true,
+    "restart_preserved_state": true
+  },
+  "order_id": "order_3ca3ec9922a24c27846ca47007c95600",
+  "snapshot_before_restart": {
+    "run_id": "buyer-one",
+    "goal": {
+      "budget": 500,
+      "deadline_tick": 30,
+      "items": {
+        "light": 6,
+        "tent": 3
+      },
+      "recipient": "event-venue"
+    },
+    "tick": 2,
+    "clock_mode": "operating-one-second-ticks",
+    "balance": {
+      "budget": 500,
+      "spent": 380,
+      "reserved": 0,
+      "available": 120
+    },
+    "inventory": {
+      "light": 6,
+      "tent": 3
+    },
+    "suppliers": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "snapshot_after_restart": {
+    "run_id": "buyer-one",
+    "goal": {
+      "budget": 500,
+      "deadline_tick": 30,
+      "items": {
+        "light": 6,
+        "tent": 3
+      },
+      "recipient": "event-venue"
+    },
+    "tick": 2,
+    "clock_mode": "operating-one-second-ticks",
+    "balance": {
+      "budget": 500,
+      "spent": 380,
+      "reserved": 0,
+      "available": 120
+    },
+    "inventory": {
+      "light": 6,
+      "tent": 3
+    },
+    "suppliers": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "verdict": {
+    "status": "COMPLETE",
+    "reasons": [],
+    "spent": 380,
+    "reserved": 0,
+    "received": {
+      "light": 6,
+      "tent": 3
+    }
+  }
+}

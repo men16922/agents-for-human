@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "scope": "actual-CloudFront-API-no-new-run",
+  "checks": [
+    {
+      "case": "config",
+      "status": 200
+    },
+    {
+      "case": "invalid-input",
+      "status": 409,
+      "result": {
+        "error": "INVALID_BODY"
+      }
+    },
+    {
+      "case": "invalid-input",
+      "status": 409,
+      "result": {
+        "error": "INVALID_ARGUMENTS"
+      }
+    },
+    {
+      "case": "invalid-input",
+      "status": 409,
+      "result": {
+        "error": "INVALID_ARGUMENTS"
+      }
+    },
+    {
+      "case": "invalid-input",
+      "status": 409,
+      "result": {
+        "error": "INVALID_IDENTIFIER"
+      }
+    },
+    {
+      "case": "invalid-input",
+      "status": 409,
+      "result": {
+        "error": "UNKNOWN_SCENARIO"
+      }
+    },
+    {
+      "case": "duplicate-completed-run",
+      "results": [
+        [
+          202,
+          {
+            "run_id": "rehearsal-de1fdd3939c550e3fac41a0a2b40e21f",
+            "status": "COMPLETE"
+          }
+        ],
+        [
+          202,
+          {
+            "run_id": "rehearsal-de1fdd3939c550e3fac41a0a2b40e21f",
+            "status": "COMPLETE"
+          }
+        ]
+      ]
+    },
+    {
+      "case": "idempotent-scope",
+      "status": 409,
+      "result": {
+        "error": "IDEMPOTENCY_CONFLICT"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1243 @@
+{
+  "scope": "live-model",
+  "settings": {
+    "profile": "q-user",
+    "region": "us-west-2",
+    "model_id": "global.amazon.nova-2-lite-v1:0",
+    "rates": {
+      "input_usd_per_million": "0.30",
+      "output_usd_per_million": "2.50",
+      "cache_read_usd_per_million": "0.075",
+      "cache_write_usd_per_million": "0",
+      "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-west-2/index.json"
+    },
+    "budget_micro_usd": 1000000,
+    "input_limit": 8000,
+    "output_limit": 1024,
+    "max_model_calls": 48,
+    "max_tool_calls": 60,
+    "timeout_seconds": 180,
+    "max_total_tokens": 100000
+  },
+  "max_review_rounds": 2,
+  "initial_policy": {
+    "supplier_preference": "lowest_total",
+    "refresh_quote_before_order": false,
+    "max_quote_candidates": 3,
+    "wait_ticks": 5,
+    "uncertain_payment_action": "query_same_order"
+  },
+  "initial_policy_version": "policy-19bfdf8cfe268f1c",
+  "status": "REJECTED",
+  "rounds": [
+    {
+      "round": 1,
+      "status": "CANDIDATE_EVALUATED_NOT_PROMOTED",
+      "before_version": "policy-19bfdf8cfe268f1c",
+      "input_sha256": "15053acd06c334ab846dc994bffc6fea480d9cc160144f6f1c41a9e8a6b65b8e",
+      "usage_calls": [
+        {
+          "id": 14,
+          "run_id": "b3-session",
+          "status": "RECORDED",
+          "projected_input_tokens": 2518,
+          "reserved_micro_usd": 4960,
+          "estimated_micro_usd": 1275,
+          "usage": "{\"inputTokens\": 3172, \"outputTokens\": 129, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+          "error_type": null,
+          "started_at": "2026-09-12T01:44:38.347Z",
+          "finished_at": "2026-09-12T01:44:39.942Z",
+          "role": "reviewer",
+          "execution_id": "review-1"
+        }
+      ],
+      "attempted_tools": [],
+      "stop_reason": null,
+      "response_sha256": "623c337f7ac5cf3569d1a146f95fe9962cd9e5a94365a378f2084783166079da",
+      "proposal": {
+        "decision": "revise",
+        "reason": "The experiment shows a stale quote error when creating an order with an outdated quote, indicating the current policy does not handle quote expiration properly. The policy should be updated to refresh quotes before ordering to avoid using stale quotes.",
+        "counterexamples": [
+          "initial"
+        ],
+        "candidate_policy": {
+          "max_quote_candidates": 3,
+          "refresh_quote_before_order": true,
+          "supplier_preference": "lowest_total",
+          "uncertain_payment_action": "query_same_order",
+          "wait_ticks": 5
+        }
+      },
+      "revision_sha256": "7771221fc8d81d93e17d455581ab9f2927ea6eddc9f5d18c5d7d36ce7ac0d22a",
+      "reexperiment_artifact": "round-1/reexperiment/experiment.json",
+      "after_version": "policy-d3b91f7487599065",
+      "reexperiment": {
+        "experiment_id": "candidate-1",
+        "policy_version": "policy-d3b91f7487599065",
+        "snapshot_sha256": "400fc398411c60327d0c9b71c17d920df605c6d976ccf601c4fd941295f94d1c",
+        "artifact_sha256": "16c40658658358a6463936c72732ab3689d276f7c68dcee3651793efafb96376",
+        "evidence_sha256": "7be397da774c3a7ffc67c1de2b3324efbb6c9653a107a7104966c0aa72c16785",
+        "fork_sha256": "c503664103388968e0bd0dd9d58b4fbfe80dc2eb6cc3e48ac3a699e58c06b69d",
+        "independent_verdict": {
+          "status": "COMPLETE",
+          "reasons": [],
+          "spent": 430,
+          "reserved": 0,
+          "received": {
+            "light": 6,
+            "tent": 3
+          }
+        },
+        "scope": "model-purchasing-known-counterexample",
+        "rejection": null,
+        "tool_trace": [
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_TpcCsGEGctaZe9UZlFrLxa",
+              "name": "observe_world",
+              "input": {}
+            },
+            "result": {
+              "toolUseId": "tooluse_TpcCsGEGctaZe9UZlFrLxa",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"goal\": {\"budget\": 500, \"deadline_tick\": 60, \"items\": {\"light\": 6, \"tent\": 3}, \"recipient\": \"event-venue\"}, \"tick\": 0, \"clock_mode\": \"accelerated-practice\", \"inventory\": {}, \"balance\": {\"budget\": 500, \"spent\": 0, \"reserved\": 0, \"available\": 500}, \"suppliers\": [\"A\", \"B\", \"C\"]}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_3v3VSNnSp13W90YEIxI0RS",
+              "name": "get_quotes",
+              "input": {
+                "items": {
+                  "light": 6,
+                  "tent": 3
+                },
+                "supplier": "A"
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_3v3VSNnSp13W90YEIxI0RS",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"id\": \"quote_daa7d3b3ed5841a3b9fbd71332ae71c0\", \"run_id\": \"candidate-1\", \"supplier\": \"A\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 20, \"tent\": 60}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 10, \"amount\": 310, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 10, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"A\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_3q15CiBlMqf37ooCtdykL1",
+              "name": "get_quotes",
+              "input": {
+                "items": {
+                  "light": 6,
+                  "tent": 3
+                },
+                "supplier": "B"
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_3q15CiBlMqf37ooCtdykL1",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"id\": \"quote_035f2b063c244443aafe691b6d7c6080\", \"run_id\": \"candidate-1\", \"supplier\": \"B\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 25, \"tent\": 70}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 20, \"amount\": 380, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 15, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"B\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_2VURVic4MdEm0VnK8Sjgo1",
+              "name": "get_quotes",
+              "input": {
+                "items": {
+                  "light": 6,
+                  "tent": 3
+                },
+                "supplier": "C"
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_2VURVic4MdEm0VnK8Sjgo1",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"id\": \"quote_9c5851511bbe4adaa9a80b066003a9cb\", \"run_id\": \"candidate-1\", \"supplier\": \"C\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 35, \"tent\": 90}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 15, \"amount\": 495, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 20, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"C\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_kBGQSp1xSBhQteWD7Vjflp",
+              "name": "create_order",
+              "input": {
+                "idempotency_key": "order_light_tent_001",
+                "quote_id": "quote_daa7d3b3ed5841a3b9fbd71332ae71c0"
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_kBGQSp1xSBhQteWD7Vjflp",
+              "status": "error",
+              "content": [
+                {
+                  "text": "Error: STALE_QUOTE"
+                }
+              ]
+            },
+            "error_type": "ContractError"
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_YlNkLAQ7arotyrblLtJP5i",
+              "name": "get_quotes",
+              "input": {
+                "items": {
+                  "light": 6,
+                  "tent": 3
+                },
+                "supplier": "A"
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_YlNkLAQ7arotyrblLtJP5i",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"id\": \"quote_a4515096596749b68966c957d0a04705\", \"run_id\": \"candidate-1\", \"supplier\": \"A\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 20, \"tent\": 100}, \"quote_version\": {\"light\": 1, \"tent\": 2}, \"shipping\": 10, \"amount\": 430, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 10, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"A\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_vHfP0QiSZRQDYc8leZFNyV",
+              "name": "create_order",
+              "input": {
+                "idempotency_key": "order_light_tent_001",
+                "quote_id": "quote_a4515096596749b68966c957d0a04705"
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_vHfP0QiSZRQDYc8leZFNyV",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"id\": \"order_6e68e5903ed54b6ab01c6319afa1db9e\", \"run_id\": \"candidate-1\", \"key\": \"order_light_tent_001\", \"quote_id\": \"quote_a4515096596749b68966c957d0a04705\", \"supplier\": \"A\", \"recipient\": \"event-venue\", \"items\": {\"light\": 6, \"tent\": 3}, \"amount\": 430, \"lead_ticks\": 10, \"status\": \"ACCEPTED\", \"version\": 1, \"payment_intent_id\": null, \"payment_version\": 0, \"created_tick\": 0, \"due_tick\": null, \"delivered_tick\": null}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_sWia87L3aeiys8UwcNCbtg",
+              "name": "authorize_payment",
+              "input": {
+                "order_id": "order_6e68e5903ed54b6ab01c6319afa1db9e",
+                "idempotency_key": "payment_light_tent_001"
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_sWia87L3aeiys8UwcNCbtg",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"id\": \"pay_0ce177d3b78a4a66b9bc30eb1f60cc13\", \"run_id\": \"candidate-1\", \"order_id\": \"order_6e68e5903ed54b6ab01c6319afa1db9e\", \"idempotency_key\": \"payment_light_tent_001\", \"recipient\": \"A\", \"amount\": 430, \"status\": \"RESERVED\", \"version\": 1, \"created_tick\": 0, \"settled_tick\": null}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_lVvZBjQHvhXUNTzDzFmn9n",
+              "name": "wait_for_updates",
+              "input": {
+                "ticks": 5
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_lVvZBjQHvhXUNTzDzFmn9n",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"tick\": 5, \"received\": {}}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_674Vf4YybEk6ShquPWNP4l",
+              "name": "get_payment",
+              "input": {
+                "order_id": "order_6e68e5903ed54b6ab01c6319afa1db9e"
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_674Vf4YybEk6ShquPWNP4l",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"id\": \"pay_0ce177d3b78a4a66b9bc30eb1f60cc13\", \"run_id\": \"candidate-1\", \"order_id\": \"order_6e68e5903ed54b6ab01c6319afa1db9e\", \"idempotency_key\": \"payment_light_tent_001\", \"recipient\": \"A\", \"amount\": 430, \"status\": \"SETTLED\", \"version\": 2, \"created_tick\": 0, \"settled_tick\": 0}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_fgakdURwyqvx9aCFQlPHZb",
+              "name": "get_order",
+              "input": {
+                "order_id": "order_6e68e5903ed54b6ab01c6319afa1db9e"
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_fgakdURwyqvx9aCFQlPHZb",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"id\": \"order_6e68e5903ed54b6ab01c6319afa1db9e\", \"run_id\": \"candidate-1\", \"key\": \"order_light_tent_001\", \"quote_id\": \"quote_a4515096596749b68966c957d0a04705\", \"supplier\": \"A\", \"recipient\": \"event-venue\", \"items\": {\"light\": 6, \"tent\": 3}, \"amount\": 430, \"lead_ticks\": 10, \"status\": \"FULFILLING\", \"version\": 4, \"payment_intent_id\": \"pay_0ce177d3b78a4a66b9bc30eb1f60cc13\", \"payment_version\": 2, \"created_tick\": 0, \"due_tick\": 10, \"delivered_tick\": null}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_xL8ACMPk0UIV7gaA07EFSK",
+              "name": "wait_for_updates",
+              "input": {
+                "ticks": 10
+              }
+            },
+            "result": {
+              "toolUseId": "tooluse_xL8ACMPk0UIV7gaA07EFSK",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"tick\": 15, \"received\": {\"light\": 6, \"tent\": 3}}"
+                }
+              ]
+            },
+            "error_type": null
+          },
+          {
+            "tool_use": {
+              "toolUseId": "tooluse_ju4oPL62l0CeSnIEn8VdWl",
+              "name": "get_inventory",
+              "input": {}
+            },
+            "result": {
+              "toolUseId": "tooluse_ju4oPL62l0CeSnIEn8VdWl",
+              "status": "success",
+              "content": [
+                {
+                  "text": "{\"received\": {\"light\": 6, \"tent\": 3}, \"tick\": 15}"
+                }
+              ]
+            },
+            "error_type": null
+          }
+        ],
+        "accounting": {
+          "session_id": "b3-session",
+          "scope": "live-model",
+          "call_ids": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "calls_sha256": "3cafb5016908e402eaa31f6dee584ee1457d3acc250ce81fa67d4944d17f3da2"
+        },
+        "runtime_status": "COMPLETED"
+      }
+    },
+    {
+      "round": 2,
+      "status": "REJECTED",
+      "before_version": "policy-d3b91f7487599065",
+      "input_sha256": "b3453dfd3a02ac2ec56660157c3388c939bb8e2bceea7e61a97d3393fc8901c5",
+      "usage_calls": [
+        {
+          "id": 29,
+          "run_id": "b3-session",
+          "status": "RECORDED",
+          "projected_input_tokens": 2673,
+          "reserved_micro_usd": 4960,
+          "estimated_micro_usd": 1148,
+          "usage": "{\"inputTokens\": 3424, \"outputTokens\": 48, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+          "error_type": null,
+          "started_at": "2026-09-12T01:44:52.580Z",
+          "finished_at": "2026-09-12T01:44:53.894Z",
+          "role": "reviewer",
+          "execution_id": "review-2"
+        }
+      ],
+      "attempted_tools": [],
+      "stop_reason": null,
+      "response_sha256": "2e45e416aa1b2e8ce7fb9ee29500405eb70b9d7b73e3cb89ed63056f294c91bb"
+    }
+  ],
+  "promoted": false,
+  "review_prompt_sha256": "aee1a1086e0b759cfb1c337d833fe730be23a2060548644fcf6e23992006744e",
+  "reevaluator_kind": "model-purchasing-known-counterexample",
+  "review_efficacy_verified": false,
+  "held_out_evaluation_verified": false,
+  "source_sha256": {
+    "src/rehearsal/experiments/review.py": "5334ef13f332d83f02711ed584a219e12bf7c88a35c0c6b707cffc7cd896d1ae",
+    "src/rehearsal/experiments/policy.py": "3cb5965ca0ed64d4f97f4cc03dd7d791fb2f08fd94524d8818a9092fc41fcf2b",
+    "src/rehearsal/experiments/rehearse.py": "7aff6a8ab47d64af4e8baee223f06769ad6dfdf84b7ebe89b1f5d73f19f960f7",
+    "src/rehearsal/agents/metering.py": "7d61c4f81916b6d3e8825f14ea65da04d2510139ab227686fe87aca51fd38adc",
+    "src/rehearsal/world/fork.py": "f2f7b49774384ef363cdb8565819c467e8a765e3e7cdcb63d28741db4d767e75",
+    "src/rehearsal/evaluation/verifier.py": "2018fb3fc35850053f6ac3c298439cbb270cbe6605cd2eabcfb2ed24ca4724e1"
+  },
+  "usage": {
+    "config": {
+      "run_id": "b3-session",
+      "model_id": "global.amazon.nova-2-lite-v1:0",
+      "rates": "{\"cache_read_usd_per_million\": \"0.075\", \"cache_write_usd_per_million\": \"0\", \"input_usd_per_million\": \"0.30\", \"output_usd_per_million\": \"2.50\", \"source\": \"https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-west-2/index.json\"}",
+      "budget_micro_usd": 1000000,
+      "input_limit": 8000,
+      "output_limit": 1024,
+      "scope": "live-model"
+    },
+    "calls": [
+      {
+        "id": 1,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 1908,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 564,
+        "usage": "{\"inputTokens\": 1753, \"outputTokens\": 15, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:27.308Z",
+        "finished_at": "2026-09-12T01:44:28.177Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 2,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 1838,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 681,
+        "usage": "{\"inputTokens\": 1892, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:28.182Z",
+        "finished_at": "2026-09-12T01:44:28.835Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 3,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2117,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 772,
+        "usage": "{\"inputTokens\": 2196, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:28.838Z",
+        "finished_at": "2026-09-12T01:44:29.628Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 4,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2421,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 861,
+        "usage": "{\"inputTokens\": 2495, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:29.631Z",
+        "finished_at": "2026-09-12T01:44:30.328Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 5,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2720,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1008,
+        "usage": "{\"inputTokens\": 2793, \"outputTokens\": 68, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:30.332Z",
+        "finished_at": "2026-09-12T01:44:31.160Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 6,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2866,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 980,
+        "usage": "{\"inputTokens\": 2891, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:31.162Z",
+        "finished_at": "2026-09-12T01:44:32.006Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 7,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3116,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1109,
+        "usage": "{\"inputTokens\": 3188, \"outputTokens\": 61, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:32.010Z",
+        "finished_at": "2026-09-12T01:44:32.908Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 8,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3352,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1185,
+        "usage": "{\"inputTokens\": 3425, \"outputTokens\": 63, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:32.914Z",
+        "finished_at": "2026-09-12T01:44:33.813Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 9,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3557,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1155,
+        "usage": "{\"inputTokens\": 3622, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:33.819Z",
+        "finished_at": "2026-09-12T01:44:34.624Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 10,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3656,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1212,
+        "usage": "{\"inputTokens\": 3687, \"outputTokens\": 42, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:34.633Z",
+        "finished_at": "2026-09-12T01:44:35.802Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 11,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3840,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1246,
+        "usage": "{\"inputTokens\": 3928, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:35.805Z",
+        "finished_at": "2026-09-12T01:44:36.530Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 12,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3968,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1236,
+        "usage": "{\"inputTokens\": 4003, \"outputTokens\": 14, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:36.536Z",
+        "finished_at": "2026-09-12T01:44:37.448Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 13,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4030,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1279,
+        "usage": "{\"inputTokens\": 4062, \"outputTokens\": 24, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:37.452Z",
+        "finished_at": "2026-09-12T01:44:38.294Z",
+        "role": "buyer_initial",
+        "execution_id": "initial"
+      },
+      {
+        "id": 14,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2518,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1275,
+        "usage": "{\"inputTokens\": 3172, \"outputTokens\": 129, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:38.347Z",
+        "finished_at": "2026-09-12T01:44:39.942Z",
+        "role": "reviewer",
+        "execution_id": "review-1"
+      },
+      {
+        "id": 15,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 1908,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 564,
+        "usage": "{\"inputTokens\": 1752, \"outputTokens\": 15, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:40.001Z",
+        "finished_at": "2026-09-12T01:44:41.301Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 16,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 1837,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 680,
+        "usage": "{\"inputTokens\": 1891, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:41.305Z",
+        "finished_at": "2026-09-12T01:44:43.874Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 17,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2117,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 771,
+        "usage": "{\"inputTokens\": 2195, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:43.877Z",
+        "finished_at": "2026-09-12T01:44:44.557Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 18,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2421,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 862,
+        "usage": "{\"inputTokens\": 2497, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:44.559Z",
+        "finished_at": "2026-09-12T01:44:45.263Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 19,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2723,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1005,
+        "usage": "{\"inputTokens\": 2799, \"outputTokens\": 66, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:45.265Z",
+        "finished_at": "2026-09-12T01:44:46.024Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 20,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2870,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 981,
+        "usage": "{\"inputTokens\": 2895, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:46.025Z",
+        "finished_at": "2026-09-12T01:44:46.939Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 21,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3121,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1111,
+        "usage": "{\"inputTokens\": 3194, \"outputTokens\": 61, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:46.941Z",
+        "finished_at": "2026-09-12T01:44:47.612Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 22,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3359,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1199,
+        "usage": "{\"inputTokens\": 3438, \"outputTokens\": 67, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:47.615Z",
+        "finished_at": "2026-09-12T01:44:48.344Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 23,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3575,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1163,
+        "usage": "{\"inputTokens\": 3649, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:48.347Z",
+        "finished_at": "2026-09-12T01:44:49.015Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 24,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3683,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1232,
+        "usage": "{\"inputTokens\": 3714, \"outputTokens\": 47, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:49.019Z",
+        "finished_at": "2026-09-12T01:44:49.676Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 25,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3830,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1290,
+        "usage": "{\"inputTokens\": 3906, \"outputTokens\": 47, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:49.677Z",
+        "finished_at": "2026-09-12T01:44:50.418Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 26,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4066,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1317,
+        "usage": "{\"inputTokens\": 4163, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:50.420Z",
+        "finished_at": "2026-09-12T01:44:51.090Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 27,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4203,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1307,
+        "usage": "{\"inputTokens\": 4238, \"outputTokens\": 14, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:51.093Z",
+        "finished_at": "2026-09-12T01:44:51.723Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 28,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4265,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1347,
+        "usage": "{\"inputTokens\": 4297, \"outputTokens\": 23, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:51.725Z",
+        "finished_at": "2026-09-12T01:44:52.532Z",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1"
+      },
+      {
+        "id": 29,
+        "run_id": "b3-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2673,
+        "reserved_micro_usd": 4960,
+        "estimated_micro_usd": 1148,
+        "usage": "{\"inputTokens\": 3424, \"outputTokens\": 48, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T01:44:52.580Z",
+        "finished_at": "2026-09-12T01:44:53.894Z",
+        "role": "reviewer",
+        "execution_id": "review-2"
+      }
+    ],
+    "admission_rejections": [],
+    "tool_admissions": [
+      {
+        "id": 1,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "observe_world",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:28.179Z"
+      },
+      {
+        "id": 2,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:28.835Z"
+      },
+      {
+        "id": 3,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:29.629Z"
+      },
+      {
+        "id": 4,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:30.330Z"
+      },
+      {
+        "id": 5,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "create_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:31.161Z"
+      },
+      {
+        "id": 6,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:32.008Z"
+      },
+      {
+        "id": 7,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "create_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:32.910Z"
+      },
+      {
+        "id": 8,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "authorize_payment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:33.814Z"
+      },
+      {
+        "id": 9,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:34.626Z"
+      },
+      {
+        "id": 10,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "get_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:35.803Z"
+      },
+      {
+        "id": 11,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:36.531Z"
+      },
+      {
+        "id": 12,
+        "run_id": "b3-session",
+        "role": "buyer_initial",
+        "execution_id": "initial",
+        "tool_name": "get_inventory",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:37.450Z"
+      },
+      {
+        "id": 13,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "observe_world",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:41.303Z"
+      },
+      {
+        "id": 14,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:43.875Z"
+      },
+      {
+        "id": 15,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:44.558Z"
+      },
+      {
+        "id": 16,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:45.263Z"
+      },
+      {
+        "id": 17,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "create_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:46.024Z"
+      },
+      {
+        "id": 18,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:46.940Z"
+      },
+      {
+        "id": 19,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "create_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:47.613Z"
+      },
+      {
+        "id": 20,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "authorize_payment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:48.344Z"
+      },
+      {
+        "id": 21,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:49.015Z"
+      },
+      {
+        "id": 22,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "get_payment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:49.676Z"
+      },
+      {
+        "id": 23,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "get_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:50.419Z"
+      },
+      {
+        "id": 24,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:51.090Z"
+      },
+      {
+        "id": 25,
+        "run_id": "b3-session",
+        "role": "buyer_candidate",
+        "execution_id": "candidate-1",
+        "tool_name": "get_inventory",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T01:44:51.724Z"
+      }
+    ],
+    "admitted_tool_calls": 25,
+    "max_tool_calls": 60,
+    "max_total_tokens": 100000,
+    "recorded_total_tokens": 92431,
+    "unresolved_reserved_tokens": 0,
+    "estimated_token_budget_exceeded": false,
+    "recorded_micro_usd": 30540,
+    "unresolved_reserved_micro_usd": 0,
+    "all_usage_recorded": true,
+    "estimated_budget_exceeded": false,
+    "billing_verified": false,
+    "max_model_calls": 48,
+    "role_usage": {
+      "buyer_candidate": {
+        "scope": "live-model",
+        "model_calls": 14,
+        "admission_rejections": 0,
+        "admitted_tool_calls": 13,
+        "rejected_tool_calls": 0,
+        "status_counts": {
+          "STARTED": 0,
+          "RECORDED": 14,
+          "USAGE_UNKNOWN": 0,
+          "ERROR": 0
+        },
+        "recorded_tokens": {
+          "inputTokens": 44628,
+          "outputTokens": 574,
+          "cacheReadInputTokens": 0,
+          "cacheWriteInputTokens": 0
+        },
+        "recorded_micro_usd": 14829,
+        "unresolved_reserved_micro_usd": 0
+      },
+      "buyer_initial": {
+        "scope": "live-model",
+        "model_calls": 13,
+        "admission_rejections": 0,
+        "admitted_tool_calls": 12,
+        "rejected_tool_calls": 0,
+        "status_counts": {
+          "STARTED": 0,
+          "RECORDED": 13,
+          "USAGE_UNKNOWN": 0,
+          "ERROR": 0
+        },
+        "recorded_tokens": {
+          "inputTokens": 39935,
+          "outputTokens": 521,
+          "cacheReadInputTokens": 0,
+          "cacheWriteInputTokens": 0
+        },
+        "recorded_micro_usd": 13288,
+        "unresolved_reserved_micro_usd": 0
+      },
+      "reviewer": {
+        "scope": "live-model",
+        "model_calls": 2,
+        "admission_rejections": 0,
+        "admitted_tool_calls": 0,
+        "rejected_tool_calls": 0,
+        "status_counts": {
+          "STARTED": 0,
+          "RECORDED": 2,
+          "USAGE_UNKNOWN": 0,
+          "ERROR": 0
+        },
+        "recorded_tokens": {
+          "inputTokens": 6596,
+          "outputTokens": 177,
+          "cacheReadInputTokens": 0,
+          "cacheWriteInputTokens": 0
+        },
+        "recorded_micro_usd": 2423,
+        "unresolved_reserved_micro_usd": 0
+      }
+    }
+  },
+  "role_usage": {
+    "buyer_candidate": {
+      "scope": "live-model",
+      "model_calls": 14,
+      "admission_rejections": 0,
+      "admitted_tool_calls": 13,
+      "rejected_tool_calls": 0,
+      "status_counts": {
+        "STARTED": 0,
+        "RECORDED": 14,
+        "USAGE_UNKNOWN": 0,
+        "ERROR": 0
+      },
+      "recorded_tokens": {
+        "inputTokens": 44628,
+        "outputTokens": 574,
+        "cacheReadInputTokens": 0,
+        "cacheWriteInputTokens": 0
+      },
+      "recorded_micro_usd": 14829,
+      "unresolved_reserved_micro_usd": 0
+    },
+    "buyer_initial": {
+      "scope": "live-model",
+      "model_calls": 13,
+      "admission_rejections": 0,
+      "admitted_tool_calls": 12,
+      "rejected_tool_calls": 0,
+      "status_counts": {
+        "STARTED": 0,
+        "RECORDED": 13,
+        "USAGE_UNKNOWN": 0,
+        "ERROR": 0
+      },
+      "recorded_tokens": {
+        "inputTokens": 39935,
+        "outputTokens": 521,
+        "cacheReadInputTokens": 0,
+        "cacheWriteInputTokens": 0
+      },
+      "recorded_micro_usd": 13288,
+      "unresolved_reserved_micro_usd": 0
+    },
+    "reviewer": {
+      "scope": "live-model",
+      "model_calls": 2,
+      "admission_rejections": 0,
+      "admitted_tool_calls": 0,
+      "rejected_tool_calls": 0,
+      "status_counts": {
+        "STARTED": 0,
+        "RECORDED": 2,
+        "USAGE_UNKNOWN": 0,
+        "ERROR": 0
+      },
+      "recorded_tokens": {
+        "inputTokens": 6596,
+        "outputTokens": 177,
+        "cacheReadInputTokens": 0,
+        "cacheWriteInputTokens": 0
+      },
+      "recorded_micro_usd": 2423,
+      "unresolved_reserved_micro_usd": 0
+    }
+  },
+  "candidate_policy": {
+    "supplier_preference": "lowest_total",
+    "refresh_quote_before_order": true,
+    "max_quote_candidates": 3,
+    "wait_ticks": 5,
+    "uncertain_payment_action": "query_same_order"
+  },
+  "candidate_policy_version": "policy-d3b91f7487599065",
+  "error": "INVALID_REVIEW_COUNTEREXAMPLES"
+}

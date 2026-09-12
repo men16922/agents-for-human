@@ -1,0 +1,82 @@
+{
+  "event": {
+    "id": "notice",
+    "kind": "delivery_notification",
+    "at_tick": 3,
+    "max_lateness_ticks": 2,
+    "delay_ms": 2000,
+    "copies": 2
+  },
+  "state": "OBSERVED",
+  "before": {
+    "run_id": "cw00-aecec0dfe8ac-buyer",
+    "goal": {
+      "deadline_tick": 120,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "tick": 3,
+    "clock_mode": "operating-one-second-ticks",
+    "inventory": {
+      "tent": 0,
+      "light": 0
+    },
+    "balance": {
+      "budget": 500,
+      "spent": 0,
+      "reserved": 0,
+      "available": 500
+    },
+    "suppliers": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "after": {
+    "run_id": "cw00-aecec0dfe8ac-buyer",
+    "goal": {
+      "deadline_tick": 120,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "tick": 3,
+    "clock_mode": "operating-one-second-ticks",
+    "inventory": {
+      "tent": 0,
+      "light": 0
+    },
+    "balance": {
+      "budget": 500,
+      "spent": 0,
+      "reserved": 0,
+      "available": 500
+    },
+    "suppliers": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "mutation": {
+    "method": "POST",
+    "path": "/admin/runs/cw00-aecec0dfe8ac-buyer/faults/scheduled-notification",
+    "request": {
+      "event_id": "notice",
+      "delay_ms": 2000,
+      "kind": "delivery_notification",
+      "copies": 2
+    },
+    "status": 200,
+    "response": {
+      "armed": true,
+      "event_id": "notice"
+    }
+  }
+}

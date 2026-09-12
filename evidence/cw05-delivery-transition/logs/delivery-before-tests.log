@@ -1,0 +1,287 @@
+FFFF........                                                             [100%]
+=================================== FAILURES ===================================
+_ test_captured_delivery_transition_is_unknown_without_consuming_or_releasing_reservation[payment] _
+
+transition = (<rehearsal.commerce.gateway.MedusaGateway object at 0x1068f3530>, <test_gateway.RecordedStore object at 0x106e97380>,...': {'value': '310', 'precision': 20}, 'refunded_total': 0, 'accounting_total': 310, ...}, 'currency_code': 'usd', ...})
+surface = 'payment'
+
+    @pytest.mark.parametrize("surface", ["payment", "order", "snapshot"])
+    def test_captured_delivery_transition_is_unknown_without_consuming_or_releasing_reservation(
+        transition, surface
+    ):
+        gateway, store, oid, final = transition
+        if surface == "payment":
+>           result = gateway.get_payment(oid)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/commerce/test_delivery_transition.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/rehearsal/commerce/gateway.py:448: in get_payment
+    return self._safe_payment(self._purchase(order_id))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/rehearsal/commerce/gateway.py:440: in _safe_payment
+    return self._payment(purchase)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+src/rehearsal/commerce/gateway.py:376: in _payment
+    order = self._external(purchase)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rehearsal.commerce.gateway.MedusaGateway object at 0x1068f3530>
+purchase = {'id': 'order_3526a928962341a6aca9128fbb290e86', 'key': 'capture-buy', 'quote_id': 'quote_14faab3708d14c67b9b822cd2fc78460', 'stage': 'MAPPED', ...}
+
+    def _external(self, purchase: Json) -> Json | None:
+        self._identity()
+        oid = purchase["external_id"]
+        if not oid:
+            # Only read the authenticated customer's paginated list. No complete retry here.
+            offset = 0
+            matches: list[Json] = []
+            while True:
+                page = self.store.call("GET", f"/store/orders?limit=50&offset={offset}")
+                matches.extend(
+                    o
+                    for o in page["orders"]
+                    if (o.get("metadata") or {}).get("rehearsal_quote") == purchase["quote_id"]
+                )
+                offset += len(page["orders"])
+                if offset >= page["count"]:
+                    break
+                if not page["orders"]:
+                    raise ContractError("INCOMPLETE_EXTERNAL_LIST")
+            if len(matches) > 1:
+                raise ContractError("DUPLICATE_EXTERNAL_ORDER")
+            if not matches:
+                return None
+            oid = matches[0]["id"]
+        order: Json = self.store.call(
+            "GET", f"/store/orders/{external_id(oid)}?fields={ORDER_FIELDS}"
+        )["order"]
+        self._validate_order(purchase, order)
+        if order["id"] != oid:
+            raise ContractError("EXTERNAL_MAPPING_MISMATCH")
+        if order["fulfillment_status"] == "delivered":
+            if (
+                not order["fulfillments"]
+                or any(not f["delivered_at"] or f["canceled_at"] for f in order["fulfillments"])
+                or any(i["detail"]["delivered_quantity"] != i["quantity"] for i in order["items"])
+            ):
+>               raise ContractError("EXTERNAL_DELIVERY_MISMATCH")
+E               rehearsal.world.storage.ContractError: EXTERNAL_DELIVERY_MISMATCH
+
+src/rehearsal/commerce/gateway.py:357: ContractError
+_ test_captured_delivery_transition_is_unknown_without_consuming_or_releasing_reservation[order] _
+
+transition = (<rehearsal.commerce.gateway.MedusaGateway object at 0x106f35ac0>, <test_gateway.RecordedStore object at 0x106f364b0>,...': {'value': '310', 'precision': 20}, 'refunded_total': 0, 'accounting_total': 310, ...}, 'currency_code': 'usd', ...})
+surface = 'order'
+
+    @pytest.mark.parametrize("surface", ["payment", "order", "snapshot"])
+    def test_captured_delivery_transition_is_unknown_without_consuming_or_releasing_reservation(
+        transition, surface
+    ):
+        gateway, store, oid, final = transition
+        if surface == "payment":
+            result = gateway.get_payment(oid)
+            assert result == {"status": "UNKNOWN", "reason": "EXTERNAL_DELIVERY_PENDING"}
+        elif surface == "order":
+>           result = gateway.get_order(oid)
+                     ^^^^^^^^^^^^^^^^^^^^^^
+
+tests/commerce/test_delivery_transition.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/rehearsal/commerce/gateway.py:453: in get_order
+    external = self._external(purchase) if purchase["stage"] != "ACCEPTED" else None
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rehearsal.commerce.gateway.MedusaGateway object at 0x106f35ac0>
+purchase = {'id': 'order_3526a928962341a6aca9128fbb290e86', 'key': 'capture-buy', 'quote_id': 'quote_14faab3708d14c67b9b822cd2fc78460', 'stage': 'MAPPED', ...}
+
+    def _external(self, purchase: Json) -> Json | None:
+        self._identity()
+        oid = purchase["external_id"]
+        if not oid:
+            # Only read the authenticated customer's paginated list. No complete retry here.
+            offset = 0
+            matches: list[Json] = []
+            while True:
+                page = self.store.call("GET", f"/store/orders?limit=50&offset={offset}")
+                matches.extend(
+                    o
+                    for o in page["orders"]
+                    if (o.get("metadata") or {}).get("rehearsal_quote") == purchase["quote_id"]
+                )
+                offset += len(page["orders"])
+                if offset >= page["count"]:
+                    break
+                if not page["orders"]:
+                    raise ContractError("INCOMPLETE_EXTERNAL_LIST")
+            if len(matches) > 1:
+                raise ContractError("DUPLICATE_EXTERNAL_ORDER")
+            if not matches:
+                return None
+            oid = matches[0]["id"]
+        order: Json = self.store.call(
+            "GET", f"/store/orders/{external_id(oid)}?fields={ORDER_FIELDS}"
+        )["order"]
+        self._validate_order(purchase, order)
+        if order["id"] != oid:
+            raise ContractError("EXTERNAL_MAPPING_MISMATCH")
+        if order["fulfillment_status"] == "delivered":
+            if (
+                not order["fulfillments"]
+                or any(not f["delivered_at"] or f["canceled_at"] for f in order["fulfillments"])
+                or any(i["detail"]["delivered_quantity"] != i["quantity"] for i in order["items"])
+            ):
+>               raise ContractError("EXTERNAL_DELIVERY_MISMATCH")
+E               rehearsal.world.storage.ContractError: EXTERNAL_DELIVERY_MISMATCH
+
+src/rehearsal/commerce/gateway.py:357: ContractError
+_ test_captured_delivery_transition_is_unknown_without_consuming_or_releasing_reservation[snapshot] _
+
+transition = (<rehearsal.commerce.gateway.MedusaGateway object at 0x106f69c10>, <test_gateway.RecordedStore object at 0x106f6be90>,...': {'value': '310', 'precision': 20}, 'refunded_total': 0, 'accounting_total': 310, ...}, 'currency_code': 'usd', ...})
+surface = 'snapshot'
+
+    @pytest.mark.parametrize("surface", ["payment", "order", "snapshot"])
+    def test_captured_delivery_transition_is_unknown_without_consuming_or_releasing_reservation(
+        transition, surface
+    ):
+        gateway, store, oid, final = transition
+        if surface == "payment":
+            result = gateway.get_payment(oid)
+            assert result == {"status": "UNKNOWN", "reason": "EXTERNAL_DELIVERY_PENDING"}
+        elif surface == "order":
+            result = gateway.get_order(oid)
+            assert result["status"] == "UNKNOWN" and result["reason"] == "EXTERNAL_DELIVERY_PENDING"
+        else:
+>           result = gateway.observe_world()
+                     ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/commerce/test_delivery_transition.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/rehearsal/commerce/gateway.py:518: in observe_world
+    payment = self._safe_payment(purchase)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/rehearsal/commerce/gateway.py:440: in _safe_payment
+    return self._payment(purchase)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+src/rehearsal/commerce/gateway.py:376: in _payment
+    order = self._external(purchase)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rehearsal.commerce.gateway.MedusaGateway object at 0x106f69c10>
+purchase = {'id': 'order_3526a928962341a6aca9128fbb290e86', 'key': 'capture-buy', 'quote_id': 'quote_14faab3708d14c67b9b822cd2fc78460', 'stage': 'MAPPED', ...}
+
+    def _external(self, purchase: Json) -> Json | None:
+        self._identity()
+        oid = purchase["external_id"]
+        if not oid:
+            # Only read the authenticated customer's paginated list. No complete retry here.
+            offset = 0
+            matches: list[Json] = []
+            while True:
+                page = self.store.call("GET", f"/store/orders?limit=50&offset={offset}")
+                matches.extend(
+                    o
+                    for o in page["orders"]
+                    if (o.get("metadata") or {}).get("rehearsal_quote") == purchase["quote_id"]
+                )
+                offset += len(page["orders"])
+                if offset >= page["count"]:
+                    break
+                if not page["orders"]:
+                    raise ContractError("INCOMPLETE_EXTERNAL_LIST")
+            if len(matches) > 1:
+                raise ContractError("DUPLICATE_EXTERNAL_ORDER")
+            if not matches:
+                return None
+            oid = matches[0]["id"]
+        order: Json = self.store.call(
+            "GET", f"/store/orders/{external_id(oid)}?fields={ORDER_FIELDS}"
+        )["order"]
+        self._validate_order(purchase, order)
+        if order["id"] != oid:
+            raise ContractError("EXTERNAL_MAPPING_MISMATCH")
+        if order["fulfillment_status"] == "delivered":
+            if (
+                not order["fulfillments"]
+                or any(not f["delivered_at"] or f["canceled_at"] for f in order["fulfillments"])
+                or any(i["detail"]["delivered_quantity"] != i["quantity"] for i in order["items"])
+            ):
+>               raise ContractError("EXTERNAL_DELIVERY_MISMATCH")
+E               rehearsal.world.storage.ContractError: EXTERNAL_DELIVERY_MISMATCH
+
+src/rehearsal/commerce/gateway.py:357: ContractError
+______ test_temporary_unknown_does_not_erase_previous_payment_settlement _______
+
+transition = (<rehearsal.commerce.gateway.MedusaGateway object at 0x106ffbc20>, <test_gateway.RecordedStore object at 0x106eca9f0>,...': {'value': '310', 'precision': 20}, 'refunded_total': 0, 'accounting_total': 310, ...}, 'currency_code': 'usd', ...})
+
+    def test_temporary_unknown_does_not_erase_previous_payment_settlement(transition):
+        gateway, store, oid, _ = transition
+        intent = gateway.payments.for_order(gateway.binding.run_id, oid)
+        gateway.payments.settle(gateway.binding.run_id, intent["id"], gateway.tick())
+>       assert gateway.get_payment(oid)["status"] == "UNKNOWN"
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/commerce/test_delivery_transition.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/rehearsal/commerce/gateway.py:448: in get_payment
+    return self._safe_payment(self._purchase(order_id))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/rehearsal/commerce/gateway.py:440: in _safe_payment
+    return self._payment(purchase)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+src/rehearsal/commerce/gateway.py:376: in _payment
+    order = self._external(purchase)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <rehearsal.commerce.gateway.MedusaGateway object at 0x106ffbc20>
+purchase = {'id': 'order_3526a928962341a6aca9128fbb290e86', 'key': 'capture-buy', 'quote_id': 'quote_14faab3708d14c67b9b822cd2fc78460', 'stage': 'MAPPED', ...}
+
+    def _external(self, purchase: Json) -> Json | None:
+        self._identity()
+        oid = purchase["external_id"]
+        if not oid:
+            # Only read the authenticated customer's paginated list. No complete retry here.
+            offset = 0
+            matches: list[Json] = []
+            while True:
+                page = self.store.call("GET", f"/store/orders?limit=50&offset={offset}")
+                matches.extend(
+                    o
+                    for o in page["orders"]
+                    if (o.get("metadata") or {}).get("rehearsal_quote") == purchase["quote_id"]
+                )
+                offset += len(page["orders"])
+                if offset >= page["count"]:
+                    break
+                if not page["orders"]:
+                    raise ContractError("INCOMPLETE_EXTERNAL_LIST")
+            if len(matches) > 1:
+                raise ContractError("DUPLICATE_EXTERNAL_ORDER")
+            if not matches:
+                return None
+            oid = matches[0]["id"]
+        order: Json = self.store.call(
+            "GET", f"/store/orders/{external_id(oid)}?fields={ORDER_FIELDS}"
+        )["order"]
+        self._validate_order(purchase, order)
+        if order["id"] != oid:
+            raise ContractError("EXTERNAL_MAPPING_MISMATCH")
+        if order["fulfillment_status"] == "delivered":
+            if (
+                not order["fulfillments"]
+                or any(not f["delivered_at"] or f["canceled_at"] for f in order["fulfillments"])
+                or any(i["detail"]["delivered_quantity"] != i["quantity"] for i in order["items"])
+            ):
+>               raise ContractError("EXTERNAL_DELIVERY_MISMATCH")
+E               rehearsal.world.storage.ContractError: EXTERNAL_DELIVERY_MISMATCH
+
+src/rehearsal/commerce/gateway.py:357: ContractError
+=========================== short test summary info ============================
+FAILED tests/commerce/test_delivery_transition.py::test_captured_delivery_transition_is_unknown_without_consuming_or_releasing_reservation[payment]
+FAILED tests/commerce/test_delivery_transition.py::test_captured_delivery_transition_is_unknown_without_consuming_or_releasing_reservation[order]
+FAILED tests/commerce/test_delivery_transition.py::test_captured_delivery_transition_is_unknown_without_consuming_or_releasing_reservation[snapshot]
+FAILED tests/commerce/test_delivery_transition.py::test_temporary_unknown_does_not_erase_previous_payment_settlement

@@ -1,0 +1,717 @@
+{
+  "scope": "B0-fixed-rule-not-model",
+  "verdict": {
+    "status": "COMPLETE",
+    "reasons": [],
+    "spent": 380,
+    "reserved": 0,
+    "received": {
+      "light": 6,
+      "tent": 3
+    }
+  },
+  "execution_status": "GOAL_OBSERVED",
+  "frozen_id": "frozen-1b8dda92580ad2af8137b77dd1c6d3cf4609f351a5b613ee9e379b561f95c586",
+  "tool_calls": 24,
+  "trace": [
+    {
+      "seq": 1,
+      "tool": "observe_world",
+      "arguments": {},
+      "result": {
+        "goal": {
+          "budget": 500,
+          "deadline_tick": 60,
+          "items": {
+            "light": 6,
+            "tent": 3
+          },
+          "recipient": "event-venue"
+        },
+        "tick": 0,
+        "clock_mode": "accelerated-practice",
+        "inventory": {},
+        "balance": {
+          "budget": 500,
+          "spent": 0,
+          "reserved": 0,
+          "available": 500
+        },
+        "suppliers": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "elapsed_seconds": 0.0006742499999745633
+    },
+    {
+      "seq": 2,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.000810583000202314
+    },
+    {
+      "seq": 3,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "result": {
+        "id": "quote_8712676f1ebc41f1badb89c889465688",
+        "run_id": "evaluation",
+        "supplier": "B",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "unit_prices": {
+          "light": 25,
+          "tent": 70
+        },
+        "quote_version": {
+          "light": 1,
+          "tent": 1
+        },
+        "shipping": 20,
+        "amount": 380,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 15,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "B",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            },
+            "tent": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.0011739999999917927
+    },
+    {
+      "seq": 4,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "result": {
+        "id": "quote_417f1e65bc4a43958c406e6ae4949f45",
+        "run_id": "evaluation",
+        "supplier": "C",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "unit_prices": {
+          "light": 35,
+          "tent": 90
+        },
+        "quote_version": {
+          "light": 1,
+          "tent": 1
+        },
+        "shipping": 15,
+        "amount": 495,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 20,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "C",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            },
+            "tent": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.001486375000240514
+    },
+    {
+      "seq": 5,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0015946249995977269
+    },
+    {
+      "seq": 6,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "result": {
+        "id": "quote_e96d2b60051745b0af2a8e6129f5a7df",
+        "run_id": "evaluation",
+        "supplier": "B",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "unit_prices": {
+          "light": 25,
+          "tent": 70
+        },
+        "quote_version": {
+          "light": 1,
+          "tent": 1
+        },
+        "shipping": 20,
+        "amount": 380,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 15,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "B",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            },
+            "tent": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.0018891250001615845
+    },
+    {
+      "seq": 7,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "result": {
+        "id": "quote_1a5fb1e5190542da9f2da4e8e7102030",
+        "run_id": "evaluation",
+        "supplier": "C",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "unit_prices": {
+          "light": 35,
+          "tent": 90
+        },
+        "quote_version": {
+          "light": 1,
+          "tent": 1
+        },
+        "shipping": 15,
+        "amount": 495,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 20,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "C",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            },
+            "tent": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.0022052909998819814
+    },
+    {
+      "seq": 8,
+      "tool": "create_order",
+      "arguments": {
+        "quote_id": "quote_e96d2b60051745b0af2a8e6129f5a7df",
+        "idempotency_key": "evaluation:buy-0"
+      },
+      "result": {
+        "id": "order_f37ee8e7b81044538e031659a07e7759",
+        "run_id": "evaluation",
+        "key": "evaluation:buy-0",
+        "quote_id": "quote_e96d2b60051745b0af2a8e6129f5a7df",
+        "supplier": "B",
+        "recipient": "event-venue",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "amount": 380,
+        "lead_ticks": 15,
+        "status": "ACCEPTED",
+        "version": 1,
+        "payment_intent_id": null,
+        "payment_version": 0,
+        "created_tick": 0,
+        "due_tick": null,
+        "delivered_tick": null
+      },
+      "elapsed_seconds": 0.0027551659995879163
+    },
+    {
+      "seq": 9,
+      "tool": "authorize_payment",
+      "arguments": {
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759",
+        "idempotency_key": "evaluation:pay-0"
+      },
+      "result": {
+        "id": "pay_f770ad14040442f6b57ee63dcecbbc79",
+        "run_id": "evaluation",
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759",
+        "idempotency_key": "evaluation:pay-0",
+        "recipient": "B",
+        "amount": 380,
+        "status": "RESERVED",
+        "version": 1,
+        "created_tick": 0,
+        "settled_tick": null
+      },
+      "elapsed_seconds": 0.003718916000252648
+    },
+    {
+      "seq": 10,
+      "tool": "get_payment",
+      "arguments": {
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759"
+      },
+      "result": {
+        "id": "pay_f770ad14040442f6b57ee63dcecbbc79",
+        "run_id": "evaluation",
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759",
+        "idempotency_key": "evaluation:pay-0",
+        "recipient": "B",
+        "amount": 380,
+        "status": "RESERVED",
+        "version": 1,
+        "created_tick": 0,
+        "settled_tick": null
+      },
+      "elapsed_seconds": 0.0039261659994735965
+    },
+    {
+      "seq": 11,
+      "tool": "get_order",
+      "arguments": {
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759"
+      },
+      "result": {
+        "id": "order_f37ee8e7b81044538e031659a07e7759",
+        "run_id": "evaluation",
+        "key": "evaluation:buy-0",
+        "quote_id": "quote_e96d2b60051745b0af2a8e6129f5a7df",
+        "supplier": "B",
+        "recipient": "event-venue",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "amount": 380,
+        "lead_ticks": 15,
+        "status": "PAYMENT_PENDING",
+        "version": 2,
+        "payment_intent_id": "pay_f770ad14040442f6b57ee63dcecbbc79",
+        "payment_version": 1,
+        "created_tick": 0,
+        "due_tick": null,
+        "delivered_tick": null
+      },
+      "elapsed_seconds": 0.004112124999664957
+    },
+    {
+      "seq": 12,
+      "tool": "observe_world",
+      "arguments": {},
+      "result": {
+        "goal": {
+          "budget": 500,
+          "deadline_tick": 60,
+          "items": {
+            "light": 6,
+            "tent": 3
+          },
+          "recipient": "event-venue"
+        },
+        "tick": 0,
+        "clock_mode": "accelerated-practice",
+        "inventory": {},
+        "balance": {
+          "budget": 500,
+          "spent": 0,
+          "reserved": 380,
+          "available": 120
+        },
+        "suppliers": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "elapsed_seconds": 0.004604040999765857
+    },
+    {
+      "seq": 13,
+      "tool": "wait_for_updates",
+      "arguments": {
+        "ticks": 5
+      },
+      "result": {
+        "tick": 5,
+        "received": {}
+      },
+      "elapsed_seconds": 0.006644750000305066
+    },
+    {
+      "seq": 14,
+      "tool": "get_payment",
+      "arguments": {
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759"
+      },
+      "result": {
+        "id": "pay_f770ad14040442f6b57ee63dcecbbc79",
+        "run_id": "evaluation",
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759",
+        "idempotency_key": "evaluation:pay-0",
+        "recipient": "B",
+        "amount": 380,
+        "status": "SETTLED",
+        "version": 2,
+        "created_tick": 0,
+        "settled_tick": 0
+      },
+      "elapsed_seconds": 0.0068103329995210515
+    },
+    {
+      "seq": 15,
+      "tool": "get_order",
+      "arguments": {
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759"
+      },
+      "result": {
+        "id": "order_f37ee8e7b81044538e031659a07e7759",
+        "run_id": "evaluation",
+        "key": "evaluation:buy-0",
+        "quote_id": "quote_e96d2b60051745b0af2a8e6129f5a7df",
+        "supplier": "B",
+        "recipient": "event-venue",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "amount": 380,
+        "lead_ticks": 15,
+        "status": "FULFILLING",
+        "version": 4,
+        "payment_intent_id": "pay_f770ad14040442f6b57ee63dcecbbc79",
+        "payment_version": 2,
+        "created_tick": 0,
+        "due_tick": 15,
+        "delivered_tick": null
+      },
+      "elapsed_seconds": 0.006893333000334678
+    },
+    {
+      "seq": 16,
+      "tool": "observe_world",
+      "arguments": {},
+      "result": {
+        "goal": {
+          "budget": 500,
+          "deadline_tick": 60,
+          "items": {
+            "light": 6,
+            "tent": 3
+          },
+          "recipient": "event-venue"
+        },
+        "tick": 5,
+        "clock_mode": "accelerated-practice",
+        "inventory": {},
+        "balance": {
+          "budget": 500,
+          "spent": 380,
+          "reserved": 0,
+          "available": 120
+        },
+        "suppliers": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "elapsed_seconds": 0.007305291000193392
+    },
+    {
+      "seq": 17,
+      "tool": "wait_for_updates",
+      "arguments": {
+        "ticks": 5
+      },
+      "result": {
+        "tick": 10,
+        "received": {}
+      },
+      "elapsed_seconds": 0.009358915999655437
+    },
+    {
+      "seq": 18,
+      "tool": "get_payment",
+      "arguments": {
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759"
+      },
+      "result": {
+        "id": "pay_f770ad14040442f6b57ee63dcecbbc79",
+        "run_id": "evaluation",
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759",
+        "idempotency_key": "evaluation:pay-0",
+        "recipient": "B",
+        "amount": 380,
+        "status": "SETTLED",
+        "version": 2,
+        "created_tick": 0,
+        "settled_tick": 0
+      },
+      "elapsed_seconds": 0.00960616599968489
+    },
+    {
+      "seq": 19,
+      "tool": "get_order",
+      "arguments": {
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759"
+      },
+      "result": {
+        "id": "order_f37ee8e7b81044538e031659a07e7759",
+        "run_id": "evaluation",
+        "key": "evaluation:buy-0",
+        "quote_id": "quote_e96d2b60051745b0af2a8e6129f5a7df",
+        "supplier": "B",
+        "recipient": "event-venue",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "amount": 380,
+        "lead_ticks": 15,
+        "status": "FULFILLING",
+        "version": 4,
+        "payment_intent_id": "pay_f770ad14040442f6b57ee63dcecbbc79",
+        "payment_version": 2,
+        "created_tick": 0,
+        "due_tick": 15,
+        "delivered_tick": null
+      },
+      "elapsed_seconds": 0.009724415999698977
+    },
+    {
+      "seq": 20,
+      "tool": "observe_world",
+      "arguments": {},
+      "result": {
+        "goal": {
+          "budget": 500,
+          "deadline_tick": 60,
+          "items": {
+            "light": 6,
+            "tent": 3
+          },
+          "recipient": "event-venue"
+        },
+        "tick": 10,
+        "clock_mode": "accelerated-practice",
+        "inventory": {},
+        "balance": {
+          "budget": 500,
+          "spent": 380,
+          "reserved": 0,
+          "available": 120
+        },
+        "suppliers": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "elapsed_seconds": 0.010478790999513876
+    },
+    {
+      "seq": 21,
+      "tool": "wait_for_updates",
+      "arguments": {
+        "ticks": 5
+      },
+      "result": {
+        "tick": 15,
+        "received": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "elapsed_seconds": 0.012642290999792749
+    },
+    {
+      "seq": 22,
+      "tool": "get_payment",
+      "arguments": {
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759"
+      },
+      "result": {
+        "id": "pay_f770ad14040442f6b57ee63dcecbbc79",
+        "run_id": "evaluation",
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759",
+        "idempotency_key": "evaluation:pay-0",
+        "recipient": "B",
+        "amount": 380,
+        "status": "SETTLED",
+        "version": 2,
+        "created_tick": 0,
+        "settled_tick": 0
+      },
+      "elapsed_seconds": 0.012871082999481587
+    },
+    {
+      "seq": 23,
+      "tool": "get_order",
+      "arguments": {
+        "order_id": "order_f37ee8e7b81044538e031659a07e7759"
+      },
+      "result": {
+        "id": "order_f37ee8e7b81044538e031659a07e7759",
+        "run_id": "evaluation",
+        "key": "evaluation:buy-0",
+        "quote_id": "quote_e96d2b60051745b0af2a8e6129f5a7df",
+        "supplier": "B",
+        "recipient": "event-venue",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "amount": 380,
+        "lead_ticks": 15,
+        "status": "DELIVERED",
+        "version": 5,
+        "payment_intent_id": "pay_f770ad14040442f6b57ee63dcecbbc79",
+        "payment_version": 2,
+        "created_tick": 0,
+        "due_tick": 15,
+        "delivered_tick": 15
+      },
+      "elapsed_seconds": 0.012974499999472755
+    },
+    {
+      "seq": 24,
+      "tool": "observe_world",
+      "arguments": {},
+      "result": {
+        "goal": {
+          "budget": 500,
+          "deadline_tick": 60,
+          "items": {
+            "light": 6,
+            "tent": 3
+          },
+          "recipient": "event-venue"
+        },
+        "tick": 15,
+        "clock_mode": "accelerated-practice",
+        "inventory": {
+          "light": 6,
+          "tent": 3
+        },
+        "balance": {
+          "budget": 500,
+          "spent": 380,
+          "reserved": 0,
+          "available": 120
+        },
+        "suppliers": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "elapsed_seconds": 0.013907708000260754
+    }
+  ],
+  "success": true
+}

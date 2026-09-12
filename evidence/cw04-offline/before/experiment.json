@@ -1,0 +1,125 @@
+{
+  "experiment_id": "before",
+  "policy_version": "policy-19bfdf8cfe268f1c",
+  "policy": {
+    "supplier_preference": "lowest_total",
+    "refresh_quote_before_order": false,
+    "max_quote_candidates": 3,
+    "wait_ticks": 5,
+    "uncertain_payment_action": "query_same_order"
+  },
+  "snapshot_sha256": "602ab5e5eedc77d0d65dadd2c9b5ca8c7bfcfd84b93840506fa0d7bddfe0266d",
+  "scope": "known-scripted-counterexample-not-model-review",
+  "rejection": "STALE_QUOTE",
+  "verdict": {
+    "status": "FAILED",
+    "reasons": [
+      "DEADLINE_MISSED"
+    ],
+    "spent": 0,
+    "reserved": 0,
+    "received": {}
+  },
+  "tool_trace": [
+    {
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "result": {
+        "id": "quote_de2f949a5edc48e398294a7e7b49be9c",
+        "run_id": "before",
+        "supplier": "A",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "unit_prices": {
+          "light": 20,
+          "tent": 60
+        },
+        "quote_version": {
+          "light": 1,
+          "tent": 1
+        },
+        "shipping": 10,
+        "amount": 310,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 10
+      }
+    },
+    {
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "result": {
+        "id": "quote_67ca19d3489544f7b972735f9a4c205d",
+        "run_id": "before",
+        "supplier": "B",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "unit_prices": {
+          "light": 25,
+          "tent": 70
+        },
+        "quote_version": {
+          "light": 1,
+          "tent": 1
+        },
+        "shipping": 20,
+        "amount": 380,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 15
+      }
+    },
+    {
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "result": {
+        "id": "quote_6e53991720974288be42efede9acfe43",
+        "run_id": "before",
+        "supplier": "C",
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "unit_prices": {
+          "light": 35,
+          "tent": 90
+        },
+        "quote_version": {
+          "light": 1,
+          "tent": 1
+        },
+        "shipping": 15,
+        "amount": 495,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 20
+      }
+    },
+    {
+      "rejected": "STALE_QUOTE"
+    }
+  ],
+  "evidence_sha256": "535232a9b1ce9a7814e74b3026e055199dd5a39b8b73cad6b35cd13554538a17"
+}

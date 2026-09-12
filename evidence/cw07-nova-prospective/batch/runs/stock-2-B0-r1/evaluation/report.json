@@ -1,0 +1,193 @@
+{
+  "scope": "B0-fixed-rule-not-model",
+  "verdict": {
+    "status": "INCOMPLETE",
+    "reasons": [
+      "GOAL_NOT_RECEIVED"
+    ],
+    "spent": 0,
+    "reserved": 0,
+    "received": {}
+  },
+  "execution_status": "INCOMPLETE",
+  "frozen_id": "frozen-8288fb6ff6a531395461305405c93677998fa40bef7569859e8426791ba6def9",
+  "tool_calls": 10,
+  "trace": [
+    {
+      "seq": 1,
+      "tool": "observe_world",
+      "arguments": {},
+      "result": {
+        "goal": {
+          "budget": 500,
+          "deadline_tick": 60,
+          "items": {
+            "light": 6,
+            "tent": 3
+          },
+          "recipient": "event-venue"
+        },
+        "tick": 0,
+        "clock_mode": "accelerated-practice",
+        "inventory": {},
+        "balance": {
+          "budget": 500,
+          "spent": 0,
+          "reserved": 0,
+          "available": 500
+        },
+        "suppliers": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "elapsed_seconds": 0.0007211659976746887
+    },
+    {
+      "seq": 2,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0008969579976110253
+    },
+    {
+      "seq": 3,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0010632079975039233
+    },
+    {
+      "seq": 4,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.001168832997791469
+    },
+    {
+      "seq": 5,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "light": 6
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0012637500003620517
+    },
+    {
+      "seq": 6,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "light": 6
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.001371457998175174
+    },
+    {
+      "seq": 7,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "light": 6
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0014686659997096285
+    },
+    {
+      "seq": 8,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0015621659986209124
+    },
+    {
+      "seq": 9,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "tent": 3
+        }
+      },
+      "result": {
+        "id": "quote_526ba4f5646b4403bd231b0f7351b94a",
+        "run_id": "evaluation",
+        "supplier": "B",
+        "items": {
+          "tent": 3
+        },
+        "unit_prices": {
+          "tent": 67
+        },
+        "quote_version": {
+          "tent": 1
+        },
+        "shipping": 9,
+        "amount": 210,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 15,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "B",
+          "items": {
+            "tent": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.001983250000193948
+    },
+    {
+      "seq": 10,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0021491659972525667
+    }
+  ],
+  "success": false
+}

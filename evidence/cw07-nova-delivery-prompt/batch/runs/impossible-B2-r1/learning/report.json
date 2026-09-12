@@ -1,0 +1,1838 @@
+{
+  "scope": "live-model",
+  "method": "B2",
+  "status": "NO_CHANGE",
+  "promoted": false,
+  "single_agent": true,
+  "peer_reviewer_calls": 0,
+  "settings": {
+    "profile": "q-user",
+    "region": "us-west-2",
+    "model_id": "global.amazon.nova-2-lite-v1:0",
+    "rates": {
+      "input_usd_per_million": "0.30",
+      "output_usd_per_million": "2.50",
+      "cache_read_usd_per_million": "0.075",
+      "cache_write_usd_per_million": "0",
+      "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-west-2/index.json"
+    },
+    "budget_micro_usd": 500000,
+    "input_limit": 16000,
+    "output_limit": 1024,
+    "max_model_calls": 64,
+    "max_tool_calls": 80,
+    "timeout_seconds": 180,
+    "max_total_tokens": 300000
+  },
+  "initial_policy": {
+    "supplier_preference": "lowest_total",
+    "refresh_quote_before_order": false,
+    "max_quote_candidates": 3,
+    "wait_ticks": 5,
+    "uncertain_payment_action": "query_same_order"
+  },
+  "model_efficacy_verified": false,
+  "held_out_evaluation_verified": false,
+  "experiments": [
+    {
+      "experiment_id": "simulation-1",
+      "policy_version": "policy-19bfdf8cfe268f1c",
+      "policy": {
+        "supplier_preference": "lowest_total",
+        "refresh_quote_before_order": false,
+        "max_quote_candidates": 3,
+        "wait_ticks": 5,
+        "uncertain_payment_action": "query_same_order"
+      },
+      "snapshot_sha256": "40cc47823a31b5dc690ae0488e8066af4ec941bd08e7ff20114b1fd440059174",
+      "scope": "single-agent-simulation-known-counterexample",
+      "accounting_scope": "live-model",
+      "runtime_status": "COMPLETED",
+      "tool_trace": [
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_BOi3tu6apf3mMyOszlhLPj",
+            "name": "observe_world",
+            "input": {}
+          },
+          "result": {
+            "toolUseId": "tooluse_BOi3tu6apf3mMyOszlhLPj",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"goal\": {\"budget\": 500, \"deadline_tick\": 60, \"items\": {\"light\": 6, \"tent\": 3}, \"recipient\": \"event-venue\"}, \"tick\": 0, \"clock_mode\": \"accelerated-practice\", \"inventory\": {}, \"balance\": {\"budget\": 500, \"spent\": 0, \"reserved\": 0, \"available\": 500}, \"suppliers\": [\"A\", \"B\", \"C\"]}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_8SHYuxkxcUYkejt24MLXNt",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "A"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_8SHYuxkxcUYkejt24MLXNt",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_22f4833b73104ff8ad70548c8404ff49\", \"run_id\": \"simulation-1\", \"supplier\": \"A\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 20, \"tent\": 61}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 10, \"amount\": 313, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 10, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"A\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_4KlihkYQiZORuzqq8pNpli",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "B"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_4KlihkYQiZORuzqq8pNpli",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_9d686c2f3f16468bbdb3ec31080f540c\", \"run_id\": \"simulation-1\", \"supplier\": \"B\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 25, \"tent\": 70}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 20, \"amount\": 380, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 15, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"B\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_gcoemx1kigzwsZ4q7uykWe",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "C"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_gcoemx1kigzwsZ4q7uykWe",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_cf4618d083b3400ea9b513c17d6da5f0\", \"run_id\": \"simulation-1\", \"supplier\": \"C\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 35, \"tent\": 90}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 15, \"amount\": 495, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 20, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"C\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_JQkzodBtvshdKWGmwU4pUS",
+            "name": "create_order",
+            "input": {
+              "idempotency_key": "order-key-1",
+              "quote_id": "quote_22f4833b73104ff8ad70548c8404ff49"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_JQkzodBtvshdKWGmwU4pUS",
+            "status": "error",
+            "content": [
+              {
+                "text": "Error: STALE_QUOTE"
+              }
+            ]
+          },
+          "error_type": "ContractError"
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_vDRBqF5b84W0953YYNVFk9",
+            "name": "wait_for_updates",
+            "input": {
+              "ticks": 5
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_vDRBqF5b84W0953YYNVFk9",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"tick\": 5, \"received\": {}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_x3KtWB27dY7TY9jGCXMA58",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "A"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_x3KtWB27dY7TY9jGCXMA58",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_c632bbf1234f431b8dba0f29b1dddefb\", \"run_id\": \"simulation-1\", \"supplier\": \"A\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 20, \"tent\": 100}, \"quote_version\": {\"light\": 1, \"tent\": 2}, \"shipping\": 10, \"amount\": 430, \"based_on_tick\": 5, \"expires_tick\": 10, \"lead_ticks\": 10, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"A\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_K1RI6ZCNAQdfHKFS7H1hQ6",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "B"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_K1RI6ZCNAQdfHKFS7H1hQ6",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_435db1d286c643ac873cdfb107523d99\", \"run_id\": \"simulation-1\", \"supplier\": \"B\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 25, \"tent\": 70}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 20, \"amount\": 380, \"based_on_tick\": 5, \"expires_tick\": 10, \"lead_ticks\": 15, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"B\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_OCTnkSE8nOhHG1Ve5NqYib",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "C"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_OCTnkSE8nOhHG1Ve5NqYib",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_aa75c64324024102ad54d576cad0b889\", \"run_id\": \"simulation-1\", \"supplier\": \"C\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 35, \"tent\": 90}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 15, \"amount\": 495, \"based_on_tick\": 5, \"expires_tick\": 10, \"lead_ticks\": 20, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"C\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_dGptBJAqX1nmjPUIX19jAc",
+            "name": "create_order",
+            "input": {
+              "idempotency_key": "order-key-1",
+              "quote_id": "quote_435db1d286c643ac873cdfb107523d99"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_dGptBJAqX1nmjPUIX19jAc",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"order_040beabf54d744c19ce8e3e11884911a\", \"run_id\": \"simulation-1\", \"key\": \"order-key-1\", \"quote_id\": \"quote_435db1d286c643ac873cdfb107523d99\", \"supplier\": \"B\", \"recipient\": \"event-venue\", \"items\": {\"light\": 6, \"tent\": 3}, \"amount\": 380, \"lead_ticks\": 15, \"status\": \"ACCEPTED\", \"version\": 1, \"payment_intent_id\": null, \"payment_version\": 0, \"created_tick\": 5, \"due_tick\": null, \"delivered_tick\": null}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_UWipLduD8MABi0lQpLHNEg",
+            "name": "authorize_payment",
+            "input": {
+              "idempotency_key": "pay-key-1",
+              "order_id": "order_040beabf54d744c19ce8e3e11884911a"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_UWipLduD8MABi0lQpLHNEg",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"pay_d754d10148bd4fe2ac7ed7d0c9b29f25\", \"run_id\": \"simulation-1\", \"order_id\": \"order_040beabf54d744c19ce8e3e11884911a\", \"idempotency_key\": \"pay-key-1\", \"recipient\": \"B\", \"amount\": 380, \"status\": \"RESERVED\", \"version\": 1, \"created_tick\": 5, \"settled_tick\": null}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_LPmTzEdqexwKFqbEZ8Fews",
+            "name": "wait_for_updates",
+            "input": {
+              "ticks": 15
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_LPmTzEdqexwKFqbEZ8Fews",
+            "status": "error",
+            "content": [
+              {
+                "text": "Error: WAIT_TOO_LONG"
+              }
+            ]
+          },
+          "error_type": "ContractError"
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_eqQ9C2JOwCMh4oQhjXcjE2",
+            "name": "wait_for_updates",
+            "input": {
+              "ticks": 10
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_eqQ9C2JOwCMh4oQhjXcjE2",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"tick\": 15, \"received\": {}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_sDPqNpBOmiQn6zzVHEW8iY",
+            "name": "wait_for_updates",
+            "input": {
+              "ticks": 5
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_sDPqNpBOmiQn6zzVHEW8iY",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"tick\": 20, \"received\": {\"light\": 6, \"tent\": 3}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_Ynz6NS65FFR1oVP6F17knt",
+            "name": "get_inventory",
+            "input": {}
+          },
+          "result": {
+            "toolUseId": "tooluse_Ynz6NS65FFR1oVP6F17knt",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"received\": {\"light\": 6, \"tent\": 3}, \"tick\": 20}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_pf4A3IevM8s7dLtru7gr8T",
+            "name": "get_order",
+            "input": {
+              "order_id": "order_040beabf54d744c19ce8e3e11884911a"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_pf4A3IevM8s7dLtru7gr8T",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"order_040beabf54d744c19ce8e3e11884911a\", \"run_id\": \"simulation-1\", \"key\": \"order-key-1\", \"quote_id\": \"quote_435db1d286c643ac873cdfb107523d99\", \"supplier\": \"B\", \"recipient\": \"event-venue\", \"items\": {\"light\": 6, \"tent\": 3}, \"amount\": 380, \"lead_ticks\": 15, \"status\": \"DELIVERED\", \"version\": 5, \"payment_intent_id\": \"pay_d754d10148bd4fe2ac7ed7d0c9b29f25\", \"payment_version\": 2, \"created_tick\": 5, \"due_tick\": 20, \"delivered_tick\": 20}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_YiczD3TDhl63lUOxNYCo99",
+            "name": "get_payment",
+            "input": {
+              "order_id": "order_040beabf54d744c19ce8e3e11884911a"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_YiczD3TDhl63lUOxNYCo99",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"pay_d754d10148bd4fe2ac7ed7d0c9b29f25\", \"run_id\": \"simulation-1\", \"order_id\": \"order_040beabf54d744c19ce8e3e11884911a\", \"idempotency_key\": \"pay-key-1\", \"recipient\": \"B\", \"amount\": 380, \"status\": \"SETTLED\", \"version\": 2, \"created_tick\": 5, \"settled_tick\": 5}"
+              }
+            ]
+          },
+          "error_type": null
+        }
+      ],
+      "stop_reason": null,
+      "challenge": "A tent becomes 100 after first successful quote",
+      "held_out": false,
+      "verdict": {
+        "status": "COMPLETE",
+        "reasons": [],
+        "spent": 380,
+        "reserved": 0,
+        "received": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "evidence_sha256": "1d936d05778177fcd454eae8b90b88f661fb9b5b629940572be1e2073f7a6b4e",
+      "challenge_applied": true,
+      "accounting": {
+        "session_id": "b2-session",
+        "call_ids": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "calls_sha256": "53d7781ba7d40dc4ae387258b81c658b4d7209220be32743449c0cdf37747537"
+      }
+    },
+    {
+      "experiment_id": "simulation-2",
+      "policy_version": "policy-d3b91f7487599065",
+      "policy": {
+        "supplier_preference": "lowest_total",
+        "refresh_quote_before_order": true,
+        "max_quote_candidates": 3,
+        "wait_ticks": 5,
+        "uncertain_payment_action": "query_same_order"
+      },
+      "snapshot_sha256": "40cc47823a31b5dc690ae0488e8066af4ec941bd08e7ff20114b1fd440059174",
+      "scope": "single-agent-simulation-known-counterexample",
+      "accounting_scope": "live-model",
+      "runtime_status": "COMPLETED",
+      "tool_trace": [
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_rDG4qDyY8IgXcYKea6AHlf",
+            "name": "observe_world",
+            "input": {}
+          },
+          "result": {
+            "toolUseId": "tooluse_rDG4qDyY8IgXcYKea6AHlf",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"goal\": {\"budget\": 500, \"deadline_tick\": 60, \"items\": {\"light\": 6, \"tent\": 3}, \"recipient\": \"event-venue\"}, \"tick\": 0, \"clock_mode\": \"accelerated-practice\", \"inventory\": {}, \"balance\": {\"budget\": 500, \"spent\": 0, \"reserved\": 0, \"available\": 500}, \"suppliers\": [\"A\", \"B\", \"C\"]}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_6mjFAqQyS1vGfjqLhzOGh4",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "A"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_6mjFAqQyS1vGfjqLhzOGh4",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_2d22ce760f1c4958ba4b61e95d05f94b\", \"run_id\": \"simulation-2\", \"supplier\": \"A\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 20, \"tent\": 61}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 10, \"amount\": 313, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 10, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"A\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_laj6wFKGswJHrTDP5RS6W2",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "B"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_laj6wFKGswJHrTDP5RS6W2",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_d02108b914b74e9eb384b575bda39584\", \"run_id\": \"simulation-2\", \"supplier\": \"B\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 25, \"tent\": 70}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 20, \"amount\": 380, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 15, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"B\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_LFzasaqxMHz8ZFHdUJpjP0",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "C"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_LFzasaqxMHz8ZFHdUJpjP0",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_9ab7163b9ed34801a69739dc591cbc78\", \"run_id\": \"simulation-2\", \"supplier\": \"C\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 35, \"tent\": 90}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 15, \"amount\": 495, \"based_on_tick\": 0, \"expires_tick\": 5, \"lead_ticks\": 20, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"C\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_8oEbUT0sL4M21V9bblsNEX",
+            "name": "create_order",
+            "input": {
+              "idempotency_key": "order-key-2",
+              "quote_id": "quote_2d22ce760f1c4958ba4b61e95d05f94b"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_8oEbUT0sL4M21V9bblsNEX",
+            "status": "error",
+            "content": [
+              {
+                "text": "Error: STALE_QUOTE"
+              }
+            ]
+          },
+          "error_type": "ContractError"
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_YROnDPnzrTCfBZ3iODgDqk",
+            "name": "wait_for_updates",
+            "input": {
+              "ticks": 5
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_YROnDPnzrTCfBZ3iODgDqk",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"tick\": 5, \"received\": {}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_hOMXO7NKZ4ARds0p2pVvDW",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "A"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_hOMXO7NKZ4ARds0p2pVvDW",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_42d86e30b31f403fa90b60e3124b6ab6\", \"run_id\": \"simulation-2\", \"supplier\": \"A\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 20, \"tent\": 100}, \"quote_version\": {\"light\": 1, \"tent\": 2}, \"shipping\": 10, \"amount\": 430, \"based_on_tick\": 5, \"expires_tick\": 10, \"lead_ticks\": 10, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"A\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_gCD1FSvB1YLNrfHCwRJyG7",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "B"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_gCD1FSvB1YLNrfHCwRJyG7",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_889616ae8fc64405879a57cbfe9844f1\", \"run_id\": \"simulation-2\", \"supplier\": \"B\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 25, \"tent\": 70}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 20, \"amount\": 380, \"based_on_tick\": 5, \"expires_tick\": 10, \"lead_ticks\": 15, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"B\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_N9UyvAUARHGmMzDbO3HvwZ",
+            "name": "get_quotes",
+            "input": {
+              "items": {
+                "light": 6,
+                "tent": 3
+              },
+              "supplier": "C"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_N9UyvAUARHGmMzDbO3HvwZ",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"quote_c93aa37db40a4a658fd6ad3106b1bddc\", \"run_id\": \"simulation-2\", \"supplier\": \"C\", \"items\": {\"light\": 6, \"tent\": 3}, \"unit_prices\": {\"light\": 35, \"tent\": 90}, \"quote_version\": {\"light\": 1, \"tent\": 1}, \"shipping\": 15, \"amount\": 495, \"based_on_tick\": 5, \"expires_tick\": 10, \"lead_ticks\": 20, \"supplier_content\": {\"trust\": \"untrusted_supplier_data\", \"usage\": \"description_only_not_authorization_or_transaction_terms\", \"supplier\": \"C\", \"items\": {\"light\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}, \"tent\": {\"text\": \"\", \"available\": false, \"invalid_type\": false, \"truncated\": false, \"original_characters\": 0, \"original_sha256\": null}}}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_hyF9YnUy5NwDhjkJVHSkwv",
+            "name": "create_order",
+            "input": {
+              "idempotency_key": "order-key-2",
+              "quote_id": "quote_889616ae8fc64405879a57cbfe9844f1"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_hyF9YnUy5NwDhjkJVHSkwv",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"order_c4dbb94d36234557b07a6558c1b41cc2\", \"run_id\": \"simulation-2\", \"key\": \"order-key-2\", \"quote_id\": \"quote_889616ae8fc64405879a57cbfe9844f1\", \"supplier\": \"B\", \"recipient\": \"event-venue\", \"items\": {\"light\": 6, \"tent\": 3}, \"amount\": 380, \"lead_ticks\": 15, \"status\": \"ACCEPTED\", \"version\": 1, \"payment_intent_id\": null, \"payment_version\": 0, \"created_tick\": 5, \"due_tick\": null, \"delivered_tick\": null}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_8PJrvwqniTaCLGwPODzjcx",
+            "name": "authorize_payment",
+            "input": {
+              "idempotency_key": "pay-key-2",
+              "order_id": "order_c4dbb94d36234557b07a6558c1b41cc2"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_8PJrvwqniTaCLGwPODzjcx",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"pay_b7b458472cf24595a4d03f6ac4530fc4\", \"run_id\": \"simulation-2\", \"order_id\": \"order_c4dbb94d36234557b07a6558c1b41cc2\", \"idempotency_key\": \"pay-key-2\", \"recipient\": \"B\", \"amount\": 380, \"status\": \"RESERVED\", \"version\": 1, \"created_tick\": 5, \"settled_tick\": null}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_gSOzDXPuteFkKn3kjJAie7",
+            "name": "wait_for_updates",
+            "input": {
+              "ticks": 15
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_gSOzDXPuteFkKn3kjJAie7",
+            "status": "error",
+            "content": [
+              {
+                "text": "Error: WAIT_TOO_LONG"
+              }
+            ]
+          },
+          "error_type": "ContractError"
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_jQQArKSYQo7OXpcrux3bLG",
+            "name": "wait_for_updates",
+            "input": {
+              "ticks": 10
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_jQQArKSYQo7OXpcrux3bLG",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"tick\": 15, \"received\": {}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_wgaC4mw0lneYmtGhgKFaTQ",
+            "name": "wait_for_updates",
+            "input": {
+              "ticks": 5
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_wgaC4mw0lneYmtGhgKFaTQ",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"tick\": 20, \"received\": {\"light\": 6, \"tent\": 3}}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_j9kCSd3OUX9FDl0fKBnB8H",
+            "name": "get_inventory",
+            "input": {}
+          },
+          "result": {
+            "toolUseId": "tooluse_j9kCSd3OUX9FDl0fKBnB8H",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"received\": {\"light\": 6, \"tent\": 3}, \"tick\": 20}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_f7SY6kKPNSeYjGLRK9m13s",
+            "name": "get_order",
+            "input": {
+              "order_id": "order_c4dbb94d36234557b07a6558c1b41cc2"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_f7SY6kKPNSeYjGLRK9m13s",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"order_c4dbb94d36234557b07a6558c1b41cc2\", \"run_id\": \"simulation-2\", \"key\": \"order-key-2\", \"quote_id\": \"quote_889616ae8fc64405879a57cbfe9844f1\", \"supplier\": \"B\", \"recipient\": \"event-venue\", \"items\": {\"light\": 6, \"tent\": 3}, \"amount\": 380, \"lead_ticks\": 15, \"status\": \"DELIVERED\", \"version\": 5, \"payment_intent_id\": \"pay_b7b458472cf24595a4d03f6ac4530fc4\", \"payment_version\": 2, \"created_tick\": 5, \"due_tick\": 20, \"delivered_tick\": 20}"
+              }
+            ]
+          },
+          "error_type": null
+        },
+        {
+          "tool_use": {
+            "toolUseId": "tooluse_nBkI5kbagiizOJsggnjwKX",
+            "name": "get_payment",
+            "input": {
+              "order_id": "order_c4dbb94d36234557b07a6558c1b41cc2"
+            }
+          },
+          "result": {
+            "toolUseId": "tooluse_nBkI5kbagiizOJsggnjwKX",
+            "status": "success",
+            "content": [
+              {
+                "text": "{\"id\": \"pay_b7b458472cf24595a4d03f6ac4530fc4\", \"run_id\": \"simulation-2\", \"order_id\": \"order_c4dbb94d36234557b07a6558c1b41cc2\", \"idempotency_key\": \"pay-key-2\", \"recipient\": \"B\", \"amount\": 380, \"status\": \"SETTLED\", \"version\": 2, \"created_tick\": 5, \"settled_tick\": 5}"
+              }
+            ]
+          },
+          "error_type": null
+        }
+      ],
+      "stop_reason": null,
+      "challenge": "A tent becomes 100 after first successful quote",
+      "held_out": false,
+      "verdict": {
+        "status": "COMPLETE",
+        "reasons": [],
+        "spent": 380,
+        "reserved": 0,
+        "received": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "evidence_sha256": "4d5fc55d29c18dc1b60aac808d9f7818138062bd622725bd6a3e8b3038c33eea",
+      "challenge_applied": true,
+      "accounting": {
+        "session_id": "b2-session",
+        "call_ids": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38
+        ],
+        "calls_sha256": "f525aad9c4d5edf712177f657d43e92f87112844e35cc702334c3d07801cec9f"
+      }
+    }
+  ],
+  "prompt_sha256": "0361dda446f49b477de14f81461e002f7e4bfbc458578eda39c344d7ac90b82e",
+  "response_sha256": "8645dde43291e8e301f97e385d3bd3bd63a63d956dce502e2830ebadae21d8e4",
+  "proposal": {
+    "decision": "keep",
+    "reason": "Both experiments completed successfully with the same outcome, demonstrating that the current policy works correctly.",
+    "counterexamples": [],
+    "candidate_policy": null
+  },
+  "usage": {
+    "config": {
+      "run_id": "b2-session",
+      "model_id": "global.amazon.nova-2-lite-v1:0",
+      "rates": "{\"cache_read_usd_per_million\": \"0.075\", \"cache_write_usd_per_million\": \"0\", \"input_usd_per_million\": \"0.30\", \"output_usd_per_million\": \"2.50\", \"source\": \"https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-west-2/index.json\"}",
+      "budget_micro_usd": 500000,
+      "input_limit": 16000,
+      "output_limit": 1024,
+      "scope": "live-model"
+    },
+    "calls": [
+      {
+        "id": 1,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2515,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 793,
+        "usage": "{\"inputTokens\": 2092, \"outputTokens\": 66, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:41.594Z",
+        "finished_at": "2026-09-12T04:44:42.590Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-controller"
+      },
+      {
+        "id": 2,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2230,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 715,
+        "usage": "{\"inputTokens\": 2257, \"outputTokens\": 15, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:42.609Z",
+        "finished_at": "2026-09-12T04:44:43.375Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 3,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2342,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 832,
+        "usage": "{\"inputTokens\": 2396, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:43.380Z",
+        "finished_at": "2026-09-12T04:44:44.072Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 4,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2622,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 922,
+        "usage": "{\"inputTokens\": 2697, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:44.078Z",
+        "finished_at": "2026-09-12T04:44:44.674Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 5,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 2923,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1013,
+        "usage": "{\"inputTokens\": 3000, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:44.679Z",
+        "finished_at": "2026-09-12T04:44:45.314Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 6,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3226,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1144,
+        "usage": "{\"inputTokens\": 3303, \"outputTokens\": 61, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:45.319Z",
+        "finished_at": "2026-09-12T04:44:46.076Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 7,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3369,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1086,
+        "usage": "{\"inputTokens\": 3394, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:46.081Z",
+        "finished_at": "2026-09-12T04:44:46.698Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 8,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3428,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1151,
+        "usage": "{\"inputTokens\": 3459, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:46.704Z",
+        "finished_at": "2026-09-12T04:44:47.607Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 9,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3686,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1241,
+        "usage": "{\"inputTokens\": 3760, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:47.612Z",
+        "finished_at": "2026-09-12T04:44:48.485Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 10,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 3987,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1331,
+        "usage": "{\"inputTokens\": 4059, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:48.488Z",
+        "finished_at": "2026-09-12T04:44:49.151Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 11,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4286,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1455,
+        "usage": "{\"inputTokens\": 4358, \"outputTokens\": 59, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:49.157Z",
+        "finished_at": "2026-09-12T04:44:49.916Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 12,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4519,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1534,
+        "usage": "{\"inputTokens\": 4595, \"outputTokens\": 62, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:49.921Z",
+        "finished_at": "2026-09-12T04:44:50.917Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 13,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4724,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1506,
+        "usage": "{\"inputTokens\": 4795, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:50.925Z",
+        "finished_at": "2026-09-12T04:44:51.591Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 14,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4827,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1524,
+        "usage": "{\"inputTokens\": 4855, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:51.595Z",
+        "finished_at": "2026-09-12T04:44:52.317Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 15,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4889,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1544,
+        "usage": "{\"inputTokens\": 4920, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:52.328Z",
+        "finished_at": "2026-09-12T04:44:53.012Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 16,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 4960,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1534,
+        "usage": "{\"inputTokens\": 4995, \"outputTokens\": 14, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:53.020Z",
+        "finished_at": "2026-09-12T04:44:53.686Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 17,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 5022,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1627,
+        "usage": "{\"inputTokens\": 5054, \"outputTokens\": 44, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:53.691Z",
+        "finished_at": "2026-09-12T04:44:54.414Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 18,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 5208,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1701,
+        "usage": "{\"inputTokens\": 5302, \"outputTokens\": 44, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:54.419Z",
+        "finished_at": "2026-09-12T04:44:55.223Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 19,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 5412,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1683,
+        "usage": "{\"inputTokens\": 5485, \"outputTokens\": 15, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:55.227Z",
+        "finished_at": "2026-09-12T04:44:55.981Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1"
+      },
+      {
+        "id": 20,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 5600,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1856,
+        "usage": "{\"inputTokens\": 5636, \"outputTokens\": 66, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:55.986Z",
+        "finished_at": "2026-09-12T04:44:56.839Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-controller"
+      },
+      {
+        "id": 21,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 5774,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1778,
+        "usage": "{\"inputTokens\": 5801, \"outputTokens\": 15, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:56.859Z",
+        "finished_at": "2026-09-12T04:44:57.558Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 22,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 5886,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1895,
+        "usage": "{\"inputTokens\": 5940, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:57.577Z",
+        "finished_at": "2026-09-12T04:44:58.404Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 23,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 6166,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 1986,
+        "usage": "{\"inputTokens\": 6245, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:58.408Z",
+        "finished_at": "2026-09-12T04:44:59.389Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 24,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 6471,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2076,
+        "usage": "{\"inputTokens\": 6544, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:44:59.395Z",
+        "finished_at": "2026-09-12T04:45:00.276Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 25,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 6770,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2216,
+        "usage": "{\"inputTokens\": 6844, \"outputTokens\": 65, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:00.282Z",
+        "finished_at": "2026-09-12T04:45:01.071Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 26,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 6914,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2150,
+        "usage": "{\"inputTokens\": 6939, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:01.074Z",
+        "finished_at": "2026-09-12T04:45:01.818Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 27,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 6973,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2214,
+        "usage": "{\"inputTokens\": 7004, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:01.826Z",
+        "finished_at": "2026-09-12T04:45:02.832Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 28,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 7231,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2305,
+        "usage": "{\"inputTokens\": 7308, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:02.836Z",
+        "finished_at": "2026-09-12T04:45:03.699Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 29,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 7535,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2395,
+        "usage": "{\"inputTokens\": 7608, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:03.705Z",
+        "finished_at": "2026-09-12T04:45:04.483Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 30,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 7835,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2523,
+        "usage": "{\"inputTokens\": 7910, \"outputTokens\": 60, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:04.488Z",
+        "finished_at": "2026-09-12T04:45:05.382Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 31,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 8072,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2603,
+        "usage": "{\"inputTokens\": 8150, \"outputTokens\": 63, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:05.388Z",
+        "finished_at": "2026-09-12T04:45:06.257Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 32,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 8280,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2573,
+        "usage": "{\"inputTokens\": 8350, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:06.261Z",
+        "finished_at": "2026-09-12T04:45:07.152Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 33,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 8382,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2591,
+        "usage": "{\"inputTokens\": 8410, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:07.156Z",
+        "finished_at": "2026-09-12T04:45:07.909Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 34,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 8444,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2610,
+        "usage": "{\"inputTokens\": 8475, \"outputTokens\": 27, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:07.916Z",
+        "finished_at": "2026-09-12T04:45:08.879Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 35,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 8515,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2600,
+        "usage": "{\"inputTokens\": 8550, \"outputTokens\": 14, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:08.887Z",
+        "finished_at": "2026-09-12T04:45:09.649Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 36,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 8577,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2696,
+        "usage": "{\"inputTokens\": 8609, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:09.654Z",
+        "finished_at": "2026-09-12T04:45:10.635Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 37,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 8764,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2770,
+        "usage": "{\"inputTokens\": 8858, \"outputTokens\": 45, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:10.640Z",
+        "finished_at": "2026-09-12T04:45:11.499Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 38,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 8969,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2750,
+        "usage": "{\"inputTokens\": 9041, \"outputTokens\": 15, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:11.504Z",
+        "finished_at": "2026-09-12T04:45:12.272Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2"
+      },
+      {
+        "id": 39,
+        "run_id": "b2-session",
+        "status": "RECORDED",
+        "projected_input_tokens": 9156,
+        "reserved_micro_usd": 7360,
+        "estimated_micro_usd": 2861,
+        "usage": "{\"inputTokens\": 9192, \"outputTokens\": 41, \"cacheReadInputTokens\": 0, \"cacheWriteInputTokens\": 0}",
+        "error_type": null,
+        "started_at": "2026-09-12T04:45:12.280Z",
+        "finished_at": "2026-09-12T04:45:14.793Z",
+        "role": "simulation_agent",
+        "execution_id": "simulation-controller"
+      }
+    ],
+    "admission_rejections": [],
+    "tool_admissions": [
+      {
+        "id": 1,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-controller",
+        "tool_name": "begin_experiment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:42.592Z"
+      },
+      {
+        "id": 2,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "observe_world",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:43.377Z"
+      },
+      {
+        "id": 3,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:44.074Z"
+      },
+      {
+        "id": 4,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:44.676Z"
+      },
+      {
+        "id": 5,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:45.316Z"
+      },
+      {
+        "id": 6,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "create_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:46.078Z"
+      },
+      {
+        "id": 7,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:46.700Z"
+      },
+      {
+        "id": 8,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:47.609Z"
+      },
+      {
+        "id": 9,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:48.486Z"
+      },
+      {
+        "id": 10,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:49.154Z"
+      },
+      {
+        "id": 11,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "create_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:49.917Z"
+      },
+      {
+        "id": 12,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "authorize_payment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:50.919Z"
+      },
+      {
+        "id": 13,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:51.593Z"
+      },
+      {
+        "id": 14,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:52.319Z"
+      },
+      {
+        "id": 15,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:53.013Z"
+      },
+      {
+        "id": 16,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "get_inventory",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:53.687Z"
+      },
+      {
+        "id": 17,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "get_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:54.415Z"
+      },
+      {
+        "id": 18,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "get_payment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:55.224Z"
+      },
+      {
+        "id": 19,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-1",
+        "tool_name": "finish_experiment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:55.982Z"
+      },
+      {
+        "id": 20,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-controller",
+        "tool_name": "begin_experiment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:56.841Z"
+      },
+      {
+        "id": 21,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "observe_world",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:57.568Z"
+      },
+      {
+        "id": 22,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:58.405Z"
+      },
+      {
+        "id": 23,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:44:59.391Z"
+      },
+      {
+        "id": 24,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:00.278Z"
+      },
+      {
+        "id": 25,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "create_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:01.073Z"
+      },
+      {
+        "id": 26,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:01.821Z"
+      },
+      {
+        "id": 27,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:02.833Z"
+      },
+      {
+        "id": 28,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:03.701Z"
+      },
+      {
+        "id": 29,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "get_quotes",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:04.485Z"
+      },
+      {
+        "id": 30,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "create_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:05.384Z"
+      },
+      {
+        "id": 31,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "authorize_payment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:06.258Z"
+      },
+      {
+        "id": 32,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:07.154Z"
+      },
+      {
+        "id": 33,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:07.910Z"
+      },
+      {
+        "id": 34,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "wait_for_updates",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:08.882Z"
+      },
+      {
+        "id": 35,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "get_inventory",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:09.651Z"
+      },
+      {
+        "id": 36,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "get_order",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:10.637Z"
+      },
+      {
+        "id": 37,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "get_payment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:11.501Z"
+      },
+      {
+        "id": 38,
+        "run_id": "b2-session",
+        "role": "simulation_agent",
+        "execution_id": "simulation-2",
+        "tool_name": "finish_experiment",
+        "status": "ADMITTED",
+        "reason": null,
+        "created_at": "2026-09-12T04:45:12.274Z"
+      }
+    ],
+    "admitted_tool_calls": 38,
+    "max_tool_calls": 80,
+    "max_total_tokens": 300000,
+    "recorded_total_tokens": 227755,
+    "unresolved_reserved_tokens": 0,
+    "estimated_token_budget_exceeded": false,
+    "recorded_micro_usd": 71784,
+    "unresolved_reserved_micro_usd": 0,
+    "all_usage_recorded": true,
+    "estimated_budget_exceeded": false,
+    "billing_verified": false,
+    "max_model_calls": 64,
+    "role_usage": {
+      "simulation_agent": {
+        "scope": "live-model",
+        "model_calls": 39,
+        "admission_rejections": 0,
+        "admitted_tool_calls": 38,
+        "rejected_tool_calls": 0,
+        "status_counts": {
+          "STARTED": 0,
+          "RECORDED": 39,
+          "USAGE_UNKNOWN": 0,
+          "ERROR": 0
+        },
+        "recorded_tokens": {
+          "inputTokens": 226190,
+          "outputTokens": 1565,
+          "cacheReadInputTokens": 0,
+          "cacheWriteInputTokens": 0
+        },
+        "recorded_micro_usd": 71784,
+        "unresolved_reserved_micro_usd": 0
+      }
+    }
+  },
+  "parent_unchanged": true,
+  "source_hashes": {
+    "src/rehearsal/experiments/b2.py": "e753bd85982176d5465f4ae52f7ba9e38934b605efcc7a44103857e3408da9ca",
+    "src/rehearsal/experiments/policy.py": "3cb5965ca0ed64d4f97f4cc03dd7d791fb2f08fd94524d8818a9092fc41fcf2b",
+    "src/rehearsal/experiments/review.py": "ce4386f140df89f6200780bfb42cae12f3a4cadd8f70094551b7cce14a150af9",
+    "src/rehearsal/agents/executor.py": "ac5f1d9fdacaf6e2021dc64ae081f7af27f3a2835a71c0e3b667b7c1c7449298",
+    "src/rehearsal/agents/metering.py": "7d61c4f81916b6d3e8825f14ea65da04d2510139ab227686fe87aca51fd38adc",
+    "src/rehearsal/agents/runner.py": "6ae460300c67e913399ec81c4370db65cc0f824337593e398b2772d95b74ef53",
+    "src/rehearsal/world/fork.py": "f2f7b49774384ef363cdb8565819c467e8a765e3e7cdcb63d28741db4d767e75",
+    "src/rehearsal/evaluation/verifier.py": "2018fb3fc35850053f6ac3c298439cbb270cbe6605cd2eabcfb2ed24ca4724e1"
+  }
+}

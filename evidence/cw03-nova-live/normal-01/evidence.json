@@ -1,0 +1,326 @@
+{
+  "format": "rehearsal-evidence-v1",
+  "run_id": "nova-normal-01",
+  "scenario": {
+    "scenario_version": "normal-v1",
+    "seed": 42,
+    "goal": {
+      "budget": 500,
+      "deadline_tick": 60,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "suppliers": {
+      "A": {
+        "shipping": 10,
+        "lead_ticks": 10,
+        "items": {
+          "tent": {
+            "price": 60,
+            "stock": 10
+          },
+          "light": {
+            "price": 20,
+            "stock": 10
+          }
+        }
+      },
+      "B": {
+        "shipping": 20,
+        "lead_ticks": 15,
+        "items": {
+          "tent": {
+            "price": 70,
+            "stock": 10
+          },
+          "light": {
+            "price": 25,
+            "stock": 10
+          }
+        }
+      },
+      "C": {
+        "shipping": 15,
+        "lead_ticks": 20,
+        "items": {
+          "tent": {
+            "price": 90,
+            "stock": 10
+          },
+          "light": {
+            "price": 35,
+            "stock": 10
+          }
+        }
+      }
+    }
+  },
+  "tables": {
+    "runs": [
+      {
+        "id": "nova-normal-01",
+        "tick": 10,
+        "goal": "{\"budget\":500,\"deadline_tick\":60,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"}",
+        "metadata": "{\"environment\":\"practice\",\"policy_version\":\"single-executor-v1\",\"run_id\":\"nova-normal-01\",\"scenario_version\":\"normal-v1\",\"seed\":42}",
+        "fixture": "{\"goal\":{\"budget\":500,\"deadline_tick\":60,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"},\"scenario_version\":\"normal-v1\",\"seed\":42,\"suppliers\":{\"A\":{\"items\":{\"light\":{\"price\":20,\"stock\":10},\"tent\":{\"price\":60,\"stock\":10}},\"lead_ticks\":10,\"shipping\":10},\"B\":{\"items\":{\"light\":{\"price\":25,\"stock\":10},\"tent\":{\"price\":70,\"stock\":10}},\"lead_ticks\":15,\"shipping\":20},\"C\":{\"items\":{\"light\":{\"price\":35,\"stock\":10},\"tent\":{\"price\":90,\"stock\":10}},\"lead_ticks\":20,\"shipping\":15}}}"
+      }
+    ],
+    "offers": [
+      {
+        "run_id": "nova-normal-01",
+        "supplier": "A",
+        "item": "light",
+        "price": 20,
+        "stock": 4,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "nova-normal-01",
+        "supplier": "A",
+        "item": "tent",
+        "price": 60,
+        "stock": 7,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "nova-normal-01",
+        "supplier": "B",
+        "item": "light",
+        "price": 25,
+        "stock": 10,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "nova-normal-01",
+        "supplier": "B",
+        "item": "tent",
+        "price": 70,
+        "stock": 10,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "nova-normal-01",
+        "supplier": "C",
+        "item": "light",
+        "price": 35,
+        "stock": 10,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "nova-normal-01",
+        "supplier": "C",
+        "item": "tent",
+        "price": 90,
+        "stock": 10,
+        "reserved": 0,
+        "version": 1
+      }
+    ],
+    "quotes": [
+      {
+        "id": "quote_7958d31f70364cab8b36ecbc6170ea3a",
+        "run_id": "nova-normal-01",
+        "data": "{\"amount\":310,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_7958d31f70364cab8b36ecbc6170ea3a\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":10,\"quote_version\":{\"light\":1,\"tent\":1},\"run_id\":\"nova-normal-01\",\"shipping\":10,\"supplier\":\"A\",\"supplier_content\":{\"items\":{\"light\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false},\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"A\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"light\":20,\"tent\":60}}"
+      },
+      {
+        "id": "quote_4fe1bdefe9f24309a88a0334cd689d3d",
+        "run_id": "nova-normal-01",
+        "data": "{\"amount\":380,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_4fe1bdefe9f24309a88a0334cd689d3d\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":15,\"quote_version\":{\"light\":1,\"tent\":1},\"run_id\":\"nova-normal-01\",\"shipping\":20,\"supplier\":\"B\",\"supplier_content\":{\"items\":{\"light\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false},\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"B\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"light\":25,\"tent\":70}}"
+      },
+      {
+        "id": "quote_1ce3935b5cee4a029ad7d0af38e3f1fb",
+        "run_id": "nova-normal-01",
+        "data": "{\"amount\":495,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_1ce3935b5cee4a029ad7d0af38e3f1fb\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":20,\"quote_version\":{\"light\":1,\"tent\":1},\"run_id\":\"nova-normal-01\",\"shipping\":15,\"supplier\":\"C\",\"supplier_content\":{\"items\":{\"light\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false},\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"C\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"light\":35,\"tent\":90}}"
+      }
+    ],
+    "orders": [
+      {
+        "id": "order_6a21e79219704b3eb1a23eb2ad343d53",
+        "run_id": "nova-normal-01",
+        "key": "order_A_001",
+        "quote_id": "quote_7958d31f70364cab8b36ecbc6170ea3a",
+        "supplier": "A",
+        "recipient": "event-venue",
+        "items": "{\"light\":6,\"tent\":3}",
+        "amount": 310,
+        "lead_ticks": 10,
+        "status": "DELIVERED",
+        "version": 5,
+        "payment_intent_id": "pay_69fb3839d1f4442b89a45dc2bbe9a799",
+        "payment_version": 2,
+        "created_tick": 0,
+        "due_tick": 10,
+        "delivered_tick": 10
+      }
+    ],
+    "inventory": [
+      {
+        "run_id": "nova-normal-01",
+        "recipient": "event-venue",
+        "item": "light",
+        "quantity": 6
+      },
+      {
+        "run_id": "nova-normal-01",
+        "recipient": "event-venue",
+        "item": "tent",
+        "quantity": 3
+      }
+    ],
+    "shop_events": [
+      {
+        "seq": 1,
+        "event_id": "evt_989160566b84428287e54489ab172303",
+        "run_id": "nova-normal-01",
+        "source": "shop",
+        "aggregate_id": "nova-normal-01",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "run.created",
+        "payload": "{\"environment\":\"practice\",\"goal\":{\"budget\":500,\"deadline_tick\":60,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"},\"policy_version\":\"single-executor-v1\",\"run_id\":\"nova-normal-01\",\"scenario_version\":\"normal-v1\",\"seed\":42}"
+      },
+      {
+        "seq": 2,
+        "event_id": "evt_a065781f0f03486d918a4ba78a561146",
+        "run_id": "nova-normal-01",
+        "source": "shop",
+        "aggregate_id": "order_6a21e79219704b3eb1a23eb2ad343d53",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "order.accepted",
+        "payload": "{\"amount\":310,\"created_tick\":0,\"delivered_tick\":null,\"due_tick\":null,\"id\":\"order_6a21e79219704b3eb1a23eb2ad343d53\",\"items\":{\"light\":6,\"tent\":3},\"key\":\"order_A_001\",\"lead_ticks\":10,\"payment_intent_id\":null,\"payment_version\":0,\"quote_id\":\"quote_7958d31f70364cab8b36ecbc6170ea3a\",\"recipient\":\"event-venue\",\"run_id\":\"nova-normal-01\",\"status\":\"ACCEPTED\",\"supplier\":\"A\",\"version\":1}"
+      },
+      {
+        "seq": 3,
+        "event_id": "evt_d39111a2e227452d884b03acfe8cc7e2",
+        "run_id": "nova-normal-01",
+        "source": "shop",
+        "aggregate_id": "order_6a21e79219704b3eb1a23eb2ad343d53",
+        "aggregate_version": 2,
+        "occurred_tick": 0,
+        "event_type": "order.payment_pending",
+        "payload": "{\"payment_intent_id\":\"pay_69fb3839d1f4442b89a45dc2bbe9a799\"}"
+      },
+      {
+        "seq": 4,
+        "event_id": "evt_d7251ffa1fa34f06b0a222d1b4176dd6",
+        "run_id": "nova-normal-01",
+        "source": "shop",
+        "aggregate_id": "order_6a21e79219704b3eb1a23eb2ad343d53",
+        "aggregate_version": 3,
+        "occurred_tick": 0,
+        "event_type": "order.paid",
+        "payload": "{\"payment_intent_id\":\"pay_69fb3839d1f4442b89a45dc2bbe9a799\"}"
+      },
+      {
+        "seq": 5,
+        "event_id": "evt_60c5d2b180b74cb59cbed8e265688032",
+        "run_id": "nova-normal-01",
+        "source": "shop",
+        "aggregate_id": "order_6a21e79219704b3eb1a23eb2ad343d53",
+        "aggregate_version": 4,
+        "occurred_tick": 0,
+        "event_type": "order.fulfilling",
+        "payload": "{\"due_tick\":10}"
+      },
+      {
+        "seq": 6,
+        "event_id": "evt_a42ac5a946334ec194696047c637c36b",
+        "run_id": "nova-normal-01",
+        "source": "shop",
+        "aggregate_id": "order_6a21e79219704b3eb1a23eb2ad343d53",
+        "aggregate_version": 5,
+        "occurred_tick": 10,
+        "event_type": "order.delivered",
+        "payload": "{\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"}"
+      },
+      {
+        "seq": 7,
+        "event_id": "evt_f95810543e3649c68e93e0a60a60456d",
+        "run_id": "nova-normal-01",
+        "source": "shop",
+        "aggregate_id": "nova-normal-01",
+        "aggregate_version": 11,
+        "occurred_tick": 10,
+        "event_type": "clock.advanced",
+        "payload": "{\"tick\":10}"
+      }
+    ],
+    "accounts": [
+      {
+        "run_id": "nova-normal-01",
+        "budget": 500,
+        "spent": 310,
+        "reserved": 0,
+        "metadata": "{\"environment\":\"practice\",\"policy_version\":\"single-executor-v1\",\"run_id\":\"nova-normal-01\",\"scenario_version\":\"normal-v1\",\"seed\":42}"
+      }
+    ],
+    "intents": [
+      {
+        "id": "pay_69fb3839d1f4442b89a45dc2bbe9a799",
+        "run_id": "nova-normal-01",
+        "order_id": "order_6a21e79219704b3eb1a23eb2ad343d53",
+        "idempotency_key": "payment_A_001",
+        "recipient": "A",
+        "amount": 310,
+        "status": "SETTLED",
+        "version": 2,
+        "created_tick": 0,
+        "settled_tick": 0
+      }
+    ],
+    "payment_events": [
+      {
+        "seq": 1,
+        "event_id": "evt_39508d362a0a4af6b97cc754ceb4d543",
+        "run_id": "nova-normal-01",
+        "source": "payments",
+        "aggregate_id": "nova-normal-01",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "account.created",
+        "payload": "{\"budget\":500}"
+      },
+      {
+        "seq": 2,
+        "event_id": "evt_f63ff1d8c81f4fd4b6a1cc6f1d3246ae",
+        "run_id": "nova-normal-01",
+        "source": "payments",
+        "aggregate_id": "pay_69fb3839d1f4442b89a45dc2bbe9a799",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "payment.reserved",
+        "payload": "{\"amount\":310,\"created_tick\":0,\"id\":\"pay_69fb3839d1f4442b89a45dc2bbe9a799\",\"idempotency_key\":\"payment_A_001\",\"order_id\":\"order_6a21e79219704b3eb1a23eb2ad343d53\",\"recipient\":\"A\",\"run_id\":\"nova-normal-01\",\"settled_tick\":null,\"status\":\"RESERVED\",\"version\":1}"
+      },
+      {
+        "seq": 3,
+        "event_id": "evt_4e6019b7aec04108be834cc08e253eb5",
+        "run_id": "nova-normal-01",
+        "source": "payments",
+        "aggregate_id": "pay_69fb3839d1f4442b89a45dc2bbe9a799",
+        "aggregate_version": 2,
+        "occurred_tick": 0,
+        "event_type": "payment.settled",
+        "payload": "{\"amount\":310,\"created_tick\":0,\"id\":\"pay_69fb3839d1f4442b89a45dc2bbe9a799\",\"idempotency_key\":\"payment_A_001\",\"order_id\":\"order_6a21e79219704b3eb1a23eb2ad343d53\",\"recipient\":\"A\",\"run_id\":\"nova-normal-01\",\"settled_tick\":0,\"status\":\"SETTLED\",\"version\":2}"
+      }
+    ]
+  },
+  "verdict": {
+    "status": "COMPLETE",
+    "reasons": [],
+    "spent": 310,
+    "reserved": 0,
+    "received": {
+      "light": 6,
+      "tent": 3
+    }
+  }
+}

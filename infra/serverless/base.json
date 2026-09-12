@@ -1,0 +1,63 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Rehearsal serverless storage: on-demand DynamoDB and private S3; no idle compute.",
+  "Resources": {
+    "Commerce": {
+      "Type": "AWS::DynamoDB::Table",
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "TableName": "rehearsal-serverless-commerce",
+        "BillingMode": "PAY_PER_REQUEST",
+        "AttributeDefinitions": [{"AttributeName": "pk", "AttributeType": "S"}, {"AttributeName": "sk", "AttributeType": "S"}],
+        "KeySchema": [{"AttributeName": "pk", "KeyType": "HASH"}, {"AttributeName": "sk", "KeyType": "RANGE"}],
+        "SSESpecification": {"SSEEnabled": true},
+        "Tags": [{"Key": "Project", "Value": "rehearsal-serverless"}]
+      }
+    },
+    "Control": {
+      "Type": "AWS::DynamoDB::Table",
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "TableName": "rehearsal-serverless-control",
+        "BillingMode": "PAY_PER_REQUEST",
+        "AttributeDefinitions": [{"AttributeName": "pk", "AttributeType": "S"}, {"AttributeName": "sk", "AttributeType": "S"}],
+        "KeySchema": [{"AttributeName": "pk", "KeyType": "HASH"}, {"AttributeName": "sk", "KeyType": "RANGE"}],
+        "SSESpecification": {"SSEEnabled": true},
+        "Tags": [{"Key": "Project", "Value": "rehearsal-serverless"}]
+      }
+    },
+    "Artifacts": {
+      "Type": "AWS::S3::Bucket",
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "BucketName": {"Fn::Sub": "rehearsal-serverless-artifacts-${AWS::AccountId}-${AWS::Region}"},
+        "PublicAccessBlockConfiguration": {"BlockPublicAcls": true, "BlockPublicPolicy": true, "IgnorePublicAcls": true, "RestrictPublicBuckets": true},
+        "OwnershipControls": {"Rules": [{"ObjectOwnership": "BucketOwnerEnforced"}]},
+        "VersioningConfiguration": {"Status": "Enabled"},
+        "BucketEncryption": {"ServerSideEncryptionConfiguration": [{"ServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]},
+        "Tags": [{"Key": "Project", "Value": "rehearsal-serverless"}]
+      }
+    },
+    "Site": {
+      "Type": "AWS::S3::Bucket",
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "BucketName": {"Fn::Sub": "rehearsal-serverless-site-${AWS::AccountId}-${AWS::Region}"},
+        "PublicAccessBlockConfiguration": {"BlockPublicAcls": true, "BlockPublicPolicy": true, "IgnorePublicAcls": true, "RestrictPublicBuckets": true},
+        "OwnershipControls": {"Rules": [{"ObjectOwnership": "BucketOwnerEnforced"}]},
+        "BucketEncryption": {"ServerSideEncryptionConfiguration": [{"ServerSideEncryptionByDefault": {"SSEAlgorithm": "AES256"}}]},
+        "Tags": [{"Key": "Project", "Value": "rehearsal-serverless"}]
+      }
+    }
+  },
+  "Outputs": {
+    "CommerceTable": {"Value": {"Ref": "Commerce"}},
+    "ControlTable": {"Value": {"Ref": "Control"}},
+    "ArtifactsBucket": {"Value": {"Ref": "Artifacts"}},
+    "SiteBucket": {"Value": {"Ref": "Site"}}
+  }
+}

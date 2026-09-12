@@ -1,0 +1,353 @@
+{
+  "environment": "medusa-operating",
+  "run_id": "cw00-a3561bd80efa",
+  "scenario": {
+    "scenario_version": "known-frozen-b0-unavailable-required-item-v1",
+    "seed": 42,
+    "goal": {
+      "budget": 500,
+      "deadline_tick": 120,
+      "recipient": "venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "suppliers": {
+      "A": {
+        "shipping": 10,
+        "lead_ticks": 4,
+        "items": {
+          "tent": {
+            "price": 60,
+            "stock": 0
+          },
+          "light": {
+            "price": 20,
+            "stock": 10
+          }
+        }
+      },
+      "B": {
+        "shipping": 20,
+        "lead_ticks": 6,
+        "items": {
+          "tent": {
+            "price": 70,
+            "stock": 0
+          },
+          "light": {
+            "price": 25,
+            "stock": 10
+          }
+        }
+      },
+      "C": {
+        "shipping": 15,
+        "lead_ticks": 8,
+        "items": {
+          "tent": {
+            "price": 90,
+            "stock": 0
+          },
+          "light": {
+            "price": 35,
+            "stock": 10
+          }
+        }
+      }
+    }
+  },
+  "real_model_calls": 0,
+  "fault_scope": "known-admin-inventory-configuration",
+  "executor": {
+    "status": "INCOMPLETE",
+    "reason": "NO_EXECUTABLE_QUOTE",
+    "orders": [],
+    "frozen_id": "frozen-006aa36e74fcaea787e04fd3ab071270ad29c65034b8d8cb27ccd6a28c4ba9ab",
+    "scope": "B0-fixed-rule-not-model",
+    "trace": [
+      {
+        "seq": 1,
+        "tool": "observe_world",
+        "arguments": {},
+        "result": {
+          "run_id": "cw00-a3561bd80efa-buyer",
+          "goal": {
+            "items": {
+              "tent": 3,
+              "light": 6
+            },
+            "deadline_tick": 120,
+            "recipient": "venue"
+          },
+          "tick": 0,
+          "clock_mode": "operating-one-second-ticks",
+          "inventory": {
+            "tent": 0,
+            "light": 0
+          },
+          "balance": {
+            "budget": 500,
+            "spent": 0,
+            "reserved": 0,
+            "available": 500
+          },
+          "suppliers": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "elapsed_seconds": 0.0021803330000693677
+      },
+      {
+        "seq": 2,
+        "tool": "get_quotes",
+        "arguments": {
+          "supplier": "A",
+          "items": {
+            "tent": 3,
+            "light": 6
+          }
+        },
+        "error": "MEDUSA_HTTP_400",
+        "elapsed_seconds": 0.03443941700061259
+      },
+      {
+        "seq": 3,
+        "tool": "get_quotes",
+        "arguments": {
+          "supplier": "B",
+          "items": {
+            "tent": 3,
+            "light": 6
+          }
+        },
+        "error": "MEDUSA_HTTP_400",
+        "elapsed_seconds": 0.066142542000307
+      },
+      {
+        "seq": 4,
+        "tool": "get_quotes",
+        "arguments": {
+          "supplier": "C",
+          "items": {
+            "tent": 3,
+            "light": 6
+          }
+        },
+        "error": "MEDUSA_HTTP_400",
+        "elapsed_seconds": 0.10014387500086741
+      },
+      {
+        "seq": 5,
+        "tool": "get_quotes",
+        "arguments": {
+          "supplier": "A",
+          "items": {
+            "light": 6
+          }
+        },
+        "result": {
+          "id": "quote_19bd12a627c44b59afad8ad77f3a7897",
+          "run_id": "cw00-a3561bd80efa-buyer",
+          "supplier": "A",
+          "items": {
+            "light": 6
+          },
+          "unit_prices": {
+            "light": 20
+          },
+          "shipping": 10,
+          "amount": 130,
+          "quote_version": "dd1ca7bed1d3833840f3ade4d7e57372d527e67458a0fc36b747f17da70f7471",
+          "based_on_tick": 0,
+          "expires_tick": 30,
+          "lead_ticks": 4,
+          "supplier_content": {
+            "trust": "untrusted_supplier_data",
+            "usage": "description_only_not_authorization_or_transaction_terms",
+            "supplier": "A",
+            "items": {
+              "light": {
+                "text": "",
+                "available": false,
+                "invalid_type": false,
+                "truncated": false,
+                "original_characters": 0,
+                "original_sha256": null
+              }
+            }
+          }
+        },
+        "elapsed_seconds": 0.29381499999999505
+      },
+      {
+        "seq": 6,
+        "tool": "get_quotes",
+        "arguments": {
+          "supplier": "B",
+          "items": {
+            "light": 6
+          }
+        },
+        "result": {
+          "id": "quote_6766f25083844ec9bcbc56c0d587be2f",
+          "run_id": "cw00-a3561bd80efa-buyer",
+          "supplier": "B",
+          "items": {
+            "light": 6
+          },
+          "unit_prices": {
+            "light": 25
+          },
+          "shipping": 20,
+          "amount": 170,
+          "quote_version": "0e4a0dd64f49e67598e93ca9d615aa92ae3f005c497015181d47e2e341a04e4d",
+          "based_on_tick": 0,
+          "expires_tick": 30,
+          "lead_ticks": 6,
+          "supplier_content": {
+            "trust": "untrusted_supplier_data",
+            "usage": "description_only_not_authorization_or_transaction_terms",
+            "supplier": "B",
+            "items": {
+              "light": {
+                "text": "",
+                "available": false,
+                "invalid_type": false,
+                "truncated": false,
+                "original_characters": 0,
+                "original_sha256": null
+              }
+            }
+          }
+        },
+        "elapsed_seconds": 0.47769679200064274
+      },
+      {
+        "seq": 7,
+        "tool": "get_quotes",
+        "arguments": {
+          "supplier": "C",
+          "items": {
+            "light": 6
+          }
+        },
+        "result": {
+          "id": "quote_5cddc940727542e192419c187d1a8ae1",
+          "run_id": "cw00-a3561bd80efa-buyer",
+          "supplier": "C",
+          "items": {
+            "light": 6
+          },
+          "unit_prices": {
+            "light": 35
+          },
+          "shipping": 15,
+          "amount": 225,
+          "quote_version": "6e1695135d7eb525e260cfaeab890a5e1b971ef715f2d271e689cbbe93b7738f",
+          "based_on_tick": 1,
+          "expires_tick": 31,
+          "lead_ticks": 8,
+          "supplier_content": {
+            "trust": "untrusted_supplier_data",
+            "usage": "description_only_not_authorization_or_transaction_terms",
+            "supplier": "C",
+            "items": {
+              "light": {
+                "text": "",
+                "available": false,
+                "invalid_type": false,
+                "truncated": false,
+                "original_characters": 0,
+                "original_sha256": null
+              }
+            }
+          }
+        },
+        "elapsed_seconds": 0.6655071670002144
+      },
+      {
+        "seq": 8,
+        "tool": "get_quotes",
+        "arguments": {
+          "supplier": "A",
+          "items": {
+            "tent": 3
+          }
+        },
+        "error": "MEDUSA_HTTP_400",
+        "elapsed_seconds": 0.6944779170007678
+      },
+      {
+        "seq": 9,
+        "tool": "get_quotes",
+        "arguments": {
+          "supplier": "B",
+          "items": {
+            "tent": 3
+          }
+        },
+        "error": "MEDUSA_HTTP_400",
+        "elapsed_seconds": 0.7222318330004782
+      },
+      {
+        "seq": 10,
+        "tool": "get_quotes",
+        "arguments": {
+          "supplier": "C",
+          "items": {
+            "tent": 3
+          }
+        },
+        "error": "MEDUSA_HTTP_400",
+        "elapsed_seconds": 0.7497721250001632
+      }
+    ],
+    "snapshot": {
+      "run_id": "cw00-a3561bd80efa-buyer",
+      "goal": {
+        "items": {
+          "tent": 3,
+          "light": 6
+        },
+        "deadline_tick": 120,
+        "recipient": "venue"
+      },
+      "tick": 0,
+      "clock_mode": "operating-one-second-ticks",
+      "inventory": {
+        "tent": 0,
+        "light": 0
+      },
+      "balance": {
+        "budget": 500,
+        "spent": 0,
+        "reserved": 0,
+        "available": 500
+      },
+      "suppliers": [
+        "A",
+        "B",
+        "C"
+      ]
+    }
+  },
+  "execution_seconds": 0.7497808750003969,
+  "verdict": {
+    "status": "INCOMPLETE",
+    "errors": [],
+    "received_on_time": {
+      "tent": 0,
+      "light": 0
+    },
+    "spent": 0,
+    "reserved": 0,
+    "scope": "independent-medusa-manual-provider-records"
+  },
+  "local_service_run": ".local/commerce/cw00-a3561bd80efa",
+  "medusa_version": "2.20.1",
+  "package_lock_sha256": "d9ae66fa30fec963ccc815268437a56ceb1583816df43529c85e3a49ce73db47"
+}

@@ -1,0 +1,84 @@
+{
+  "event": {
+    "id": "replay",
+    "kind": "notification_replay",
+    "at_tick": 23,
+    "max_lateness_ticks": 2,
+    "delay_ms": 1000,
+    "copies": 2,
+    "source_event": "notice"
+  },
+  "state": "OBSERVED",
+  "before": {
+    "run_id": "cw00-681f3c251c9d-buyer",
+    "goal": {
+      "deadline_tick": 120,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "tick": 23,
+    "clock_mode": "operating-one-second-ticks",
+    "inventory": {
+      "tent": 3,
+      "light": 6
+    },
+    "balance": {
+      "budget": 500,
+      "spent": 310,
+      "reserved": 0,
+      "available": 190
+    },
+    "suppliers": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "after": {
+    "run_id": "cw00-681f3c251c9d-buyer",
+    "goal": {
+      "deadline_tick": 120,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "tick": 23,
+    "clock_mode": "operating-one-second-ticks",
+    "inventory": {
+      "tent": 3,
+      "light": 6
+    },
+    "balance": {
+      "budget": 500,
+      "spent": 310,
+      "reserved": 0,
+      "available": 190
+    },
+    "suppliers": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "mutation": {
+    "method": "POST",
+    "path": "/admin/runs/cw00-681f3c251c9d-buyer/faults/scheduled-notification",
+    "request": {
+      "event_id": "replay",
+      "delay_ms": 1000,
+      "kind": "notification_replay",
+      "copies": 2,
+      "source_event": "notice"
+    },
+    "status": 200,
+    "response": {
+      "armed": true,
+      "event_id": "replay"
+    }
+  }
+}

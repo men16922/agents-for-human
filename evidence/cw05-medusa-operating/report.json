@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "scope": "live-http-medusa-independent-seller",
+  "real_model_calls": 0,
+  "policy_transfer_verified": false,
+  "scenario_version": "medusa-operating-smoke-v1",
+  "run_id": "cw00-e1f9913def54",
+  "checks": {
+    "unauthenticated": 401,
+    "cross_run": 403,
+    "observer_write": 403,
+    "amount_injection": 422,
+    "supplier_totals": {
+      "A": 310,
+      "B": 380,
+      "C": 495
+    },
+    "stale_quote": "STALE_QUOTE",
+    "other_order": 404,
+    "lost_http_response": "UNKNOWN",
+    "seller_stopped_health": 503,
+    "seller_stopped_write": 503,
+    "delivery_without_purchasing_server": true,
+    "lead_seconds": 6.0
+  },
+  "snapshot": {
+    "run_id": "cw00-e1f9913def54-buyer",
+    "goal": {
+      "items": {
+        "tent": 3,
+        "light": 6
+      },
+      "deadline_tick": 120,
+      "recipient": "venue"
+    },
+    "tick": 8,
+    "clock_mode": "operating-one-second-ticks",
+    "inventory": {
+      "tent": 3,
+      "light": 6
+    },
+    "balance": {
+      "budget": 500,
+      "spent": 380,
+      "reserved": 0,
+      "available": 120
+    },
+    "suppliers": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "verdict": {
+    "status": "COMPLETE",
+    "errors": [],
+    "received_on_time": {
+      "tent": 3,
+      "light": 6
+    },
+    "spent": 380,
+    "reserved": 0,
+    "scope": "independent-medusa-manual-provider-records"
+  },
+  "seller_pids": [
+    44525,
+    44569
+  ],
+  "gateway_pids": [
+    44526,
+    44695
+  ],
+  "medusa_version": "2.20.1",
+  "package_lock_sha256": "d9ae66fa30fec963ccc815268437a56ceb1583816df43529c85e3a49ce73db47",
+  "evidence_sha256": "a027990afde063d725a18a088cfa364ba11b1965a96746968b8c2acc903a9b09",
+  "source_sha256": {
+    "scripts/commerce/operating_smoke.py": "b2d73d4165762d48c28fad6f2071fad7fe64c3d4079ea50323648bdae74b20e4",
+    "scripts/commerce/operating_fixture.py": "0a2c759598f8a0b5815ecd6db387a2610c0cd5bbdfded329847757447f14f082",
+    "src/rehearsal/commerce/gateway.py": "1e3cfad6f8aeda097ecc9ff912590caa08f8469eed023ac2c1280b98fc67137a",
+    "src/rehearsal/commerce/seller.py": "9175cf2b9c071bf0f63593a182dd408483bb1e1f9ae1d7c0be522aa2a29290c8",
+    "src/rehearsal/commerce/server.py": "6651c204c829463a57627eeffcdc3574175850469c463e0e4c680dfd7b417248",
+    "src/rehearsal/evaluation/medusa.py": "1ecc23b1610ef5b2361ed8936309fe1aaa98c6f49904e0b9bc847f56ee4f77f1",
+    "src/rehearsal/operating/local.py": "2d5a6337083835c808783594b2c8fdadef346bd6feb45f358f745027ac8ee4fc",
+    "src/rehearsal/operating/client.py": "dd8667f900c1b1bcadcc1ca4e82db50f41167437dc36107344dff5a450f03947"
+  }
+}

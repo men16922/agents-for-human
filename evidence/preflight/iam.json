@@ -1,0 +1,46 @@
+{
+  "scope": "AWS IAM policy simulation",
+  "checks": [
+    {
+      "action": "lambda:InvokeFunction",
+      "resource": "arn:aws:lambda:us-west-2:908601828278:function:rehearsal-serverless-commerce",
+      "decision": "implicitDeny"
+    },
+    {
+      "action": "lambda:InvokeFunction",
+      "resource": "arn:aws:lambda:us-west-2:908601828278:function:rehearsal-serverless-seller",
+      "decision": "implicitDeny"
+    },
+    {
+      "action": "dynamodb:PutItem",
+      "resource": "arn:aws:dynamodb:us-west-2:908601828278:table/rehearsal-serverless-commerce",
+      "decision": "implicitDeny"
+    },
+    {
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::rehearsal-serverless-artifacts-908601828278-us-west-2/runs/preview-example/input.json",
+      "decision": "implicitDeny"
+    },
+    {
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::rehearsal-serverless-artifacts-908601828278-us-west-2/runs/preview-example/impact-report.json",
+      "decision": "implicitDeny"
+    },
+    {
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::rehearsal-serverless-artifacts-908601828278-us-west-2/runs/preview-example/impact-evidence.json",
+      "decision": "implicitDeny"
+    },
+    {
+      "action": "s3:PutObject",
+      "resource": "arn:aws:s3:::rehearsal-serverless-artifacts-908601828278-us-west-2/runs/preview-example/runtime/preflight.json",
+      "decision": "allowed"
+    },
+    {
+      "action": "s3:GetObject",
+      "resource": "arn:aws:s3:::rehearsal-serverless-artifacts-908601828278-us-west-2/runs/preview-example/input.json",
+      "decision": "allowed"
+    }
+  ],
+  "passed": true
+}

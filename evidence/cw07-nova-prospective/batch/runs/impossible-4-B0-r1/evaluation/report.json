@@ -1,0 +1,259 @@
+{
+  "scope": "B0-fixed-rule-not-model",
+  "verdict": {
+    "status": "INCOMPLETE",
+    "reasons": [
+      "GOAL_NOT_RECEIVED"
+    ],
+    "spent": 0,
+    "reserved": 0,
+    "received": {}
+  },
+  "execution_status": "INCOMPLETE",
+  "frozen_id": "frozen-8288fb6ff6a531395461305405c93677998fa40bef7569859e8426791ba6def9",
+  "tool_calls": 10,
+  "trace": [
+    {
+      "seq": 1,
+      "tool": "observe_world",
+      "arguments": {},
+      "result": {
+        "goal": {
+          "budget": 500,
+          "deadline_tick": 60,
+          "items": {
+            "light": 6,
+            "tent": 3
+          },
+          "recipient": "event-venue"
+        },
+        "tick": 0,
+        "clock_mode": "accelerated-practice",
+        "inventory": {},
+        "balance": {
+          "budget": 500,
+          "spent": 0,
+          "reserved": 0,
+          "available": 500
+        },
+        "suppliers": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "elapsed_seconds": 0.0008556249995308463
+    },
+    {
+      "seq": 2,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.000979625001491513
+    },
+    {
+      "seq": 3,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0010863329989660997
+    },
+    {
+      "seq": 4,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "light": 6,
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0011802080007328186
+    },
+    {
+      "seq": 5,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "light": 6
+        }
+      },
+      "result": {
+        "id": "quote_ffaf8d5f86ca456981cb9702450aa169",
+        "run_id": "evaluation",
+        "supplier": "A",
+        "items": {
+          "light": 6
+        },
+        "unit_prices": {
+          "light": 23
+        },
+        "quote_version": {
+          "light": 1
+        },
+        "shipping": 12,
+        "amount": 150,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 10,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "A",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.001687249998212792
+    },
+    {
+      "seq": 6,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "light": 6
+        }
+      },
+      "result": {
+        "id": "quote_0f298906b4c24d4aa40f94535f96a959",
+        "run_id": "evaluation",
+        "supplier": "B",
+        "items": {
+          "light": 6
+        },
+        "unit_prices": {
+          "light": 24
+        },
+        "quote_version": {
+          "light": 1
+        },
+        "shipping": 19,
+        "amount": 163,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 15,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "B",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.0022144169997773133
+    },
+    {
+      "seq": 7,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "light": 6
+        }
+      },
+      "result": {
+        "id": "quote_c3ca46668e2b4d3d80c8075454dbb7b6",
+        "run_id": "evaluation",
+        "supplier": "C",
+        "items": {
+          "light": 6
+        },
+        "unit_prices": {
+          "light": 33
+        },
+        "quote_version": {
+          "light": 1
+        },
+        "shipping": 20,
+        "amount": 218,
+        "based_on_tick": 0,
+        "expires_tick": 5,
+        "lead_ticks": 20,
+        "supplier_content": {
+          "trust": "untrusted_supplier_data",
+          "usage": "description_only_not_authorization_or_transaction_terms",
+          "supplier": "C",
+          "items": {
+            "light": {
+              "text": "",
+              "available": false,
+              "invalid_type": false,
+              "truncated": false,
+              "original_characters": 0,
+              "original_sha256": null
+            }
+          }
+        }
+      },
+      "elapsed_seconds": 0.0027341249988239724
+    },
+    {
+      "seq": 8,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "A",
+        "items": {
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.002873000001272885
+    },
+    {
+      "seq": 9,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "B",
+        "items": {
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.0030018750003364403
+    },
+    {
+      "seq": 10,
+      "tool": "get_quotes",
+      "arguments": {
+        "supplier": "C",
+        "items": {
+          "tent": 3
+        }
+      },
+      "error": "INSUFFICIENT_STOCK",
+      "elapsed_seconds": 0.003186207999533508
+    }
+  ],
+  "success": false
+}

@@ -1,0 +1,177 @@
+{
+  "edition": "AWS submission demo",
+  "scenes": [
+    {
+      "seconds": 24,
+      "tag": "The developer problem",
+      "title": "A payment is not a delivery.",
+      "subtitle": "Test a purchasing agent before delegating a transaction.",
+      "facts": [
+        [
+          "Who",
+          "Developers and QA"
+        ],
+        [
+          "Task",
+          "Reproduce changing conditions"
+        ],
+        [
+          "Evidence",
+          "Independent transaction records"
+        ]
+      ],
+      "note": "All goods, payments and credits are synthetic.",
+      "source": "Product purpose; no measured time saving",
+      "narration": "A purchasing agent can finish its answer while the goods are still missing. Rehearsal gives developers and quality assurance teams a controlled place to test that gap. Change inventory or prices, inspect the agent's actions, and verify delivery against independent transaction records."
+    },
+    {
+      "seconds": 31,
+      "tag": "Deployed on AWS",
+      "title": "A live demo without an always-on server.",
+      "subtitle": "CloudFront + Lambda + AgentCore + DynamoDB + Step Functions + S3.",
+      "facts": [
+        [
+          "Buyer",
+          "Nova 2 Lite / Strands"
+        ],
+        [
+          "Commerce",
+          "Lambda / DynamoDB"
+        ],
+        [
+          "Lifecycle",
+          "Bounded + explicitly stopped"
+        ]
+      ],
+      "note": "Storage and requests remain metered.",
+      "source": "Deployed architecture; editable draw.io included",
+      "narration": "The English dashboard is hosted on CloudFront and private S3. An API starts a bounded workflow. Amazon Nova two Lite runs through Strands on AgentCore. Lambda and DynamoDB hold the commerce records, while Step Functions advances the seller independently. The runtime session is stopped after the audit. Storage and requests still incur usage charges.",
+      "image": "/Users/men1692/Desktop/AWS/agents-for-human/submissions/architecture/rehearsal-serverless.png"
+    },
+    {
+      "seconds": 26,
+      "tag": "Four ways to test",
+      "title": "Practice and review are testable choices.",
+      "subtitle": "Each live run keeps the same fixed goal, recipient and spending boundary.",
+      "facts": [],
+      "note": "A reviewed policy is not automatically a better policy.",
+      "source": "B0, B1, B2 and B3 executed on the deployed AWS path",
+      "narration": "B zero uses a fixed rule. B one buys directly with Nova. B two lets one agent practice before entering the live world. B three adds an independent reviewer with no purchasing tools. Practice, review, and live buying share one usage ledger. These options let us measure the cost of extra reasoning.",
+      "table": [
+        [
+          "Method",
+          "Before the live purchase"
+        ],
+        [
+          "B0",
+          "Fixed policy; no model calls"
+        ],
+        [
+          "B1",
+          "Direct Nova purchasing agent"
+        ],
+        [
+          "B2",
+          "Single-agent isolated practice"
+        ],
+        [
+          "B3",
+          "Practice + independent policy review"
+        ]
+      ]
+    },
+    {
+      "seconds": 46,
+      "tag": "Continuous actual AWS recording",
+      "title": "Nova handles disappearing stock on the deployed system.",
+      "subtitle": "",
+      "facts": [],
+      "note": "",
+      "source": "rehearsal-36a3f7aa2dc930cd1a26bc4c239226ad · actual AWS run · synthetic credits",
+      "narration": "This recording runs at original speed. Supplier A loses its tents after the purchase clock starts. Nova chooses supplier B. Watch the payment reservation, the actual delivery count, and the separate verification result. The agent's final answer is not the completion authority.",
+      "live": true,
+      "liveLabel": "ACTUAL NOVA + AWS SERVERLESS · ORIGINAL SPEED · SYNTHETIC CREDITS",
+      "narration_delay": 14
+    },
+    {
+      "seconds": 28,
+      "tag": "The independently checked result",
+      "title": "The journal confirms delivery.",
+      "subtitle": "The verifier checks quantities, recipient, budget and delivery timing.",
+      "facts": [
+        [
+          "Delivered",
+          "3 tents + 6 lights"
+        ],
+        [
+          "Spent / reserved",
+          "380 / 0 credits"
+        ],
+        [
+          "Recorded model usage",
+          "9 calls / $0.007956"
+        ]
+      ],
+      "note": "Step Functions succeeded; the stopped Runtime session was confirmed absent.",
+      "source": "Downloaded S3 records independently reverified; model estimate is not an AWS invoice",
+      "narration": "The independent audit confirms three tents and six lights, delivered on time for 380 credits, with no unresolved payment reservation. This run used 9 model calls and less than one cent of estimated model usage. The workflow succeeded, and a separate check confirmed that its runtime session was no longer present."
+    },
+    {
+      "seconds": 32,
+      "tag": "Results include the failures",
+      "title": "More agents did not automatically win.",
+      "subtitle": "Earlier frozen evaluation: 20 conditions per method, 80 planned cells.",
+      "facts": [],
+      "note": "Historical practice-world results; not an AWS deployment benchmark.",
+      "source": "evidence/cw03-nova-live prospective comparison; one execution per condition",
+      "narration": "An earlier frozen comparison included twenty conditions per method. The rule baseline completed fifteen goals. Direct Nova completed eleven, simulation completed eight, and peer review completed seven. Different starting policies and one execution per condition limit the comparison. These historical results do not prove a peer review advantage. Failures remain part of the evidence.",
+      "table": [
+        [
+          "Method",
+          "Goals completed / planned"
+        ],
+        [
+          "B0 · fixed rules",
+          "15 / 20"
+        ],
+        [
+          "B1 · direct Nova",
+          "11 / 20"
+        ],
+        [
+          "B2 · simulation",
+          "8 / 20"
+        ],
+        [
+          "B3 · peer review",
+          "7 / 20"
+        ]
+      ]
+    },
+    {
+      "seconds": 27,
+      "tag": "Try the deployed demo",
+      "title": "Inspect what happened, not just what was said.",
+      "subtitle": "https://d1u9yhii3gor6j.cloudfront.net",
+      "facts": [
+        [
+          "Try",
+          "Choose a method and condition"
+        ],
+        [
+          "Inspect",
+          "Delivery, spending and audit"
+        ],
+        [
+          "Reuse",
+          "Source, evidence and draw.io"
+        ]
+      ],
+      "note": "Synthetic POC · finite shared demo allowance · no production-safety claim",
+      "source": "Agents for Humans · English narration: ElevenLabs Daniel",
+      "narration": "Open the hosted demo, choose a method and a condition, and inspect the result. The repository includes the transaction evidence, reproduction instructions, and an editable architecture diagram. Rehearsal is a synthetic proof of concept. The next step is testing whether it helps developers find real integration failures."
+    }
+  ],
+  "capture": "/Users/men1692/Desktop/AWS/agents-for-human/.local/serverless-deploy/browser/cloud-b1-framed",
+  "live_end_seconds": 42.674
+}

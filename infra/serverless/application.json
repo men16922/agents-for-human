@@ -1,0 +1,1993 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Rehearsal: on-demand AgentCore, Lambda, DynamoDB, Step Functions and CDN",
+  "Parameters": {
+    "ArtifactsBucket": {
+      "Type": "String"
+    },
+    "SiteBucket": {
+      "Type": "String"
+    },
+    "CommerceTable": {
+      "Type": "String"
+    },
+    "ControlTable": {
+      "Type": "String"
+    },
+    "CodeKey": {
+      "Type": "String"
+    },
+    "CodeVersion": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "CommerceRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/rehearsal-serverless-*:log-stream:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:Query",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:TransactWriteItems"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${CommerceTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:ConditionCheckItem"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "SellerRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/rehearsal-serverless-*:log-stream:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:Query",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:TransactWriteItems"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${CommerceTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:ConditionCheckItem"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "ApiRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/rehearsal-serverless-*:log-stream:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:Query"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${CommerceTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:Query",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:TransactWriteItems"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "states:StartExecution"
+                  ],
+                  "Resource": {
+                    "Ref": "Workflow"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "states:StartExecution"
+                  ],
+                  "Resource": {
+                    "Ref": "PreviewWorkflow"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:ConditionCheckItem"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:PutObject"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/input.json"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/impact-report.json"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/impact-evidence.json"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "InvokeRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/rehearsal-serverless-*:log-stream:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "bedrock-agentcore:InvokeAgentRuntime"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "Runtime",
+                        "AgentRuntimeArn"
+                      ]
+                    },
+                    {
+                      "Fn::Sub": "${Runtime.AgentRuntimeArn}/*"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "FinalizeRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/rehearsal-serverless-*:log-stream:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:Query"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${CommerceTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:Query",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:TransactWriteItems"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:PutObject"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/*/commerce-evidence.json"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "bedrock-agentcore:StopRuntimeSession"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "Runtime",
+                        "AgentRuntimeArn"
+                      ]
+                    },
+                    {
+                      "Fn::Sub": "${Runtime.AgentRuntimeArn}/*"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "AgentRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "bedrock-agentcore.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "lambda:InvokeFunction"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "CommerceFunction",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:UpdateItem"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  },
+                  "Condition": {
+                    "ForAllValues:StringLike": {
+                      "dynamodb:LeadingKeys": [
+                        "RUN#rehearsal-*"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:PutObject"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/*/usage.sqlite3"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/*/tools.json"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/*/runtime/*"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject",
+                    "s3:GetObjectVersion"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/packages/*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:ListBucket"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "bedrock:InvokeModel",
+                    "bedrock:InvokeModelWithResponseStream"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:*::foundation-model/amazon.nova-2-lite-v1:0"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/global.amazon.nova-2-lite-v1:0"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                    "logs:DescribeLogStreams"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/bedrock-agentcore/runtimes/rehearsal_serverless*"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "Runtime": {
+      "Type": "AWS::BedrockAgentCore::Runtime",
+      "Properties": {
+        "AgentRuntimeName": "rehearsal_serverless",
+        "AgentRuntimeArtifact": {
+          "CodeConfiguration": {
+            "Code": {
+              "S3": {
+                "Bucket": {
+                  "Ref": "ArtifactsBucket"
+                },
+                "Prefix": {
+                  "Ref": "CodeKey"
+                },
+                "VersionId": {
+                  "Ref": "CodeVersion"
+                }
+              }
+            },
+            "Runtime": "PYTHON_3_12",
+            "EntryPoint": [
+              "main.py"
+            ]
+          }
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "AgentRole",
+            "Arn"
+          ]
+        },
+        "NetworkConfiguration": {
+          "NetworkMode": "PUBLIC"
+        },
+        "ProtocolConfiguration": "HTTP",
+        "LifecycleConfiguration": {
+          "IdleRuntimeSessionTimeout": 60,
+          "MaxLifetime": 420
+        },
+        "EnvironmentVariables": {
+          "AWS_REGION": {
+            "Ref": "AWS::Region"
+          },
+          "CONTROL_TABLE": {
+            "Ref": "ControlTable"
+          },
+          "ARTIFACTS_BUCKET": {
+            "Ref": "ArtifactsBucket"
+          },
+          "COMMERCE_FUNCTION": {
+            "Ref": "CommerceFunction"
+          },
+          "MODEL_ID": "global.amazon.nova-2-lite-v1:0",
+          "RATE_SOURCE": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-west-2/index.json"
+        },
+        "Tags": {
+          "Project": "rehearsal-serverless"
+        }
+      }
+    },
+    "ApiLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/rehearsal-serverless-api",
+        "RetentionInDays": 7
+      }
+    },
+    "ApiFunction": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": [
+        "ApiLogs"
+      ],
+      "Properties": {
+        "FunctionName": "rehearsal-serverless-api",
+        "Role": {
+          "Fn::GetAtt": [
+            "ApiRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.12",
+        "Architectures": [
+          "arm64"
+        ],
+        "Handler": "main.handler",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ArtifactsBucket"
+          },
+          "S3Key": {
+            "Ref": "CodeKey"
+          },
+          "S3ObjectVersion": {
+            "Ref": "CodeVersion"
+          }
+        },
+        "Environment": {
+          "Variables": {
+            "FUNCTION_ROLE": "api",
+            "COMMERCE_TABLE": {
+              "Ref": "CommerceTable"
+            },
+            "CONTROL_TABLE": {
+              "Ref": "ControlTable"
+            },
+            "ARTIFACTS_BUCKET": {
+              "Ref": "ArtifactsBucket"
+            },
+            "WORKFLOW_ARN": {
+              "Ref": "Workflow"
+            },
+            "PREVIEW_WORKFLOW_ARN": {
+              "Ref": "PreviewWorkflow"
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "CommerceLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/rehearsal-serverless-commerce",
+        "RetentionInDays": 7
+      }
+    },
+    "CommerceFunction": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": [
+        "CommerceLogs"
+      ],
+      "Properties": {
+        "FunctionName": "rehearsal-serverless-commerce",
+        "Role": {
+          "Fn::GetAtt": [
+            "CommerceRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.12",
+        "Architectures": [
+          "arm64"
+        ],
+        "Handler": "main.handler",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ArtifactsBucket"
+          },
+          "S3Key": {
+            "Ref": "CodeKey"
+          },
+          "S3ObjectVersion": {
+            "Ref": "CodeVersion"
+          }
+        },
+        "Environment": {
+          "Variables": {
+            "FUNCTION_ROLE": "commerce",
+            "COMMERCE_TABLE": {
+              "Ref": "CommerceTable"
+            },
+            "CONTROL_TABLE": {
+              "Ref": "ControlTable"
+            },
+            "ARTIFACTS_BUCKET": {
+              "Ref": "ArtifactsBucket"
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "SellerLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/rehearsal-serverless-seller",
+        "RetentionInDays": 7
+      }
+    },
+    "SellerFunction": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": [
+        "SellerLogs"
+      ],
+      "Properties": {
+        "FunctionName": "rehearsal-serverless-seller",
+        "Role": {
+          "Fn::GetAtt": [
+            "SellerRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.12",
+        "Architectures": [
+          "arm64"
+        ],
+        "Handler": "main.handler",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ArtifactsBucket"
+          },
+          "S3Key": {
+            "Ref": "CodeKey"
+          },
+          "S3ObjectVersion": {
+            "Ref": "CodeVersion"
+          }
+        },
+        "Environment": {
+          "Variables": {
+            "FUNCTION_ROLE": "seller",
+            "COMMERCE_TABLE": {
+              "Ref": "CommerceTable"
+            },
+            "CONTROL_TABLE": {
+              "Ref": "ControlTable"
+            },
+            "ARTIFACTS_BUCKET": {
+              "Ref": "ArtifactsBucket"
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "InvokeLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/rehearsal-serverless-invoke",
+        "RetentionInDays": 7
+      }
+    },
+    "InvokeFunction": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": [
+        "InvokeLogs"
+      ],
+      "Properties": {
+        "FunctionName": "rehearsal-serverless-invoke",
+        "Role": {
+          "Fn::GetAtt": [
+            "InvokeRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.12",
+        "Architectures": [
+          "arm64"
+        ],
+        "Handler": "main.handler",
+        "MemorySize": 512,
+        "Timeout": 480,
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ArtifactsBucket"
+          },
+          "S3Key": {
+            "Ref": "CodeKey"
+          },
+          "S3ObjectVersion": {
+            "Ref": "CodeVersion"
+          }
+        },
+        "Environment": {
+          "Variables": {
+            "FUNCTION_ROLE": "invoke",
+            "COMMERCE_TABLE": {
+              "Ref": "CommerceTable"
+            },
+            "CONTROL_TABLE": {
+              "Ref": "ControlTable"
+            },
+            "ARTIFACTS_BUCKET": {
+              "Ref": "ArtifactsBucket"
+            },
+            "RUNTIME_ARN": {
+              "Fn::GetAtt": [
+                "Runtime",
+                "AgentRuntimeArn"
+              ]
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "FinalizeLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/rehearsal-serverless-finalize",
+        "RetentionInDays": 7
+      }
+    },
+    "FinalizeFunction": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": [
+        "FinalizeLogs"
+      ],
+      "Properties": {
+        "FunctionName": "rehearsal-serverless-finalize",
+        "Role": {
+          "Fn::GetAtt": [
+            "FinalizeRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.12",
+        "Architectures": [
+          "arm64"
+        ],
+        "Handler": "main.handler",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ArtifactsBucket"
+          },
+          "S3Key": {
+            "Ref": "CodeKey"
+          },
+          "S3ObjectVersion": {
+            "Ref": "CodeVersion"
+          }
+        },
+        "Environment": {
+          "Variables": {
+            "FUNCTION_ROLE": "finalize",
+            "COMMERCE_TABLE": {
+              "Ref": "CommerceTable"
+            },
+            "CONTROL_TABLE": {
+              "Ref": "ControlTable"
+            },
+            "ARTIFACTS_BUCKET": {
+              "Ref": "ArtifactsBucket"
+            },
+            "RUNTIME_ARN": {
+              "Fn::GetAtt": [
+                "Runtime",
+                "AgentRuntimeArn"
+              ]
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "WorkflowRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "states.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "lambda:InvokeFunction"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "SellerFunction",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "InvokeFunction",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "FinalizeFunction",
+                        "Arn"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "Workflow": {
+      "Type": "AWS::StepFunctions::StateMachine",
+      "Properties": {
+        "StateMachineName": "rehearsal-serverless-demo",
+        "StateMachineType": "STANDARD",
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "WorkflowRole",
+            "Arn"
+          ]
+        },
+        "Definition": {
+          "StartAt": "Bootstrap",
+          "TimeoutSeconds": 660,
+          "States": {
+            "Bootstrap": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::lambda:invoke",
+              "Parameters": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "SellerFunction",
+                    "Arn"
+                  ]
+                },
+                "Payload": {
+                  "run_id.$": "$.run_id",
+                  "operation": "bootstrap"
+                }
+              },
+              "OutputPath": "$.Payload",
+              "Next": "Execute",
+              "Catch": [
+                {
+                  "ErrorEquals": [
+                    "States.ALL"
+                  ],
+                  "ResultPath": "$.failure",
+                  "Next": "Finalize"
+                }
+              ]
+            },
+            "Execute": {
+              "Type": "Parallel",
+              "ResultPath": "$.branches",
+              "Next": "Finalize",
+              "Catch": [
+                {
+                  "ErrorEquals": [
+                    "States.ALL"
+                  ],
+                  "ResultPath": "$.failure",
+                  "Next": "Finalize"
+                }
+              ],
+              "Branches": [
+                {
+                  "StartAt": "Invoke",
+                  "States": {
+                    "Invoke": {
+                      "Type": "Task",
+                      "Resource": "arn:aws:states:::lambda:invoke",
+                      "Parameters": {
+                        "FunctionName": {
+                          "Fn::GetAtt": [
+                            "InvokeFunction",
+                            "Arn"
+                          ]
+                        },
+                        "Payload": {
+                          "run_id.$": "$.run_id"
+                        }
+                      },
+                      "OutputPath": "$.Payload",
+                      "End": true
+                    }
+                  }
+                },
+                {
+                  "StartAt": "Tick",
+                  "States": {
+                    "Tick": {
+                      "Type": "Task",
+                      "Resource": "arn:aws:states:::lambda:invoke",
+                      "Parameters": {
+                        "FunctionName": {
+                          "Fn::GetAtt": [
+                            "SellerFunction",
+                            "Arn"
+                          ]
+                        },
+                        "Payload": {
+                          "run_id.$": "$.run_id"
+                        }
+                      },
+                      "OutputPath": "$.Payload",
+                      "Next": "Done"
+                    },
+                    "Done": {
+                      "Type": "Choice",
+                      "Choices": [
+                        {
+                          "Variable": "$.done",
+                          "BooleanEquals": true,
+                          "Next": "SellerFinished"
+                        }
+                      ],
+                      "Default": "Wait"
+                    },
+                    "Wait": {
+                      "Type": "Wait",
+                      "Seconds": 2,
+                      "Next": "Tick"
+                    },
+                    "SellerFinished": {
+                      "Type": "Succeed"
+                    }
+                  }
+                }
+              ]
+            },
+            "Finalize": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::lambda:invoke",
+              "Parameters": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "FinalizeFunction",
+                    "Arn"
+                  ]
+                },
+                "Payload": {
+                  "run_id.$": "$.run_id",
+                  "workflow.$": "$"
+                }
+              },
+              "OutputPath": "$.Payload",
+              "End": true,
+              "Retry": [
+                {
+                  "ErrorEquals": [
+                    "States.TaskFailed"
+                  ],
+                  "IntervalSeconds": 3,
+                  "MaxAttempts": 3
+                }
+              ]
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "Api": {
+      "Type": "AWS::ApiGatewayV2::Api",
+      "Properties": {
+        "Name": "rehearsal-serverless",
+        "ProtocolType": "HTTP"
+      }
+    },
+    "ApiIntegration": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Api"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "ApiFunction",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "2.0",
+        "TimeoutInMillis": 29000
+      }
+    },
+    "ApiRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Api"
+        },
+        "RouteKey": "$default",
+        "Target": {
+          "Fn::Sub": "integrations/${ApiIntegration}"
+        }
+      }
+    },
+    "ApiStage": {
+      "Type": "AWS::ApiGatewayV2::Stage",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Api"
+        },
+        "StageName": "$default",
+        "AutoDeploy": true,
+        "DefaultRouteSettings": {
+          "ThrottlingBurstLimit": 10,
+          "ThrottlingRateLimit": 5
+        }
+      }
+    },
+    "ApiPermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Ref": "ApiFunction"
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Sub": "arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${Api}/*"
+        }
+      }
+    },
+    "SiteAccess": {
+      "Type": "AWS::CloudFront::OriginAccessControl",
+      "Properties": {
+        "OriginAccessControlConfig": {
+          "Name": "rehearsal-serverless-site",
+          "OriginAccessControlOriginType": "s3",
+          "SigningBehavior": "always",
+          "SigningProtocol": "sigv4"
+        }
+      }
+    },
+    "Distribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Enabled": true,
+          "DefaultRootObject": "index.html",
+          "PriceClass": "PriceClass_100",
+          "Origins": [
+            {
+              "Id": "site",
+              "DomainName": {
+                "Fn::Sub": "${SiteBucket}.s3.${AWS::Region}.amazonaws.com"
+              },
+              "S3OriginConfig": {
+                "OriginAccessIdentity": ""
+              },
+              "OriginAccessControlId": {
+                "Ref": "SiteAccess"
+              }
+            },
+            {
+              "Id": "api",
+              "DomainName": {
+                "Fn::Sub": "${Api}.execute-api.${AWS::Region}.amazonaws.com"
+              },
+              "CustomOriginConfig": {
+                "OriginProtocolPolicy": "https-only",
+                "OriginSSLProtocols": [
+                  "TLSv1.2"
+                ]
+              }
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "TargetOriginId": "site",
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "AllowedMethods": [
+              "GET",
+              "HEAD"
+            ],
+            "CachedMethods": [
+              "GET",
+              "HEAD"
+            ],
+            "Compress": true,
+            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6"
+          },
+          "CacheBehaviors": [
+            {
+              "PathPattern": "/api/*",
+              "TargetOriginId": "api",
+              "ViewerProtocolPolicy": "https-only",
+              "AllowedMethods": [
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PUT",
+                "PATCH",
+                "POST",
+                "DELETE"
+              ],
+              "CachedMethods": [
+                "GET",
+                "HEAD"
+              ],
+              "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+              "OriginRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac"
+            }
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "SitePolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "SiteBucket"
+        },
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudfront.amazonaws.com"
+              },
+              "Action": "s3:GetObject",
+              "Resource": {
+                "Fn::Sub": "arn:${AWS::Partition}:s3:::${SiteBucket}/*"
+              },
+              "Condition": {
+                "StringEquals": {
+                  "AWS:SourceArn": {
+                    "Fn::Sub": "arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Distribution}"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "PreviewAgentRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "bedrock-agentcore.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:UpdateItem"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  },
+                  "Condition": {
+                    "ForAllValues:StringLike": {
+                      "dynamodb:LeadingKeys": [
+                        "RUN#preview-*"
+                      ]
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:PutObject"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/usage.sqlite3"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/runtime/*"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject",
+                    "s3:GetObjectVersion"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/packages/*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:ListBucket"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "bedrock:InvokeModel",
+                    "bedrock:InvokeModelWithResponseStream"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:*::foundation-model/amazon.nova-2-lite-v1:0"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:bedrock:${AWS::Region}:${AWS::AccountId}:inference-profile/global.amazon.nova-2-lite-v1:0"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents",
+                    "logs:DescribeLogStreams"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/bedrock-agentcore/runtimes/rehearsal_serverless*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/input.json"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "PreviewRuntime": {
+      "Type": "AWS::BedrockAgentCore::Runtime",
+      "Properties": {
+        "AgentRuntimeName": "rehearsal_serverless_preflight",
+        "AgentRuntimeArtifact": {
+          "CodeConfiguration": {
+            "Code": {
+              "S3": {
+                "Bucket": {
+                  "Ref": "ArtifactsBucket"
+                },
+                "Prefix": {
+                  "Ref": "CodeKey"
+                },
+                "VersionId": {
+                  "Ref": "CodeVersion"
+                }
+              }
+            },
+            "Runtime": "PYTHON_3_12",
+            "EntryPoint": [
+              "main.py"
+            ]
+          }
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "PreviewAgentRole",
+            "Arn"
+          ]
+        },
+        "NetworkConfiguration": {
+          "NetworkMode": "PUBLIC"
+        },
+        "ProtocolConfiguration": "HTTP",
+        "LifecycleConfiguration": {
+          "IdleRuntimeSessionTimeout": 60,
+          "MaxLifetime": 420
+        },
+        "EnvironmentVariables": {
+          "AWS_REGION": {
+            "Ref": "AWS::Region"
+          },
+          "CONTROL_TABLE": {
+            "Ref": "ControlTable"
+          },
+          "ARTIFACTS_BUCKET": {
+            "Ref": "ArtifactsBucket"
+          },
+          "MODEL_ID": "global.amazon.nova-2-lite-v1:0",
+          "RATE_SOURCE": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-west-2/index.json",
+          "RUNTIME_MODE": "preflight"
+        },
+        "Tags": {
+          "Project": "rehearsal-serverless"
+        }
+      }
+    },
+    "PreviewInvokeRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/rehearsal-serverless-*:log-stream:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "bedrock-agentcore:InvokeAgentRuntime"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "PreviewRuntime",
+                        "AgentRuntimeArn"
+                      ]
+                    },
+                    {
+                      "Fn::Sub": "${PreviewRuntime.AgentRuntimeArn}/*"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "PreviewFinalizeRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/rehearsal-serverless-*:log-stream:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:GetItem",
+                    "dynamodb:Query",
+                    "dynamodb:PutItem",
+                    "dynamodb:UpdateItem",
+                    "dynamodb:TransactWriteItems"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${ControlTable}"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/input.json"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/runtime/preflight.json"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:PutObject"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/impact-report.json"
+                    },
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:s3:::${ArtifactsBucket}/runs/preview-*/impact-evidence.json"
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "bedrock-agentcore:StopRuntimeSession"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "PreviewRuntime",
+                        "AgentRuntimeArn"
+                      ]
+                    },
+                    {
+                      "Fn::Sub": "${PreviewRuntime.AgentRuntimeArn}/*"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "PreviewInvokeFunction": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": [
+        "PreviewInvokeLogs"
+      ],
+      "Properties": {
+        "FunctionName": "rehearsal-serverless-previewinvoke",
+        "Role": {
+          "Fn::GetAtt": [
+            "PreviewInvokeRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.12",
+        "Architectures": [
+          "arm64"
+        ],
+        "Handler": "main.handler",
+        "MemorySize": 512,
+        "Timeout": 480,
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ArtifactsBucket"
+          },
+          "S3Key": {
+            "Ref": "CodeKey"
+          },
+          "S3ObjectVersion": {
+            "Ref": "CodeVersion"
+          }
+        },
+        "Environment": {
+          "Variables": {
+            "FUNCTION_ROLE": "previewinvoke",
+            "COMMERCE_TABLE": {
+              "Ref": "CommerceTable"
+            },
+            "CONTROL_TABLE": {
+              "Ref": "ControlTable"
+            },
+            "ARTIFACTS_BUCKET": {
+              "Ref": "ArtifactsBucket"
+            },
+            "RUNTIME_ARN": {
+              "Fn::GetAtt": [
+                "PreviewRuntime",
+                "AgentRuntimeArn"
+              ]
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "PreviewInvokeLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/rehearsal-serverless-previewinvoke",
+        "RetentionInDays": 7
+      }
+    },
+    "PreviewFinalizeFunction": {
+      "Type": "AWS::Lambda::Function",
+      "DependsOn": [
+        "PreviewFinalizeLogs"
+      ],
+      "Properties": {
+        "FunctionName": "rehearsal-serverless-previewfinalize",
+        "Role": {
+          "Fn::GetAtt": [
+            "PreviewFinalizeRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.12",
+        "Architectures": [
+          "arm64"
+        ],
+        "Handler": "main.handler",
+        "MemorySize": 512,
+        "Timeout": 30,
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ArtifactsBucket"
+          },
+          "S3Key": {
+            "Ref": "CodeKey"
+          },
+          "S3ObjectVersion": {
+            "Ref": "CodeVersion"
+          }
+        },
+        "Environment": {
+          "Variables": {
+            "FUNCTION_ROLE": "previewfinalize",
+            "COMMERCE_TABLE": {
+              "Ref": "CommerceTable"
+            },
+            "CONTROL_TABLE": {
+              "Ref": "ControlTable"
+            },
+            "ARTIFACTS_BUCKET": {
+              "Ref": "ArtifactsBucket"
+            },
+            "RUNTIME_ARN": {
+              "Fn::GetAtt": [
+                "PreviewRuntime",
+                "AgentRuntimeArn"
+              ]
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "PreviewFinalizeLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/rehearsal-serverless-previewfinalize",
+        "RetentionInDays": 7
+      }
+    },
+    "PreviewWorkflowRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "states.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "ScopedRehearsal",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "lambda:InvokeFunction"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "PreviewInvokeFunction",
+                        "Arn"
+                      ]
+                    },
+                    {
+                      "Fn::GetAtt": [
+                        "PreviewFinalizeFunction",
+                        "Arn"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    },
+    "PreviewWorkflow": {
+      "Type": "AWS::StepFunctions::StateMachine",
+      "Properties": {
+        "StateMachineName": "rehearsal-serverless-preflight",
+        "StateMachineType": "STANDARD",
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "PreviewWorkflowRole",
+            "Arn"
+          ]
+        },
+        "Definition": {
+          "StartAt": "Simulate",
+          "TimeoutSeconds": 660,
+          "States": {
+            "Simulate": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::lambda:invoke",
+              "Parameters": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "PreviewInvokeFunction",
+                    "Arn"
+                  ]
+                },
+                "Payload": {
+                  "run_id.$": "$.run_id"
+                }
+              },
+              "OutputPath": "$.Payload",
+              "Next": "Report",
+              "Catch": [
+                {
+                  "ErrorEquals": [
+                    "States.ALL"
+                  ],
+                  "ResultPath": "$.failure",
+                  "Next": "Report"
+                }
+              ]
+            },
+            "Report": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::lambda:invoke",
+              "Parameters": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "PreviewFinalizeFunction",
+                    "Arn"
+                  ]
+                },
+                "Payload": {
+                  "run_id.$": "$.run_id",
+                  "workflow.$": "$"
+                }
+              },
+              "OutputPath": "$.Payload",
+              "End": true,
+              "Retry": [
+                {
+                  "ErrorEquals": [
+                    "States.TaskFailed"
+                  ],
+                  "IntervalSeconds": 3,
+                  "MaxAttempts": 3
+                }
+              ]
+            }
+          }
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "rehearsal-serverless"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "PreviewRuntimeArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "PreviewRuntime",
+          "AgentRuntimeArn"
+        ]
+      }
+    },
+    "PreviewWorkflowArn": {
+      "Value": {
+        "Ref": "PreviewWorkflow"
+      }
+    },
+    "Url": {
+      "Value": {
+        "Fn::Sub": "https://${Distribution.DomainName}"
+      }
+    },
+    "DistributionId": {
+      "Value": {
+        "Ref": "Distribution"
+      }
+    },
+    "RuntimeArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "Runtime",
+          "AgentRuntimeArn"
+        ]
+      }
+    },
+    "WorkflowArn": {
+      "Value": {
+        "Ref": "Workflow"
+      }
+    },
+    "ApiUrl": {
+      "Value": {
+        "Fn::GetAtt": [
+          "Api",
+          "ApiEndpoint"
+        ]
+      }
+    }
+  }
+}

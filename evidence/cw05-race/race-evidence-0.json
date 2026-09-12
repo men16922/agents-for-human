@@ -1,0 +1,103 @@
+{
+  "binding": {
+    "run_id": "cw00-608e1d67aec7-buyer",
+    "customer_id": "cus_01M1YVC0QYN6030TY78VBSBBER",
+    "region_id": "reg_01M1XXH30AVSPNFKR799JC7HD6",
+    "suppliers": {
+      "A": {
+        "variants": {
+          "tent": "variant_01M1YVC0HK4KBGBTRPGZYSVBJK",
+          "light": "variant_01M1YVC0MWPNYBR6W0KWXTBW6N"
+        },
+        "shipping_option_id": "so_01M1YVC0EHRXCF0PPNX5YCMQ1C",
+        "lead_ticks": 4
+      },
+      "B": {
+        "variants": {
+          "tent": "variant_01M1YVC10K6XC5SNVQKAKNYPHK",
+          "light": "variant_01M1YVC13D0QMCR5N7DF91N59T"
+        },
+        "shipping_option_id": "so_01M1YVC0YBCT4KN2481ZVPRQ3R",
+        "lead_ticks": 6
+      },
+      "C": {
+        "variants": {
+          "tent": "variant_01M1YVC175WAH5FMF815R5MADX",
+          "light": "variant_01M1YVC19GXY4EYTFC4QD1EM97"
+        },
+        "shipping_option_id": "so_01M1YVC1530QVB32BCA3GGV821",
+        "lead_ticks": 8
+      }
+    },
+    "goal": {
+      "items": {
+        "tent": 3,
+        "light": 6
+      },
+      "deadline_tick": 120,
+      "recipient": "venue"
+    },
+    "budget": 500,
+    "quote_ttl": 30
+  },
+  "tables": {
+    "purchases": [
+      {
+        "id": "order_f3cff179c4ba44e1bcf2d2fd78218156",
+        "key": "same-key-isolated-run",
+        "quote_id": "quote_b3b02393cc144e5a916e3e759bb09398",
+        "stage": "SUBMITTED",
+        "external_id": null,
+        "received_tick": null,
+        "created_tick": 1
+      },
+      {
+        "id": "order_23f830c84a344fa5b3491b74813ab7d8",
+        "key": "replacement-buy",
+        "quote_id": "quote_0f8a0e30d5f243f4954097f0b07033cf",
+        "stage": "ACCEPTED",
+        "external_id": null,
+        "received_tick": null,
+        "created_tick": 7
+      }
+    ],
+    "quotes": [
+      {
+        "id": "quote_b3b02393cc144e5a916e3e759bb09398",
+        "cart_id": "cart_01M1YVC1STR0XTNJYKJ3QP3Y03",
+        "data": "{\"amount\":310,\"based_on_tick\":0,\"expires_tick\":30,\"id\":\"quote_b3b02393cc144e5a916e3e759bb09398\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":4,\"quote_version\":\"f46b3894fbccfa59eb18e2a8fa05c48ee1e3a3fafcb2cb13b87955b4ae5173a1\",\"run_id\":\"cw00-608e1d67aec7-buyer\",\"shipping\":10,\"supplier\":\"A\",\"supplier_content\":{\"items\":{\"light\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false},\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"A\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"light\":20,\"tent\":60}}"
+      },
+      {
+        "id": "quote_0f8a0e30d5f243f4954097f0b07033cf",
+        "cart_id": "cart_01M1YVC8D5VADT53Q6RZQKS9CT",
+        "data": "{\"amount\":380,\"based_on_tick\":7,\"expires_tick\":37,\"id\":\"quote_0f8a0e30d5f243f4954097f0b07033cf\",\"items\":{\"light\":6,\"tent\":3},\"lead_ticks\":6,\"quote_version\":\"1ba13ddcf1f7580f0b19d7cee01261d1dd07be86b251d8382a924bc9e1272e21\",\"run_id\":\"cw00-608e1d67aec7-buyer\",\"shipping\":20,\"supplier\":\"B\",\"supplier_content\":{\"items\":{\"light\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false},\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"B\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"light\":25,\"tent\":70}}"
+      }
+    ],
+    "accounts": [
+      {
+        "run_id": "cw00-608e1d67aec7-buyer",
+        "budget": 500,
+        "spent": 0,
+        "reserved": 310,
+        "metadata": "{\"backend\":\"medusa\"}"
+      }
+    ],
+    "intents": [
+      {
+        "id": "pay_733339b5359a4469a51eacd29fe899fa",
+        "run_id": "cw00-608e1d67aec7-buyer",
+        "order_id": "order_f3cff179c4ba44e1bcf2d2fd78218156",
+        "idempotency_key": "same-pay-isolated-run",
+        "recipient": "A",
+        "amount": 310,
+        "status": "RESERVED",
+        "version": 1,
+        "created_tick": 2,
+        "settled_tick": null
+      }
+    ]
+  },
+  "external_orders": [],
+  "captured_at_tick": 8,
+  "scope": "two-run-live-medusa-stock-race"
+}

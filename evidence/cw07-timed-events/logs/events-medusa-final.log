@@ -1,0 +1,20 @@
+scripts/dev/with-env.sh uv run --offline --no-sync python scripts/commerce/events_smoke.py
+exception=<KeyError> | event loop cycle failed
+FAIL declared timed events: /Users/men1692/Desktop/AWS/agents-for-human/.local/evaluation/events_3326ef217fe4489889e8f879a67bc43b
+Traceback (most recent call last):
+  File "/Users/men1692/Desktop/AWS/agents-for-human/scripts/commerce/events_smoke.py", line 162, in main
+    external_batch.learn(directory, "timed-B2-r1", fixture_factory)
+  File "/Users/men1692/Desktop/AWS/agents-for-human/src/rehearsal/evaluation/external_batch.py", line 99, in learn
+    raise ValueError(reason or "Cell already attempted; no automatic retry")
+ValueError: UNRESOLVED_USAGE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/men1692/Desktop/AWS/agents-for-human/scripts/commerce/events_smoke.py", line 176, in <module>
+    main()
+  File "/Users/men1692/Desktop/AWS/agents-for-human/scripts/commerce/events_smoke.py", line 164, in main
+    assert "UNRESOLVED_ATTEMPT" in str(exc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+make: *** [external-events-smoke] Error 1

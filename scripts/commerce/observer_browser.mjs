@@ -1,0 +1,83 @@
+/** Real browser against a running local Medusa observer bridge, no mocked responses. */
+import { chromium, expect } from '@playwright/test';
+import { writeFile, access, readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+const directory = process.argv[2];
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 1050 } });
+const requests = [], errors = [];
+page.on('pageerror', error => errors.push(error.message));
+page.on('request', request => {
+  if (request.url().includes('/api/observer/')) requests.push({ url: request.url(), cursor: request.headers()['last-event-id'] ?? null, hasAuthorization: 'authorization' in request.headers() });
+});
+const save = async (name, value) => writeFile(join(directory, name + '.json'), JSON.stringify(value, null, 2) + '\n');
+const state = async () => Object.fromEntries(await Promise.all(['connection', 'cursor', 'spent', 'reserved', 'available', 'inventory-tent', 'inventory-light', 'latency'].map(async key => [key, await page.getByTestId(key).innerText()])));
+try {
+  await page.goto('http://127.0.0.1:15173');
+  await expect(page.getByTestId('connection')).toHaveText('Live connection', { timeout: 20_000 });
+  await expect(page.getByTestId('spent')).toHaveText('0credits');
+  await expect(page.getByTestId('inventory-tent')).toHaveText('0 / 3');
+  await expect(page.getByTestId('stock-A-tent')).toHaveText('10', { timeout: 15_000 });
+  await save('initial', { ...await state(), stock_A_tent: await page.getByTestId('stock-A-tent').innerText() });
+  await expect(page.getByTestId('stock-A-tent')).toHaveText('0', { timeout: 15_000 });
+  await save('stock-change', { stock_A_tent: await page.getByTestId('stock-A-tent').innerText(), cursor: await page.getByTestId('cursor').innerText() });
+  await expect(page.getByTestId('spent')).toHaveText('380credits', { timeout: 45_000 });
+  await expect(page.getByTestId('inventory-light')).toHaveText('6 / 6', { timeout: 25_000 });
+  await expect(page.getByTestId('inventory-tent')).toHaveText('3 / 3');
+  await expect(page.getByTestId('reserved')).toHaveText('0credits');
+  await expect(page.getByTestId('available')).toHaveText('120credits');
+  await expect(page.getByText('Awaiting independent ledger verification')).toBeVisible();
+  await page.screenshot({ path: join(directory, 'live-1440.png'), fullPage: true });
+  await page.setViewportSize({ width: 390, height: 900 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({ path: join(directory, 'live-390.png'), fullPage: true });
+  await expect(page.getByTestId('order-status')).toHaveText('Delivery confirmed');
+  await expect(page.getByTestId('order-payment')).toHaveText('Settled');
+  await expect(page.getByTestId('stock-B-tent')).toHaveText('7');
+  await expect(page.getByTestId('stock-B-light')).toHaveText('4');
+  await save('received', { ...await state(), order_status: await page.getByTestId('order-status').innerText(), stock_B_tent: await page.getByTestId('stock-B-tent').innerText(), stock_B_light: await page.getByTestId('stock-B-light').innerText() });
+  await expect(page.getByTestId('connection')).toHaveText('Disconnected', { timeout: 25_000 });
+  await expect(page.getByTestId('spent')).toHaveText('380credits');
+  await save('disconnected', await state());
+  await expect(page.getByTestId('connection')).toHaveText('Live connection', { timeout: 25_000 });
+  await expect(page.getByTestId('inventory-light')).toHaveText('6 / 6');
+  await expect(page.getByTestId('spent')).toHaveText('380credits');
+  expect(requests.some(r => Number(r.cursor) > 0)).toBe(true);
+  expect(requests.every(r => !r.hasAuthorization)).toBe(true);
+  expect(errors).toEqual([]);
+  await save('browser-report', { passed: true, scope: 'live-medusa-browser', final: await state(), requests, errors });
+  await expect.poll(async () => { try { await access(join(directory, 'selection.json')); return true; } catch { return false; } }, { timeout: 15_000 }).toBe(true);
+  await page.getByRole('button', { name: 'Reverify evidence' }).click();
+  await expect(page.getByTestId('evidence-result')).toContainText('Goal complete at evidence capture');
+  await expect(page.getByTestId('evidence-result')).toContainText('Matches the current observed values.');
+  await expect(page.getByTestId('evidence-result')).toContainText('380 / 0 credits');
+  const response = await page.request.get('http://127.0.0.1:15173/api/observer/evidence');
+  const evidence = await response.json();
+  expect(evidence.status).toBe('VERIFIED');
+  expect(evidence.verdict.status).toBe('COMPLETE');
+  expect(evidence.verdict.spent).toBe(380);
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 1050 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await page.screenshot({ path: join(directory, `evidence-${width}.png`), fullPage: true });
+  }
+  await expect.poll(async () => Number(await page.getByTestId('metric-n-render').innerText()), { timeout: 15_000 }).toBeGreaterThanOrEqual(8);
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Download metrics JSON' }).click();
+  const download = await downloadPromise;
+  await download.saveAs(join(directory, 'latency.json'));
+  const metrics = JSON.parse(await readFile(join(directory, 'latency.json'), 'utf8'));
+  expect(metrics.run_id).toBe(evidence.run_id);
+  expect(metrics.counters.connection_attempts).toBeGreaterThanOrEqual(2);
+  expect(metrics.server_periods.length).toBeGreaterThanOrEqual(2);
+  expect(metrics.counters.duplicate).toBeGreaterThanOrEqual(1);
+  expect(metrics.counters.old).toBeGreaterThanOrEqual(1);
+  expect(metrics.samples.some(s => s.event_type === 'delivery.observed' && s.published_ms - s.observed_ms >= 1990)).toBe(true);
+  expect(metrics.summary.poll.n).toBeGreaterThanOrEqual(8);
+  expect(errors).toEqual([]);
+  expect(requests.every(r => !r.hasAuthorization)).toBe(true);
+  await save('evidence-browser' , { passed: true, scope: 'live-medusa-recomputed-export-ui', evidence, text: await page.getByTestId('evidence-result').innerText(), errors });
+} catch (error) {
+  await save('browser-error', { message: String(error), requests, errors });
+  throw error;
+} finally { await browser.close(); }

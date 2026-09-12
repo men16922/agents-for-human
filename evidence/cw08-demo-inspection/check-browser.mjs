@@ -1,0 +1,36 @@
+import { chromium, expect } from '@playwright/test';
+import { writeFile } from 'node:fs/promises';
+const out = '.local/demo-inspection-20260912';
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 1050 } });
+const requests = [], errors = [];
+page.on('pageerror', e => errors.push(e.message));
+page.on('request', r => { if(r.url().includes('/api/')) requests.push({method:r.method(),url:r.url(),authorization:'authorization' in r.headers()}); });
+try {
+  await page.goto('http://127.0.0.1:15173');
+  await expect(page.getByTestId('connection')).toHaveText('실시간 연결',{timeout:20000});
+  await expect(page.getByTestId('spent')).toHaveText('380크레딧');
+  await expect(page.getByTestId('inventory-tent')).toHaveText('3 / 3');
+  await expect(page.getByTestId('inventory-light')).toHaveText('6 / 6');
+  await expect(page.getByTestId('execution-result')).toContainText('종료 기록');
+  await page.getByRole('button',{name:'증거 다시 검증'}).click();
+  await expect(page.getByTestId('evidence-result')).toContainText('증거 시점 목표 완료');
+  const before = await (await page.request.get('http://127.0.0.1:15173/api/observer/evidence')).json();
+  await page.screenshot({path:out+'/desktop.png',fullPage:true});
+  await page.setViewportSize({width:390,height:844});
+  await page.reload();
+  await expect(page.getByTestId('connection')).toHaveText('실시간 연결',{timeout:20000});
+  await expect(page.getByTestId('spent')).toHaveText('380크레딧');
+  await page.getByRole('button',{name:'증거 다시 검증'}).click();
+  await expect(page.getByTestId('evidence-result')).toContainText('증거 시점 목표 완료');
+  const after = await (await page.request.get('http://127.0.0.1:15173/api/observer/evidence')).json();
+  expect(after.run_id).toBe(before.run_id);
+  expect(after.verdict).toEqual(before.verdict);
+  expect(after.verdict.status).toBe('COMPLETE');
+  expect(after.verdict.spent).toBe(380);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  expect(errors).toEqual([]);
+  expect(requests.every(r=>r.method==='GET'&&!r.authorization)).toBe(true);
+  await page.screenshot({path:out+'/mobile.png',fullPage:true});
+  await writeFile(out+'/browser.json',JSON.stringify({passed:true,scope:'separate-browser-during-live-inspection',before,after,requests,errors,human_participation:false},null,2)+'\n');
+} finally { await browser.close(); }

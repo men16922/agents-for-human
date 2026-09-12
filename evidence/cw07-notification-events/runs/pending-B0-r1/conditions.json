@@ -1,0 +1,750 @@
+{
+  "schema": "rehearsal-static-condition-observation-v1",
+  "case_sha256": "2339d4cc6a28c0f84603d51caa58c799aa08b5f4c0e73b90d096a60d1c12136b",
+  "binding_record": {
+    "config": {
+      "budget": 500,
+      "customer_id": "cus_01M2141M3Y3W5YSRPFCGPSHZJX",
+      "goal": {
+        "deadline_tick": 120,
+        "items": {
+          "light": 6,
+          "tent": 3
+        },
+        "recipient": "event-venue"
+      },
+      "quote_ttl": 30,
+      "region_id": "reg_01M1XXH30AVSPNFKR799JC7HD6",
+      "run_id": "cw00-059b4ff25ec4-buyer",
+      "suppliers": {
+        "A": {
+          "lead_ticks": 10,
+          "shipping_option_id": "so_01M2141KXNTCXZZNS16G94QBDF",
+          "variants": {
+            "light": "variant_01M2141M14MTWQH884037JV5K9",
+            "tent": "variant_01M2141KZ6PNCVHETRT99YPXRQ"
+          }
+        },
+        "B": {
+          "lead_ticks": 15,
+          "shipping_option_id": "so_01M2141M9MBS83B1YD3B00X80Q",
+          "variants": {
+            "light": "variant_01M2141MCZGBH4JCESKA0Y941C",
+            "tent": "variant_01M2141MB9EZG9QJWBZJMDCQPB"
+          }
+        },
+        "C": {
+          "lead_ticks": 20,
+          "shipping_option_id": "so_01M2141ME5WJ86GE2CZYAKX6RK",
+          "variants": {
+            "light": "variant_01M2141MHFJRHVWT63JZPKJ6E2",
+            "tent": "variant_01M2141MFQN9545DZRH3T1PQQ0"
+          }
+        }
+      }
+    },
+    "started_at": 1788891681.628577
+  },
+  "before": {
+    "run_id": "cw00-059b4ff25ec4-buyer",
+    "goal": {
+      "deadline_tick": 120,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "tick": 0,
+    "clock_mode": "operating-one-second-ticks",
+    "inventory": {
+      "tent": 0,
+      "light": 0
+    },
+    "balance": {
+      "budget": 500,
+      "spent": 0,
+      "reserved": 0,
+      "available": 500
+    },
+    "suppliers": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "after": {
+    "run_id": "cw00-059b4ff25ec4-buyer",
+    "goal": {
+      "deadline_tick": 120,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "tick": 0,
+    "clock_mode": "operating-one-second-ticks",
+    "inventory": {
+      "tent": 0,
+      "light": 0
+    },
+    "balance": {
+      "budget": 500,
+      "spent": 0,
+      "reserved": 0,
+      "available": 500
+    },
+    "suppliers": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  "catalog_get": {
+    "role": "buyer",
+    "method": "GET",
+    "path": "/store/products?variants%5Bid%5D%5B%5D=variant_01M2141M14MTWQH884037JV5K9&variants%5Bid%5D%5B%5D=variant_01M2141KZ6PNCVHETRT99YPXRQ&variants%5Bid%5D%5B%5D=variant_01M2141MCZGBH4JCESKA0Y941C&variants%5Bid%5D%5B%5D=variant_01M2141MB9EZG9QJWBZJMDCQPB&variants%5Bid%5D%5B%5D=variant_01M2141MHFJRHVWT63JZPKJ6E2&variants%5Bid%5D%5B%5D=variant_01M2141MFQN9545DZRH3T1PQQ0&region_id=reg_01M1XXH30AVSPNFKR799JC7HD6&fields=id%2Cvariants.id%2Cvariants.manage_inventory%2Cvariants.allow_backorder%2Cvariants.inventory_quantity%2Cvariants.calculated_price&limit=100",
+    "request": null,
+    "status": 200,
+    "response": {
+      "products": [
+        {
+          "id": "prod_01M2141KYNXKE9PKXASDEXXZ2C",
+          "variants": [
+            {
+              "id": "variant_01M2141KZ6PNCVHETRT99YPXRQ",
+              "manage_inventory": true,
+              "allow_backorder": false,
+              "calculated_price": {
+                "id": "pset_01M2141KZE0V0R2BBSQZDY4YKB",
+                "is_calculated_price_price_list": false,
+                "is_calculated_price_tax_inclusive": false,
+                "calculated_amount": 60,
+                "raw_calculated_amount": {
+                  "value": "60",
+                  "precision": 20
+                },
+                "is_original_price_price_list": false,
+                "is_original_price_tax_inclusive": false,
+                "original_amount": 60,
+                "raw_original_amount": {
+                  "value": "60",
+                  "precision": 20
+                },
+                "currency_code": "usd",
+                "calculated_price": {
+                  "id": "price_01M2141MK6BZ19Q3FZB1WVT5TF",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                },
+                "original_price": {
+                  "id": "price_01M2141MK6BZ19Q3FZB1WVT5TF",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                }
+              },
+              "inventory_quantity": 10
+            }
+          ]
+        },
+        {
+          "id": "prod_01M2141M0FYV2KTDWWJF0SD360",
+          "variants": [
+            {
+              "id": "variant_01M2141M14MTWQH884037JV5K9",
+              "manage_inventory": true,
+              "allow_backorder": false,
+              "calculated_price": {
+                "id": "pset_01M2141M1CJRPEKKGP8AA4RNDK",
+                "is_calculated_price_price_list": false,
+                "is_calculated_price_tax_inclusive": false,
+                "calculated_amount": 20,
+                "raw_calculated_amount": {
+                  "value": "20",
+                  "precision": 20
+                },
+                "is_original_price_price_list": false,
+                "is_original_price_tax_inclusive": false,
+                "original_amount": 20,
+                "raw_original_amount": {
+                  "value": "20",
+                  "precision": 20
+                },
+                "currency_code": "usd",
+                "calculated_price": {
+                  "id": "price_01M2141MM8W231FZMC6EN7NGD6",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                },
+                "original_price": {
+                  "id": "price_01M2141MM8W231FZMC6EN7NGD6",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                }
+              },
+              "inventory_quantity": 10
+            }
+          ]
+        },
+        {
+          "id": "prod_01M2141MARSTXTPW93KAQYKANA",
+          "variants": [
+            {
+              "id": "variant_01M2141MB9EZG9QJWBZJMDCQPB",
+              "manage_inventory": true,
+              "allow_backorder": false,
+              "calculated_price": {
+                "id": "pset_01M2141MBHCTDDWQ199ER6C5VY",
+                "is_calculated_price_price_list": false,
+                "is_calculated_price_tax_inclusive": false,
+                "calculated_amount": 70,
+                "raw_calculated_amount": {
+                  "value": "70",
+                  "precision": 20
+                },
+                "is_original_price_price_list": false,
+                "is_original_price_tax_inclusive": false,
+                "original_amount": 70,
+                "raw_original_amount": {
+                  "value": "70",
+                  "precision": 20
+                },
+                "currency_code": "usd",
+                "calculated_price": {
+                  "id": "price_01M2141MP64PQA7VEB05MK63A8",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                },
+                "original_price": {
+                  "id": "price_01M2141MP64PQA7VEB05MK63A8",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                }
+              },
+              "inventory_quantity": 10
+            }
+          ]
+        },
+        {
+          "id": "prod_01M2141MCG1REQVDP67GVTQFPF",
+          "variants": [
+            {
+              "id": "variant_01M2141MCZGBH4JCESKA0Y941C",
+              "manage_inventory": true,
+              "allow_backorder": false,
+              "calculated_price": {
+                "id": "pset_01M2141MD5G92EZYDDTAJEAGPP",
+                "is_calculated_price_price_list": false,
+                "is_calculated_price_tax_inclusive": false,
+                "calculated_amount": 25,
+                "raw_calculated_amount": {
+                  "value": "25",
+                  "precision": 20
+                },
+                "is_original_price_price_list": false,
+                "is_original_price_tax_inclusive": false,
+                "original_amount": 25,
+                "raw_original_amount": {
+                  "value": "25",
+                  "precision": 20
+                },
+                "currency_code": "usd",
+                "calculated_price": {
+                  "id": "price_01M2141MQ5QK7R9XD2G0698RKJ",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                },
+                "original_price": {
+                  "id": "price_01M2141MQ5QK7R9XD2G0698RKJ",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                }
+              },
+              "inventory_quantity": 10
+            }
+          ]
+        },
+        {
+          "id": "prod_01M2141MF6KETCYC73DVXWQAJN",
+          "variants": [
+            {
+              "id": "variant_01M2141MFQN9545DZRH3T1PQQ0",
+              "manage_inventory": true,
+              "allow_backorder": false,
+              "calculated_price": {
+                "id": "pset_01M2141MFY40FS1GJQRK4P4DGD",
+                "is_calculated_price_price_list": false,
+                "is_calculated_price_tax_inclusive": false,
+                "calculated_amount": 90,
+                "raw_calculated_amount": {
+                  "value": "90",
+                  "precision": 20
+                },
+                "is_original_price_price_list": false,
+                "is_original_price_tax_inclusive": false,
+                "original_amount": 90,
+                "raw_original_amount": {
+                  "value": "90",
+                  "precision": 20
+                },
+                "currency_code": "usd",
+                "calculated_price": {
+                  "id": "price_01M2141MRT46T0NP9SHPFG3DEE",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                },
+                "original_price": {
+                  "id": "price_01M2141MRT46T0NP9SHPFG3DEE",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                }
+              },
+              "inventory_quantity": 10
+            }
+          ]
+        },
+        {
+          "id": "prod_01M2141MH1E2PN9QFHCZMKSMTA",
+          "variants": [
+            {
+              "id": "variant_01M2141MHFJRHVWT63JZPKJ6E2",
+              "manage_inventory": true,
+              "allow_backorder": false,
+              "calculated_price": {
+                "id": "pset_01M2141MHP3CAAPC7B5TMVRZ8M",
+                "is_calculated_price_price_list": false,
+                "is_calculated_price_tax_inclusive": false,
+                "calculated_amount": 35,
+                "raw_calculated_amount": {
+                  "value": "35",
+                  "precision": 20
+                },
+                "is_original_price_price_list": false,
+                "is_original_price_tax_inclusive": false,
+                "original_amount": 35,
+                "raw_original_amount": {
+                  "value": "35",
+                  "precision": 20
+                },
+                "currency_code": "usd",
+                "calculated_price": {
+                  "id": "price_01M2141MSS6N8JM9FKPQM3PZ7R",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                },
+                "original_price": {
+                  "id": "price_01M2141MSS6N8JM9FKPQM3PZ7R",
+                  "price_list_id": null,
+                  "price_list_type": null,
+                  "min_quantity": null,
+                  "max_quantity": null
+                }
+              },
+              "inventory_quantity": 10
+            }
+          ]
+        }
+      ],
+      "count": 6,
+      "offset": 0,
+      "limit": 100
+    }
+  },
+  "shipping_gets": {
+    "A": {
+      "role": "seller",
+      "method": "GET",
+      "path": "/admin/shipping-options/so_01M2141KXNTCXZZNS16G94QBDF",
+      "request": null,
+      "status": 200,
+      "response": {
+        "shipping_option": {
+          "id": "so_01M2141KXNTCXZZNS16G94QBDF",
+          "name": "cw00-059b4ff25ec4",
+          "price_type": "flat",
+          "data": null,
+          "provider_id": "manual_manual",
+          "metadata": null,
+          "created_at": "2026-09-08T18:21:20.693Z",
+          "updated_at": "2026-09-08T18:21:20.693Z",
+          "service_zone_id": "serzo_01M2141KX9H2V7A7KPC4PYXKQT",
+          "shipping_profile_id": "sp_01M2141KW3X2DYPNH5T61RCQ5R",
+          "rules": [
+            {
+              "id": "sorul_01M2141KXNWG4YJ8HKH3NCF9DG",
+              "attribute": "enabled_in_store",
+              "operator": "eq",
+              "value": "true",
+              "shipping_option_id": "so_01M2141KXNTCXZZNS16G94QBDF",
+              "created_at": "2026-09-08T18:21:20.693Z",
+              "updated_at": "2026-09-08T18:21:20.693Z",
+              "deleted_at": null
+            },
+            {
+              "id": "sorul_01M2141KXNRH4SW5WKCDKKHEE8",
+              "attribute": "is_return",
+              "operator": "eq",
+              "value": "false",
+              "shipping_option_id": "so_01M2141KXNTCXZZNS16G94QBDF",
+              "created_at": "2026-09-08T18:21:20.693Z",
+              "updated_at": "2026-09-08T18:21:20.693Z",
+              "deleted_at": null
+            }
+          ],
+          "type": {
+            "id": "sotype_01M2141KXNHCQNFRBAE2HF8VHE",
+            "label": "Synthetic delivery",
+            "description": "No real shipment",
+            "code": "cw00",
+            "created_at": "2026-09-08T18:21:20.693Z",
+            "updated_at": "2026-09-08T18:21:20.693Z",
+            "deleted_at": null
+          },
+          "service_zone": {
+            "id": "serzo_01M2141KX9H2V7A7KPC4PYXKQT",
+            "name": "cw00-059b4ff25ec4",
+            "fulfillment_set_id": "fuset_01M2141KWXJ7DVR3TAD9AE8FGV",
+            "fulfillment_set": {
+              "id": "fuset_01M2141KWXJ7DVR3TAD9AE8FGV"
+            },
+            "metadata": null,
+            "created_at": "2026-09-08T18:21:20.681Z",
+            "updated_at": "2026-09-08T18:21:20.681Z",
+            "deleted_at": null
+          },
+          "shipping_profile": {
+            "id": "sp_01M2141KW3X2DYPNH5T61RCQ5R",
+            "name": "cw00-059b4ff25ec4",
+            "type": "default",
+            "metadata": null,
+            "created_at": "2026-09-08T18:21:20.643Z",
+            "updated_at": "2026-09-08T18:21:20.643Z",
+            "deleted_at": null
+          },
+          "provider": {
+            "id": "manual_manual",
+            "is_enabled": true,
+            "created_at": "2026-09-06T14:06:30.801Z",
+            "updated_at": "2026-09-06T14:06:30.801Z",
+            "deleted_at": null
+          },
+          "prices": [
+            {
+              "id": "price_01M2141KXS3HMW0V8J7FDFR3C6",
+              "title": null,
+              "currency_code": "usd",
+              "rules_count": 0,
+              "price_set_id": "pset_01M2141KXSEM0XR12J9YAWWP9T",
+              "price_list_id": null,
+              "price_list": null,
+              "raw_amount": {
+                "value": "10",
+                "precision": 20
+              },
+              "raw_min_quantity": null,
+              "raw_max_quantity": null,
+              "created_at": "2026-09-08T18:21:20.697Z",
+              "updated_at": "2026-09-08T18:21:20.697Z",
+              "deleted_at": null,
+              "price_rules": [],
+              "amount": 10,
+              "min_quantity": null,
+              "max_quantity": null
+            }
+          ]
+        }
+      }
+    },
+    "B": {
+      "role": "seller",
+      "method": "GET",
+      "path": "/admin/shipping-options/so_01M2141M9MBS83B1YD3B00X80Q",
+      "request": null,
+      "status": 200,
+      "response": {
+        "shipping_option": {
+          "id": "so_01M2141M9MBS83B1YD3B00X80Q",
+          "name": "cw00-059b4ff25ec4-B",
+          "price_type": "flat",
+          "data": null,
+          "provider_id": "manual_manual",
+          "metadata": null,
+          "created_at": "2026-09-08T18:21:21.076Z",
+          "updated_at": "2026-09-08T18:21:21.076Z",
+          "service_zone_id": "serzo_01M2141KX9H2V7A7KPC4PYXKQT",
+          "shipping_profile_id": "sp_01M2141M94QC5ASABYK84PA9JZ",
+          "rules": [
+            {
+              "id": "sorul_01M2141M9KR8EK9VXKQ0W06QC2",
+              "attribute": "enabled_in_store",
+              "operator": "eq",
+              "value": "true",
+              "shipping_option_id": "so_01M2141M9MBS83B1YD3B00X80Q",
+              "created_at": "2026-09-08T18:21:21.076Z",
+              "updated_at": "2026-09-08T18:21:21.076Z",
+              "deleted_at": null
+            },
+            {
+              "id": "sorul_01M2141M9K89QVZGN7QN1RS05M",
+              "attribute": "is_return",
+              "operator": "eq",
+              "value": "false",
+              "shipping_option_id": "so_01M2141M9MBS83B1YD3B00X80Q",
+              "created_at": "2026-09-08T18:21:21.076Z",
+              "updated_at": "2026-09-08T18:21:21.076Z",
+              "deleted_at": null
+            }
+          ],
+          "type": {
+            "id": "sotype_01M2141M9KP2GNPZB50FAEHCRQ",
+            "label": "Synthetic delivery",
+            "description": "No real shipment",
+            "code": "B",
+            "created_at": "2026-09-08T18:21:21.076Z",
+            "updated_at": "2026-09-08T18:21:21.076Z",
+            "deleted_at": null
+          },
+          "service_zone": {
+            "id": "serzo_01M2141KX9H2V7A7KPC4PYXKQT",
+            "name": "cw00-059b4ff25ec4",
+            "fulfillment_set_id": "fuset_01M2141KWXJ7DVR3TAD9AE8FGV",
+            "fulfillment_set": {
+              "id": "fuset_01M2141KWXJ7DVR3TAD9AE8FGV"
+            },
+            "metadata": null,
+            "created_at": "2026-09-08T18:21:20.681Z",
+            "updated_at": "2026-09-08T18:21:20.681Z",
+            "deleted_at": null
+          },
+          "shipping_profile": {
+            "id": "sp_01M2141M94QC5ASABYK84PA9JZ",
+            "name": "cw00-059b4ff25ec4-B",
+            "type": "default",
+            "metadata": null,
+            "created_at": "2026-09-08T18:21:21.060Z",
+            "updated_at": "2026-09-08T18:21:21.060Z",
+            "deleted_at": null
+          },
+          "provider": {
+            "id": "manual_manual",
+            "is_enabled": true,
+            "created_at": "2026-09-06T14:06:30.801Z",
+            "updated_at": "2026-09-06T14:06:30.801Z",
+            "deleted_at": null
+          },
+          "prices": [
+            {
+              "id": "price_01M2141M9S38G8D20H6R3AZ5N3",
+              "title": null,
+              "currency_code": "usd",
+              "rules_count": 0,
+              "price_set_id": "pset_01M2141M9S8TF7993Z1BC7H410",
+              "price_list_id": null,
+              "price_list": null,
+              "raw_amount": {
+                "value": "20",
+                "precision": 20
+              },
+              "raw_min_quantity": null,
+              "raw_max_quantity": null,
+              "created_at": "2026-09-08T18:21:21.081Z",
+              "updated_at": "2026-09-08T18:21:21.081Z",
+              "deleted_at": null,
+              "price_rules": [],
+              "amount": 20,
+              "min_quantity": null,
+              "max_quantity": null
+            }
+          ]
+        }
+      }
+    },
+    "C": {
+      "role": "seller",
+      "method": "GET",
+      "path": "/admin/shipping-options/so_01M2141ME5WJ86GE2CZYAKX6RK",
+      "request": null,
+      "status": 200,
+      "response": {
+        "shipping_option": {
+          "id": "so_01M2141ME5WJ86GE2CZYAKX6RK",
+          "name": "cw00-059b4ff25ec4-C",
+          "price_type": "flat",
+          "data": null,
+          "provider_id": "manual_manual",
+          "metadata": null,
+          "created_at": "2026-09-08T18:21:21.221Z",
+          "updated_at": "2026-09-08T18:21:21.221Z",
+          "service_zone_id": "serzo_01M2141KX9H2V7A7KPC4PYXKQT",
+          "shipping_profile_id": "sp_01M2141MDS7KK6QJMZHPXMSNTK",
+          "rules": [
+            {
+              "id": "sorul_01M2141ME5T147ZAMP2DTVBH28",
+              "attribute": "enabled_in_store",
+              "operator": "eq",
+              "value": "true",
+              "shipping_option_id": "so_01M2141ME5WJ86GE2CZYAKX6RK",
+              "created_at": "2026-09-08T18:21:21.221Z",
+              "updated_at": "2026-09-08T18:21:21.221Z",
+              "deleted_at": null
+            },
+            {
+              "id": "sorul_01M2141ME5KBTC0AVAHG78S56J",
+              "attribute": "is_return",
+              "operator": "eq",
+              "value": "false",
+              "shipping_option_id": "so_01M2141ME5WJ86GE2CZYAKX6RK",
+              "created_at": "2026-09-08T18:21:21.221Z",
+              "updated_at": "2026-09-08T18:21:21.221Z",
+              "deleted_at": null
+            }
+          ],
+          "type": {
+            "id": "sotype_01M2141ME51W44EY53C3SZ1JYE",
+            "label": "Synthetic delivery",
+            "description": "No real shipment",
+            "code": "C",
+            "created_at": "2026-09-08T18:21:21.221Z",
+            "updated_at": "2026-09-08T18:21:21.221Z",
+            "deleted_at": null
+          },
+          "service_zone": {
+            "id": "serzo_01M2141KX9H2V7A7KPC4PYXKQT",
+            "name": "cw00-059b4ff25ec4",
+            "fulfillment_set_id": "fuset_01M2141KWXJ7DVR3TAD9AE8FGV",
+            "fulfillment_set": {
+              "id": "fuset_01M2141KWXJ7DVR3TAD9AE8FGV"
+            },
+            "metadata": null,
+            "created_at": "2026-09-08T18:21:20.681Z",
+            "updated_at": "2026-09-08T18:21:20.681Z",
+            "deleted_at": null
+          },
+          "shipping_profile": {
+            "id": "sp_01M2141MDS7KK6QJMZHPXMSNTK",
+            "name": "cw00-059b4ff25ec4-C",
+            "type": "default",
+            "metadata": null,
+            "created_at": "2026-09-08T18:21:21.210Z",
+            "updated_at": "2026-09-08T18:21:21.210Z",
+            "deleted_at": null
+          },
+          "provider": {
+            "id": "manual_manual",
+            "is_enabled": true,
+            "created_at": "2026-09-06T14:06:30.801Z",
+            "updated_at": "2026-09-06T14:06:30.801Z",
+            "deleted_at": null
+          },
+          "prices": [
+            {
+              "id": "price_01M2141ME9J3K2N3KC27MF2Y4E",
+              "title": null,
+              "currency_code": "usd",
+              "rules_count": 0,
+              "price_set_id": "pset_01M2141ME9RDRMPPDFVNF4NG8P",
+              "price_list_id": null,
+              "price_list": null,
+              "raw_amount": {
+                "value": "15",
+                "precision": 20
+              },
+              "raw_min_quantity": null,
+              "raw_max_quantity": null,
+              "created_at": "2026-09-08T18:21:21.225Z",
+              "updated_at": "2026-09-08T18:21:21.225Z",
+              "deleted_at": null,
+              "price_rules": [],
+              "amount": 15,
+              "min_quantity": null,
+              "max_quantity": null
+            }
+          ]
+        }
+      }
+    }
+  },
+  "initial_evidence": {
+    "binding": {
+      "run_id": "cw00-059b4ff25ec4-buyer",
+      "customer_id": "cus_01M2141M3Y3W5YSRPFCGPSHZJX",
+      "region_id": "reg_01M1XXH30AVSPNFKR799JC7HD6",
+      "suppliers": {
+        "A": {
+          "variants": {
+            "tent": "variant_01M2141KZ6PNCVHETRT99YPXRQ",
+            "light": "variant_01M2141M14MTWQH884037JV5K9"
+          },
+          "shipping_option_id": "so_01M2141KXNTCXZZNS16G94QBDF",
+          "lead_ticks": 10
+        },
+        "B": {
+          "variants": {
+            "tent": "variant_01M2141MB9EZG9QJWBZJMDCQPB",
+            "light": "variant_01M2141MCZGBH4JCESKA0Y941C"
+          },
+          "shipping_option_id": "so_01M2141M9MBS83B1YD3B00X80Q",
+          "lead_ticks": 15
+        },
+        "C": {
+          "variants": {
+            "tent": "variant_01M2141MFQN9545DZRH3T1PQQ0",
+            "light": "variant_01M2141MHFJRHVWT63JZPKJ6E2"
+          },
+          "shipping_option_id": "so_01M2141ME5WJ86GE2CZYAKX6RK",
+          "lead_ticks": 20
+        }
+      },
+      "goal": {
+        "deadline_tick": 120,
+        "recipient": "event-venue",
+        "items": {
+          "tent": 3,
+          "light": 6
+        }
+      },
+      "budget": 500,
+      "quote_ttl": 30
+    },
+    "tables": {
+      "purchases": [],
+      "quotes": [],
+      "accounts": [
+        {
+          "run_id": "cw00-059b4ff25ec4-buyer",
+          "budget": 500,
+          "spent": 0,
+          "reserved": 0,
+          "metadata": "{\"backend\":\"medusa\"}"
+        }
+      ],
+      "intents": []
+    },
+    "external_orders": [],
+    "captured_at_tick": 0,
+    "scope": "live-medusa-stock-scripted-recovery"
+  }
+}

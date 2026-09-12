@@ -1,0 +1,40 @@
+{
+  "before_version": "policy-19bfdf8cfe268f1c",
+  "after_version": "policy-d3b91f7487599065",
+  "before": {
+    "supplier_preference": "lowest_total",
+    "refresh_quote_before_order": false,
+    "max_quote_candidates": 3,
+    "wait_ticks": 5,
+    "uncertain_payment_action": "query_same_order"
+  },
+  "after": {
+    "supplier_preference": "lowest_total",
+    "refresh_quote_before_order": true,
+    "max_quote_candidates": 3,
+    "wait_ticks": 5,
+    "uncertain_payment_action": "query_same_order"
+  },
+  "diff": {
+    "refresh_quote_before_order": {
+      "before": false,
+      "after": true
+    }
+  },
+  "review": {
+    "review_id": "review-1",
+    "round": 1,
+    "reviewer_kind": "scripted-fixture",
+    "counterexamples": [
+      "initial"
+    ],
+    "reason": "Known stale quote requires refresh."
+  },
+  "experiments": [
+    {
+      "experiment_id": "initial",
+      "sha256": "f5c17a19cf67da4c84d3d5b23835b25c6cc9b5701099fa09b4dcaf862f51167c"
+    }
+  ],
+  "status": "PROPOSED_REQUIRES_REEXPERIMENT"
+}

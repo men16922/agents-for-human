@@ -1,0 +1,50 @@
+scripts/dev/with-env.sh python3 scripts/dev/doctor.py
+PASS: Python version
+PASS: Node version
+PASS: Python imports
+PASS: Python dependency compatibility
+PASS: npm dependency compatibility
+Scope: local tools/imports only; no model initialization, AWS or commerce request.
+scripts/dev/with-env.sh npm run test:browser
+
+> rehearsal-workspace@0.1.0 test:browser
+> playwright test
+
+[WebServer] INFO:     Started server process [39725]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:18000 (Press CTRL+C to quit)
+[WebServer] (node:39798) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 25 tests using 1 worker
+
+(node:39799) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/convergence.spec.ts:3:5 › independent consumers recover their own cursors and an invalid run cannot contaminate the peer (829ms)
+  ✓   2 tests/browser/execution.spec.ts:57:5 › actual API replays retained Medusa reactions in desktop and narrow screens (404ms)
+  ✓   3 tests/browser/execution.spec.ts:77:5 › unsealed records stay provisional and a later seal is detected by polling (4.3s)
+  ✓   4 tests/browser/execution.spec.ts:95:5 › tampering, run mismatch and failed refresh clear previous reaction counts (6.6s)
+  ✓   5 tests/browser/execution.spec.ts:112:5 › sealed limit stops show a reason without promoting transaction success (171ms)
+  ✓   6 tests/browser/execution.spec.ts:125:5 › browser schema rejects success escalation and invalid counters (42ms)
+  ✓   7 tests/browser/execution.spec.ts:134:5 › a stalled refresh times out and removes the previous sealed summary (7.6s)
+  ✓   8 tests/browser/metrics.spec.ts:11:5 › nearest-rank percentiles and independent stage denominators use recorded timestamps (2ms)
+  ✓   9 tests/browser/metrics.spec.ts:26:5 › superseded, hidden, reset timing and clock reversal never become zero-latency successes (2ms)
+  ✓  10 tests/browser/metrics.spec.ts:46:5 › retained-window eviction and process restart totals are explicit (1ms)
+  ✓  11 tests/browser/metrics.spec.ts:64:5 › legacy timing stays missing and malformed event labels cannot add arbitrary counters (0ms)
+  ✓  12 tests/browser/metrics.spec.ts:75:5 › browser download records actual commit samples and batched exclusions (285ms)
+  ✓  13 tests/browser/observer.spec.ts:15:5 › incremental framing handles every split and multiline CRLF without early application (6ms)
+  ✓  14 tests/browser/observer.spec.ts:26:5 › projection keeps newest ledger through duplicates, reordering and retention reset (3ms)
+  ✓  15 tests/browser/observer.spec.ts:47:5 › evicted old fingerprints cannot roll back state and invalid balances do not advance cursor (7ms)
+  ✓  16 tests/browser/observer.spec.ts:58:5 › observer renders snapshots, resumes cursor, deduplicates, and labels disconnected state (2.2s)
+  ✓  17 tests/browser/observer.spec.ts:88:5 › retention recovery is applied and invalid cross-run events halt without changing the ledger (147ms)
+  ✓  18 tests/browser/observer.spec.ts:108:5 › unconfigured view has no fabricated balance, quantity or supplier (145ms)
+  ✓  19 tests/browser/observer.spec.ts:116:5 › historical verdict is qualified against run, goal, budget, tick and current ledger (1ms)
+  ✓  20 tests/browser/observer.spec.ts:130:5 › evidence panel shows historical success then clears it on failed refresh (267ms)
+  ✓  21 tests/browser/observer.spec.ts:149:5 › a past COMPLETE does not describe a different observed goal as verified (144ms)
+  ✓  22 tests/browser/observer.spec.ts:163:5 › catalog and orders render actual fields while unknown receipt never displays zero received (179ms)
+  ✓  23 tests/browser/proposal.spec.ts:7:5 › proposal is offline, responsive, and keeps uncertain payment separate from delivery (310ms)
+  ✓  24 tests/browser/proposal.spec.ts:35:5 › automatic scenes stop at the last frame and restart without duplicated timers (212ms)
+  ✓  25 tests/browser/proposal.spec.ts:53:5 › React shell confirms the actual local API and reports connection failure honestly (197ms)
+
+  25 passed (26.1s)

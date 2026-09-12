@@ -1,0 +1,3 @@
+```json
+{"decision": "revise", "reason": "The experiment shows a STALE_QUOTE error when creating an order with an expired quote, indicating that the current policy does not handle quote expiration properly. The policy should be updated to refresh quotes before order creation to avoid this error.", "counterexamples": ["initial"], "candidate_policy": {"max_quote_candidates": 3, "refresh_quote_before_order": true, "supplier_preference": "lowest_total", "uncertain_payment_action": "query_same_order", "wait_ticks": 5}}
+```

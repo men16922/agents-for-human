@@ -1,0 +1,434 @@
+{
+  "schema": "preflight-impact-v1",
+  "report_id": "preview-browser",
+  "status": "REPORT_READY",
+  "snapshot": {
+    "source": {
+      "schema": "preflight-impact-v1",
+      "request_id": "family-camping",
+      "revision": 1,
+      "source": "operator-owned synthetic catalog; not Amazon/Rufus data",
+      "intent": {
+        "text": "We leave for our first family camping trip on Saturday. Buy one tent and two lanterns for at most $200 including shipping, arriving at home by Friday 6 PM. Do not buy lanterns alone if no tent can arrive on time.",
+        "goal": {
+          "items": {
+            "tent": 1,
+            "light": 2
+          },
+          "budget": 200,
+          "deadline_tick": 2880,
+          "recipient": "family-home"
+        },
+        "all_items_required": true,
+        "clock": "virtual minutes from Wednesday 6 PM; Friday 6 PM deadline",
+        "currency": "synthetic USD"
+      },
+      "suppliers": {
+        "A": {
+          "shipping": 10,
+          "lead_ticks": 1440,
+          "items": {
+            "tent": {
+              "price": 109,
+              "stock": 10
+            },
+            "light": {
+              "price": 15,
+              "stock": 10
+            }
+          }
+        },
+        "B": {
+          "shipping": 10,
+          "lead_ticks": 2520,
+          "items": {
+            "tent": {
+              "price": 129,
+              "stock": 10
+            },
+            "light": {
+              "price": 20,
+              "stock": 10
+            }
+          }
+        },
+        "C": {
+          "shipping": 10,
+          "lead_ticks": 7200,
+          "items": {
+            "tent": {
+              "price": 99,
+              "stock": 10
+            },
+            "light": {
+              "price": 10,
+              "stock": 10
+            }
+          }
+        }
+      }
+    },
+    "source_sha256": "f82fe41de7f3c7182b429ba2e2aea9596a368f21dcbdd4ce4f9d4e89e9173878",
+    "captured_at": 1000,
+    "snapshot_sha256": "99331868e9af84eb90acdfd252ac0307ecd1fa27393ba32add871debe1308b2d"
+  },
+  "generated_at": 1010,
+  "expires_at": 1900,
+  "evidence_complete": true,
+  "coverage": {
+    "planned": 12,
+    "verified": 12,
+    "missing": [],
+    "errors": []
+  },
+  "proposed_supplier": "A",
+  "recommended_supplier": "B",
+  "plans": [
+    {
+      "plan": {
+        "schema": "preflight-impact-v1",
+        "supplier": "A",
+        "snapshot_sha256": "99331868e9af84eb90acdfd252ac0307ecd1fa27393ba32add871debe1308b2d",
+        "intent_sha256": "55ef8403a04f98ecd12f3a07aad99ddf8d831756a9f0c8b44a5b8ea44dc5e062",
+        "items": {
+          "tent": 1,
+          "light": 2
+        },
+        "payment_recovery": "query_same_order",
+        "partial_purchase": false,
+        "execution": "quote-create-authorize-reconcile-observe-delivery",
+        "plan_sha256": "ebcfe1e5e4e0cac21d97316edea6d647690de42cb6d21f64e8f33a816cd86b77"
+      },
+      "proposed_by_agent": true,
+      "tested": 4,
+      "planned_tests": 4,
+      "goals_met": 2,
+      "normal_spend": 149,
+      "normal_arrival_minute": 1442,
+      "max_simulated_spend": 149,
+      "eligible_for_handoff": false,
+      "assessment": "CONDITIONS_NOT_MET",
+      "cells": [
+        {
+          "condition": "normal",
+          "status": "COMPLETE",
+          "spent": 149,
+          "reserved": 0,
+          "received_on_time": {
+            "tent": 1,
+            "light": 2
+          },
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 1442,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "NOT_NEEDED",
+          "external_orders_created": 0,
+          "artifact_sha256": "d2cf0f5ea04ebf9dd231ec1c13bbd5104dc015637c461dacf481aea070678608",
+          "run_id": "impact-95f23a15664ec246fa87f6ea8ca29dda2660"
+        },
+        {
+          "condition": "stock-disappears",
+          "status": "INCOMPLETE",
+          "spent": 0,
+          "reserved": 0,
+          "received_on_time": {},
+          "received_eventually": {},
+          "last_delivery_minute": null,
+          "orders_created": 1,
+          "payments_authorized": 0,
+          "duplicate_payments": 0,
+          "rejection": "STOCK_UNAVAILABLE",
+          "payment_recovery": "NOT_NEEDED",
+          "external_orders_created": 0,
+          "artifact_sha256": "1ef80aa6d3a840a43c1ffad6eeacd71fa0761fb726e9d99eac80e97fc2ebc07f",
+          "run_id": "impact-ca7e1ab33b45922f297857b02cb79737b7ef"
+        },
+        {
+          "condition": "price-increases",
+          "status": "INCOMPLETE",
+          "spent": 0,
+          "reserved": 0,
+          "received_on_time": {},
+          "received_eventually": {},
+          "last_delivery_minute": null,
+          "orders_created": 1,
+          "payments_authorized": 0,
+          "duplicate_payments": 0,
+          "rejection": "QUOTE_CHANGED",
+          "payment_recovery": "NOT_NEEDED",
+          "external_orders_created": 0,
+          "artifact_sha256": "48973420adc470772e7bbee3806aa2d86a0915818d4c25ab6f551f3e3685e4c9",
+          "run_id": "impact-04e7818c00eadd67810acfd59fc78b663342"
+        },
+        {
+          "condition": "payment-response-lost",
+          "status": "COMPLETE",
+          "spent": 149,
+          "reserved": 0,
+          "received_on_time": {
+            "tent": 1,
+            "light": 2
+          },
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 1442,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "RECONCILED_SAME_ORDER",
+          "external_orders_created": 0,
+          "artifact_sha256": "fd836d858343d898850a428b667282809315943bbd83144dc70e33ac9a0ff542",
+          "run_id": "impact-6d56755d746d67cb77fb301f6db03a2756dc"
+        }
+      ]
+    },
+    {
+      "plan": {
+        "schema": "preflight-impact-v1",
+        "supplier": "B",
+        "snapshot_sha256": "99331868e9af84eb90acdfd252ac0307ecd1fa27393ba32add871debe1308b2d",
+        "intent_sha256": "55ef8403a04f98ecd12f3a07aad99ddf8d831756a9f0c8b44a5b8ea44dc5e062",
+        "items": {
+          "tent": 1,
+          "light": 2
+        },
+        "payment_recovery": "query_same_order",
+        "partial_purchase": false,
+        "execution": "quote-create-authorize-reconcile-observe-delivery",
+        "plan_sha256": "de697b791bf3b04b4bc820fcd297e8513ad2c80ebcb5359a09c80092cb1d1a3e"
+      },
+      "proposed_by_agent": false,
+      "tested": 4,
+      "planned_tests": 4,
+      "goals_met": 4,
+      "normal_spend": 179,
+      "normal_arrival_minute": 2522,
+      "max_simulated_spend": 179,
+      "eligible_for_handoff": true,
+      "assessment": "MEETS_TESTED_CONDITIONS",
+      "cells": [
+        {
+          "condition": "normal",
+          "status": "COMPLETE",
+          "spent": 179,
+          "reserved": 0,
+          "received_on_time": {
+            "tent": 1,
+            "light": 2
+          },
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 2522,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "NOT_NEEDED",
+          "external_orders_created": 0,
+          "artifact_sha256": "9dfea3224c634e9a1934ef55669d0a2a13bfeb06cef46d262961ecb3f9ee5912",
+          "run_id": "impact-dad23ef6a66204505fd116ad3ddea575b639"
+        },
+        {
+          "condition": "stock-disappears",
+          "status": "COMPLETE",
+          "spent": 179,
+          "reserved": 0,
+          "received_on_time": {
+            "tent": 1,
+            "light": 2
+          },
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 2522,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "NOT_NEEDED",
+          "external_orders_created": 0,
+          "artifact_sha256": "b4feb8afb44caecbbd886731c92439d8e3b3ac1dd327b7eb079b92cb593ab919",
+          "run_id": "impact-019ae0d7345b44c78c53bdbb07189189b8ac"
+        },
+        {
+          "condition": "price-increases",
+          "status": "COMPLETE",
+          "spent": 179,
+          "reserved": 0,
+          "received_on_time": {
+            "tent": 1,
+            "light": 2
+          },
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 2522,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "NOT_NEEDED",
+          "external_orders_created": 0,
+          "artifact_sha256": "4fca4dcc8cabe601c85bba41d3dc990cd53342db85d4b5377d344175ea0dae11",
+          "run_id": "impact-55deb706fd28a43766c0e2912b46ca33b19f"
+        },
+        {
+          "condition": "payment-response-lost",
+          "status": "COMPLETE",
+          "spent": 179,
+          "reserved": 0,
+          "received_on_time": {
+            "tent": 1,
+            "light": 2
+          },
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 2522,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "RECONCILED_SAME_ORDER",
+          "external_orders_created": 0,
+          "artifact_sha256": "d09ccfff1973016efa1b2eb9db3126c5bd8051dec847b7fbf4004d3b0a66e288",
+          "run_id": "impact-07784352b1cc86cccf445f9c0acea77c45d3"
+        }
+      ]
+    },
+    {
+      "plan": {
+        "schema": "preflight-impact-v1",
+        "supplier": "C",
+        "snapshot_sha256": "99331868e9af84eb90acdfd252ac0307ecd1fa27393ba32add871debe1308b2d",
+        "intent_sha256": "55ef8403a04f98ecd12f3a07aad99ddf8d831756a9f0c8b44a5b8ea44dc5e062",
+        "items": {
+          "tent": 1,
+          "light": 2
+        },
+        "payment_recovery": "query_same_order",
+        "partial_purchase": false,
+        "execution": "quote-create-authorize-reconcile-observe-delivery",
+        "plan_sha256": "a83b07640b421c736b37e11dcb8a3280135681d9e5d4d6b1c5190bddee8ff080"
+      },
+      "proposed_by_agent": false,
+      "tested": 4,
+      "planned_tests": 4,
+      "goals_met": 0,
+      "normal_spend": 129,
+      "normal_arrival_minute": 7202,
+      "max_simulated_spend": 129,
+      "eligible_for_handoff": false,
+      "assessment": "CONDITIONS_NOT_MET",
+      "cells": [
+        {
+          "condition": "normal",
+          "status": "INCOMPLETE",
+          "spent": 129,
+          "reserved": 0,
+          "received_on_time": {},
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 7202,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "NOT_NEEDED",
+          "external_orders_created": 0,
+          "artifact_sha256": "15dc51fc50ebd999401fdd2daa47d5395598e179033a5e18bfaa5f303fe06c28",
+          "run_id": "impact-3a8edbe225650f481cc5b0c5a3c09dee14a8"
+        },
+        {
+          "condition": "stock-disappears",
+          "status": "INCOMPLETE",
+          "spent": 129,
+          "reserved": 0,
+          "received_on_time": {},
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 7202,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "NOT_NEEDED",
+          "external_orders_created": 0,
+          "artifact_sha256": "760b5f8cb10adee979b16255df5cae0cbca747fd9d6ff6b481741d4e400e4fd9",
+          "run_id": "impact-5a69579fff640aac434ba7a4ce9e3f6a87a6"
+        },
+        {
+          "condition": "price-increases",
+          "status": "INCOMPLETE",
+          "spent": 129,
+          "reserved": 0,
+          "received_on_time": {},
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 7202,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "NOT_NEEDED",
+          "external_orders_created": 0,
+          "artifact_sha256": "a09c09ab0bb574b7d3e544af61828648b48d65396ba69108e6e8dbdd04ace174",
+          "run_id": "impact-41e01e442ccf2b9d4205d4e175d337960b84"
+        },
+        {
+          "condition": "payment-response-lost",
+          "status": "INCOMPLETE",
+          "spent": 129,
+          "reserved": 0,
+          "received_on_time": {},
+          "received_eventually": {
+            "tent": 1,
+            "light": 2
+          },
+          "last_delivery_minute": 7202,
+          "orders_created": 1,
+          "payments_authorized": 1,
+          "duplicate_payments": 0,
+          "rejection": null,
+          "payment_recovery": "RECONCILED_SAME_ORDER",
+          "external_orders_created": 0,
+          "artifact_sha256": "eb22804c2892b1d08fe48d5a02791deb2d7aeff2bf1e974b2243609cd37c2b4e",
+          "run_id": "impact-b23ed117089d3434035c50494a646f30815b"
+        }
+      ]
+    }
+  ],
+  "model_usage": null,
+  "decision": "AWAITING_USER_DECISION",
+  "execution_boundary": "No external orders or payments; all measured transactions are isolated simulations.",
+  "limitations": [
+    "Fixed synthetic catalog, not a live Amazon/Rufus connection.",
+    "Four explicit conditions per plan; counts are not real-world success probabilities.",
+    "Stock and price shocks target supplier A; supplier B disruptions are not covered.",
+    "Payment response loss is injected after a simulated commit; no real network fault.",
+    "Virtual delivery follows the configured schedule; no carrier delivery guarantee.",
+    "The source revision and report expiry must be rechecked before any execution handoff."
+  ],
+  "report_sha256": "544b773db73d8bd86f421497a8aeaeda4de71c41e1cdaa29d442476998dcfa03",
+  "runtime_session_stopped": true
+}

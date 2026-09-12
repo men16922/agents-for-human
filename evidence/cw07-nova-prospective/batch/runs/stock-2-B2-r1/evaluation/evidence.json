@@ -1,0 +1,291 @@
+{
+  "format": "rehearsal-evidence-v1",
+  "run_id": "evaluation",
+  "scenario": {
+    "scenario_version": "prospective-stock-2-v1",
+    "seed": 42,
+    "goal": {
+      "budget": 500,
+      "deadline_tick": 60,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "suppliers": {
+      "A": {
+        "shipping": 15,
+        "lead_ticks": 10,
+        "items": {
+          "tent": {
+            "price": 65,
+            "stock": 0
+          },
+          "light": {
+            "price": 23,
+            "stock": 0
+          }
+        }
+      },
+      "B": {
+        "shipping": 9,
+        "lead_ticks": 15,
+        "items": {
+          "tent": {
+            "price": 67,
+            "stock": 5
+          },
+          "light": {
+            "price": 27,
+            "stock": 1
+          }
+        }
+      },
+      "C": {
+        "shipping": 23,
+        "lead_ticks": 20,
+        "items": {
+          "tent": {
+            "price": 66,
+            "stock": 2
+          },
+          "light": {
+            "price": 22,
+            "stock": 3
+          }
+        }
+      }
+    }
+  },
+  "tables": {
+    "runs": [
+      {
+        "id": "evaluation",
+        "tick": 5,
+        "goal": "{\"budget\":500,\"deadline_tick\":60,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"}",
+        "metadata": "{\"environment\":\"practice\",\"policy_version\":\"frozen-484a6f36ba913ba3e98239a219bee6d19c30d7f17ddf429f033887235075eb43\",\"run_id\":\"evaluation\",\"scenario_version\":\"prospective-stock-2-v1\",\"seed\":42}",
+        "fixture": "{\"goal\":{\"budget\":500,\"deadline_tick\":60,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"},\"scenario_version\":\"prospective-stock-2-v1\",\"seed\":42,\"suppliers\":{\"A\":{\"items\":{\"light\":{\"price\":23,\"stock\":0},\"tent\":{\"price\":65,\"stock\":0}},\"lead_ticks\":10,\"shipping\":15},\"B\":{\"items\":{\"light\":{\"price\":27,\"stock\":1},\"tent\":{\"price\":67,\"stock\":5}},\"lead_ticks\":15,\"shipping\":9},\"C\":{\"items\":{\"light\":{\"price\":22,\"stock\":3},\"tent\":{\"price\":66,\"stock\":2}},\"lead_ticks\":20,\"shipping\":23}}}"
+      }
+    ],
+    "offers": [
+      {
+        "run_id": "evaluation",
+        "supplier": "A",
+        "item": "light",
+        "price": 23,
+        "stock": 0,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "A",
+        "item": "tent",
+        "price": 65,
+        "stock": 0,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "B",
+        "item": "light",
+        "price": 27,
+        "stock": 1,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "B",
+        "item": "tent",
+        "price": 67,
+        "stock": 2,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "C",
+        "item": "light",
+        "price": 22,
+        "stock": 3,
+        "reserved": 0,
+        "version": 1
+      },
+      {
+        "run_id": "evaluation",
+        "supplier": "C",
+        "item": "tent",
+        "price": 66,
+        "stock": 2,
+        "reserved": 0,
+        "version": 1
+      }
+    ],
+    "quotes": [
+      {
+        "id": "quote_7d5f3c81f3e7479db80da321bf976e3b",
+        "run_id": "evaluation",
+        "data": "{\"amount\":210,\"based_on_tick\":0,\"expires_tick\":5,\"id\":\"quote_7d5f3c81f3e7479db80da321bf976e3b\",\"items\":{\"tent\":3},\"lead_ticks\":15,\"quote_version\":{\"tent\":1},\"run_id\":\"evaluation\",\"shipping\":9,\"supplier\":\"B\",\"supplier_content\":{\"items\":{\"tent\":{\"available\":false,\"invalid_type\":false,\"original_characters\":0,\"original_sha256\":null,\"text\":\"\",\"truncated\":false}},\"supplier\":\"B\",\"trust\":\"untrusted_supplier_data\",\"usage\":\"description_only_not_authorization_or_transaction_terms\"},\"unit_prices\":{\"tent\":67}}"
+      }
+    ],
+    "orders": [
+      {
+        "id": "order_10daf12df93e443f82d728da8b392cb8",
+        "run_id": "evaluation",
+        "key": "order_key_1",
+        "quote_id": "quote_7d5f3c81f3e7479db80da321bf976e3b",
+        "supplier": "B",
+        "recipient": "event-venue",
+        "items": "{\"tent\":3}",
+        "amount": 210,
+        "lead_ticks": 15,
+        "status": "FULFILLING",
+        "version": 4,
+        "payment_intent_id": "pay_ec37bf4f9ebc4c86bda6aaa21ba54962",
+        "payment_version": 2,
+        "created_tick": 0,
+        "due_tick": 15,
+        "delivered_tick": null
+      }
+    ],
+    "inventory": [],
+    "shop_events": [
+      {
+        "seq": 1,
+        "event_id": "evt_b6c33c0e9b384638bd1c416227e0cbf9",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "run.created",
+        "payload": "{\"environment\":\"practice\",\"goal\":{\"budget\":500,\"deadline_tick\":60,\"items\":{\"light\":6,\"tent\":3},\"recipient\":\"event-venue\"},\"policy_version\":\"frozen-484a6f36ba913ba3e98239a219bee6d19c30d7f17ddf429f033887235075eb43\",\"run_id\":\"evaluation\",\"scenario_version\":\"prospective-stock-2-v1\",\"seed\":42}"
+      },
+      {
+        "seq": 2,
+        "event_id": "evt_1d670de6ed424b3db408b064181642c4",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_10daf12df93e443f82d728da8b392cb8",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "order.accepted",
+        "payload": "{\"amount\":210,\"created_tick\":0,\"delivered_tick\":null,\"due_tick\":null,\"id\":\"order_10daf12df93e443f82d728da8b392cb8\",\"items\":{\"tent\":3},\"key\":\"order_key_1\",\"lead_ticks\":15,\"payment_intent_id\":null,\"payment_version\":0,\"quote_id\":\"quote_7d5f3c81f3e7479db80da321bf976e3b\",\"recipient\":\"event-venue\",\"run_id\":\"evaluation\",\"status\":\"ACCEPTED\",\"supplier\":\"B\",\"version\":1}"
+      },
+      {
+        "seq": 3,
+        "event_id": "evt_fc467076635e42968a508f544b790488",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_10daf12df93e443f82d728da8b392cb8",
+        "aggregate_version": 2,
+        "occurred_tick": 0,
+        "event_type": "order.payment_pending",
+        "payload": "{\"payment_intent_id\":\"pay_ec37bf4f9ebc4c86bda6aaa21ba54962\"}"
+      },
+      {
+        "seq": 4,
+        "event_id": "evt_441f65e61b564685aebba33374c617a2",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_10daf12df93e443f82d728da8b392cb8",
+        "aggregate_version": 3,
+        "occurred_tick": 0,
+        "event_type": "order.paid",
+        "payload": "{\"payment_intent_id\":\"pay_ec37bf4f9ebc4c86bda6aaa21ba54962\"}"
+      },
+      {
+        "seq": 5,
+        "event_id": "evt_e086165585fd46edb01df84580fc2902",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "order_10daf12df93e443f82d728da8b392cb8",
+        "aggregate_version": 4,
+        "occurred_tick": 0,
+        "event_type": "order.fulfilling",
+        "payload": "{\"due_tick\":15}"
+      },
+      {
+        "seq": 6,
+        "event_id": "evt_5714f17d613b47bd9d665f17a53df6db",
+        "run_id": "evaluation",
+        "source": "shop",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 6,
+        "occurred_tick": 5,
+        "event_type": "clock.advanced",
+        "payload": "{\"tick\":5}"
+      }
+    ],
+    "accounts": [
+      {
+        "run_id": "evaluation",
+        "budget": 500,
+        "spent": 210,
+        "reserved": 0,
+        "metadata": "{\"environment\":\"practice\",\"policy_version\":\"frozen-484a6f36ba913ba3e98239a219bee6d19c30d7f17ddf429f033887235075eb43\",\"run_id\":\"evaluation\",\"scenario_version\":\"prospective-stock-2-v1\",\"seed\":42}"
+      }
+    ],
+    "intents": [
+      {
+        "id": "pay_ec37bf4f9ebc4c86bda6aaa21ba54962",
+        "run_id": "evaluation",
+        "order_id": "order_10daf12df93e443f82d728da8b392cb8",
+        "idempotency_key": "payment_key_1",
+        "recipient": "B",
+        "amount": 210,
+        "status": "SETTLED",
+        "version": 2,
+        "created_tick": 0,
+        "settled_tick": 0
+      }
+    ],
+    "payment_events": [
+      {
+        "seq": 1,
+        "event_id": "evt_bb894bf425944baabf885bdc00b50db5",
+        "run_id": "evaluation",
+        "source": "payments",
+        "aggregate_id": "evaluation",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "account.created",
+        "payload": "{\"budget\":500}"
+      },
+      {
+        "seq": 2,
+        "event_id": "evt_4d49de8e32d64607a100cec609fa114b",
+        "run_id": "evaluation",
+        "source": "payments",
+        "aggregate_id": "pay_ec37bf4f9ebc4c86bda6aaa21ba54962",
+        "aggregate_version": 1,
+        "occurred_tick": 0,
+        "event_type": "payment.reserved",
+        "payload": "{\"amount\":210,\"created_tick\":0,\"id\":\"pay_ec37bf4f9ebc4c86bda6aaa21ba54962\",\"idempotency_key\":\"payment_key_1\",\"order_id\":\"order_10daf12df93e443f82d728da8b392cb8\",\"recipient\":\"B\",\"run_id\":\"evaluation\",\"settled_tick\":null,\"status\":\"RESERVED\",\"version\":1}"
+      },
+      {
+        "seq": 3,
+        "event_id": "evt_957bdcfbaf254841a1d3619958456dcb",
+        "run_id": "evaluation",
+        "source": "payments",
+        "aggregate_id": "pay_ec37bf4f9ebc4c86bda6aaa21ba54962",
+        "aggregate_version": 2,
+        "occurred_tick": 0,
+        "event_type": "payment.settled",
+        "payload": "{\"amount\":210,\"created_tick\":0,\"id\":\"pay_ec37bf4f9ebc4c86bda6aaa21ba54962\",\"idempotency_key\":\"payment_key_1\",\"order_id\":\"order_10daf12df93e443f82d728da8b392cb8\",\"recipient\":\"B\",\"run_id\":\"evaluation\",\"settled_tick\":0,\"status\":\"SETTLED\",\"version\":2}"
+      }
+    ]
+  },
+  "verdict": {
+    "status": "INCOMPLETE",
+    "reasons": [
+      "GOAL_NOT_RECEIVED"
+    ],
+    "spent": 210,
+    "reserved": 0,
+    "received": {}
+  }
+}

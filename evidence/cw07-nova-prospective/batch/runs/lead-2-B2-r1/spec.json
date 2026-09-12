@@ -1,0 +1,151 @@
+{
+  "method": "B2",
+  "training_condition": {
+    "scenario_version": "nova-pilot-training-a61-v1",
+    "seed": 42,
+    "goal": {
+      "budget": 500,
+      "deadline_tick": 60,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "suppliers": {
+      "A": {
+        "shipping": 10,
+        "lead_ticks": 10,
+        "items": {
+          "tent": {
+            "price": 61,
+            "stock": 10
+          },
+          "light": {
+            "price": 20,
+            "stock": 10
+          }
+        }
+      },
+      "B": {
+        "shipping": 20,
+        "lead_ticks": 15,
+        "items": {
+          "tent": {
+            "price": 70,
+            "stock": 10
+          },
+          "light": {
+            "price": 25,
+            "stock": 10
+          }
+        }
+      },
+      "C": {
+        "shipping": 15,
+        "lead_ticks": 20,
+        "items": {
+          "tent": {
+            "price": 90,
+            "stock": 10
+          },
+          "light": {
+            "price": 35,
+            "stock": 10
+          }
+        }
+      }
+    }
+  },
+  "evaluation_condition": {
+    "scenario_version": "prospective-lead-2-v1",
+    "seed": 42,
+    "goal": {
+      "budget": 500,
+      "deadline_tick": 60,
+      "recipient": "event-venue",
+      "items": {
+        "tent": 3,
+        "light": 6
+      }
+    },
+    "suppliers": {
+      "A": {
+        "shipping": 15,
+        "lead_ticks": 42,
+        "items": {
+          "tent": {
+            "price": 58,
+            "stock": 10
+          },
+          "light": {
+            "price": 25,
+            "stock": 10
+          }
+        }
+      },
+      "B": {
+        "shipping": 23,
+        "lead_ticks": 23,
+        "items": {
+          "tent": {
+            "price": 70,
+            "stock": 10
+          },
+          "light": {
+            "price": 33,
+            "stock": 10
+          }
+        }
+      },
+      "C": {
+        "shipping": 16,
+        "lead_ticks": 34,
+        "items": {
+          "tent": {
+            "price": 76,
+            "stock": 10
+          },
+          "light": {
+            "price": 15,
+            "stock": 10
+          }
+        }
+      }
+    }
+  },
+  "training_condition_id": "b32aac821a7e267e2f7dda4306f518717c9a2505deb6eb417c92ab71b679c009",
+  "evaluation_condition_id": "38f8fded045cc083a7e50fd4a78502d1fe45add911c9e831a3745bbbe9267c32",
+  "settings": {
+    "profile": "q-user",
+    "region": "us-west-2",
+    "model_id": "global.amazon.nova-2-lite-v1:0",
+    "rates": {
+      "input_usd_per_million": "0.30",
+      "output_usd_per_million": "2.50",
+      "cache_read_usd_per_million": "0.075",
+      "cache_write_usd_per_million": "0",
+      "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonBedrock/current/us-west-2/index.json"
+    },
+    "budget_micro_usd": 500000,
+    "input_limit": 16000,
+    "output_limit": 1024,
+    "max_model_calls": 64,
+    "max_tool_calls": 80,
+    "timeout_seconds": 180,
+    "max_total_tokens": 300000
+  },
+  "scope": "live-model",
+  "held_out": false,
+  "purpose": "known-condition-frozen-evaluation-plumbing",
+  "source_hashes": {
+    "src/rehearsal/evaluation/frozen_run.py": "903a0914abc3a949a3abf43c607317b4b216214d9826c22b411b27e4e3231c78",
+    "src/rehearsal/agents/runner.py": "6ae460300c67e913399ec81c4370db65cc0f824337593e398b2772d95b74ef53",
+    "src/rehearsal/agents/executor.py": "120ba298944369ad68d1a1a3ad8396e407574db8595a0060851e81dc50cd242d",
+    "src/rehearsal/agents/metering.py": "7d61c4f81916b6d3e8825f14ea65da04d2510139ab227686fe87aca51fd38adc",
+    "src/rehearsal/experiments/b2.py": "e753bd85982176d5465f4ae52f7ba9e38934b605efcc7a44103857e3408da9ca",
+    "src/rehearsal/experiments/b3.py": "d2d29e875dd0bebbebb339a14d6745418021c45b5b941e4c048cd2751a38edd5",
+    "src/rehearsal/experiments/frozen.py": "e279e71f93e0f38db0ca696c8e16e6f76c2fa0cd47b9f301a4541558cfe9f7d1",
+    "src/rehearsal/evaluation/verifier.py": "2018fb3fc35850053f6ac3c298439cbb270cbe6605cd2eabcfb2ed24ca4724e1"
+  }
+}
