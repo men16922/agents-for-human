@@ -377,3 +377,10 @@
 - Verified: 보존 Medusa B0/B1/B2/B3 재집계, 실제 API/브라우저 5판단/1차단·임시 증가/종료 전환·파일 변조/다른 run/연결 실패/정체 후 이전 수치 제거. 1440/390/320px 가로 넘침·콘솔 오류·쓰기 요청 0.
 - Gate/Evidence: `make check` PASS(Python 663·mypy 57), `make check-browser` PASS(25개), 추가 Python 31개/브라우저 6개·11개 artifact·소스/입력 hash·포트 3개 반환. [상세](../test/execution-reaction-ui.md).
 - Next: 진행 중인 SDK/Medusa와 UI를 동시에 연결해 같은 run의 SSE/종료 기록/독립 export 대조. 새 Medusa 거래·실제 모델·설치·AWS·커밋·푸시 없음.
+
+## 2026-09-09 — 실제 SDK/Medusa 실행과 반응 UI 동시 대조
+
+- Changed: `commerce-reaction-ui-smoke`·브라우저 시나리오. 초기 화면→입력 선택→A 재고 변경/오래된 주문 차단→B 납품→종료 기록→독립 export를 같은 실행으로 검사.
+- Verified: `reaction-ui_c900888b02084a2d87daa91a028617ae` PASS. 실제 B COMPLETE 380·예약 0·5판단/1차단·SDK 9호출/180토큰/가상 252 micro-USD. 실행자 cursor 28/브라우저 30, 실행 중/종료 후 export 두 건 독립 판정 일치.
+- Gate/Evidence: `make check` PASS(Python 663·mypy 57), 실제 API/SSE/브라우저 연결 PASS·요청 27 GET/Authorization 없음·콘솔/넘침 0. 38개 artifact·73소스 hash·복사본 재판정/실제 비밀값/포트 6개/기존 컨테이너 4개/볼륨 2개 대조. [상세](../test/execution-reaction-ui.md).
+- Next: 현재 구현/증거에 맞춰 영어 제출 초안·재현·시연 범위 갱신. 실제 모델 효과·설치·AWS·커밋·푸시 없음.

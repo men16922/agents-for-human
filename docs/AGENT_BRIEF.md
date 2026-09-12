@@ -1,6 +1,6 @@
 # Agent Brief — Rehearsal
 
-> ▶ NEXT SESSION: [실행 전 영향 보고서](plans/2026-09-12-preflight-impact.md) P01–P11 작업을 완료했고 [감사](test/preflight-impact.md)에 구현/AWS/Chrome/영상/한계를 기록했다. 현재 공개 UI는 요청→Nova 계획→12개 격리 실행→영향 보고서→별도 결정/export다. actual preview 7호출/$0.006197, 누계 3,626호출/$4.380601, cloud 잔여 $3.838425·active 0. 2:53 영어 Daniel 영상·AWS draw.io를 최종 흐름으로 갱신했다. 자동 다음 작업은 없다. 요청 시 공개 코드/영상·제출자/Builder ID·제출을 별도로 진행하며 Devpost Submit 금지를 유지한다.
+> ▶ NEXT SESSION: [실행 전 영향 보고서](plans/2026-09-12-preflight-impact.md) P01–P11 작업을 완료했고 [감사](test/preflight-impact.md)에 구현/AWS/Chrome/영상/한계를 기록했다. 현재 공개 UI는 요청→Nova 계획→12개 격리 실행→영향 보고서→별도 결정/export다. actual preview 7호출/$0.006197, 누계 3,626호출/$4.380601, cloud 잔여 $3.838425·active 0. 2:53 영어 Daniel 영상·AWS draw.io를 최종 흐름으로 갱신했다. 초기 로컬 커밋 ad64fa9 완료, 요청한 push는 실행 정책이 거부했다([기록](test/git-publication.md)). 다음은 수동 push·공개 접근 확인이며 영상 게시/제출자/Builder ID·제출은 별도다. Devpost Submit 금지를 유지한다.
 
 > 이전 제출 상태: [Nova 최종 제출 감사](test/nova-final-submission.md)를 따른다. 총 $10 승인 중 3,466호출/$4.191815·예약 0으로 실제 평가를 종료했다. 새 조건 80칸 B0/B1/B2/B3 완료 15/11/8/7(각 20), 납품 대기 지시 보강 후 별도 known pilot 4/4/3/4(각 5)를 보존했다. 3:45 실제 Nova 영어 영상·28자막·재생 검증과 최종 소스 패키지를 확인한다. 남은 제출 단계는 제출자/Builder ID·공개 코드/영상·접근 확인·최종 제출이며 공개 요청은 아직 없다. 추가 유료 실행은 진행 중이지 않다. 모델 우위·사람 관찰·독립 호스트 재현은 입증되지 않았다.
 
@@ -47,4 +47,4 @@ Linux amd64 동일 호스트 컨테이너에서 `make check`(Python 663·mypy 57
 - 무료 가상 크레딧만 사용한다. 실자금·AgentCore Payments·A2A는 MVP 필수가 아니다.
 - AWS 자격증명·리전·모델 ID·실제 모델 호출은 CW03에서 확인한다. 현재 검사는 모델을 초기화하지 않는다.
 - 설치는 `.tooling`/`.venv`, 비밀값과 로그는 Git 제외 경로에 둔다. 기존 Docker·DB·전역 런타임은 건드리지 않는다.
-- `[auto]`는 없다. 초기 커밋·remote·야간 실행·푸시·배포·공개는 수행하지 않았다.
+- `[auto]`는 없다. AWS 데모 배포·origin 등록·초기 로컬 커밋은 완료했고 Git push는 실행 정책에 차단됐다. 야간 실행·YouTube 게시·Devpost Submit은 수행하지 않았다.
