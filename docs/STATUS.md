@@ -3,7 +3,7 @@
 Last Updated: 2026-09-12
 
 ## Current Baseline
-- 현재 제품/배포: [실행 전 영향 보고서 감사](test/preflight-impact.md). Nova 초기 A 제안→12칸 격리 실행→B 권장→별도 결정/원본 재확인/export/reload 실제 Chrome 확인. A/B/C 2/4·4/4·0/4, 미리보기 거래 DB 0행·IAM 격리·Runtime 404. 추가 7호출/$0.006197, 누계 3,626호출/$4.380601·예약 0, cloud 잔여 $3.838425·active 0. 전체 gate 740개/mypy 75·브라우저 28개 PASS. 공식 AWS draw.io 2페이지·2:53 영어 Daniel/28자막·재생/음량/공개 hash 확인. 이전 [B3 영상/배포](test/chrome-demo-v2.md) 보존, 초기 커밋 ad64fa9 완료·push 정책 차단([기록](test/git-publication.md)), 영상 게시·Devpost Submit 없음.
+- 현재 제품/배포: [실행 전 영향 보고서 감사](test/preflight-impact.md). Nova 초기 A 제안→12칸 격리 실행→B 권장→별도 결정/원본 재확인/export/reload 실제 Chrome 확인. A/B/C 2/4·4/4·0/4, 미리보기 거래 DB 0행·IAM 격리·Runtime 404. 추가 7호출/$0.006197, 누계 3,626호출/$4.380601·예약 0, cloud 잔여 $3.838425·active 0. 전체 gate 740개/mypy 75·브라우저 28개 PASS. 공식 AWS draw.io 2페이지·2:53 영어 Daniel/28자막·재생/음량/공개 hash 확인. 이전 [B3 영상/배포](test/chrome-demo-v2.md) 보존, 초기 커밋 ad64fa9 완료·push 정책 차단([기록](test/git-publication.md)), [영어 Builder 기사](../submissions/article.md) 로컬 초안 완료. 기사/영상 게시·Devpost Submit 없음.
 - 이전 후속: [영어 제출 영상/파일 정리](test/youtube-submission.md). 3:58/1080p·영어 UI·Daniel·32자막·썸네일·YouTube 설명 완성, 전체 디코딩/Chromium 재생 PASS. 새 Nova 독립 COMPLETE 380·18호출/$0.027211, 누적 3,484호출/$4.219026·예약 0. 약 999MB 중복/임시 파일 삭제·원본/실패/기존 볼륨 보존. `make check` PASS(Python 690·mypy 58). 공개/Submit 없음; 이전 r2 패키지는 변경 전 후보이며 공개 링크·제출자/Builder ID·접근 확인은 남았다.
 - 최신 실제 실행: [Nova 2 Lite 기록](test/nova-live.md). 사용자 총 $10 승인, 정상/Medusa COMPLETE 310, B3 실제 검토·20칸 pilot(목표 완료 B0/B1/B2/B3 4/3/2/3), B2 인용 검사 수정 후 새 조건 COMPLETE 380. 아래 SDK 검증 이력과 구별한다. 비용/예약은 [실행 계획](plans/2026-09-12-nova-live.md).
 - 최종 초안: HTML v0.3, 이미지 2종·합성 장면 4개, 상세 계획·전이/실시간 설계, 심사 기준·4분 45초 데모 구성.

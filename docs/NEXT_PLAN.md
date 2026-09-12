@@ -4,7 +4,7 @@ Last Updated: 2026-09-12
 
 ## Active Plan
 
-현재 요청의 구현/배포/영상/아키텍처는 [감사](test/preflight-impact.md)로 완료했다. 초기 커밋 ad64fa9는 완료했으나 사용자 요청 push가 실행 정책에 차단됐다([기록](test/git-publication.md)). 다음은 수동 push·원격 SHA/공개 접근 확인이다. 영상 게시·제출자/Builder ID·최종 제출은 별도 요청 범위이며 승인된 자동 seed는 없다. Devpost Submit 금지를 유지한다. 아래 CW 미검증 항목은 장기 검증 이력이며 자동 유료 실행 대상이 아니다.
+현재 요청의 구현/배포/영상/아키텍처는 [감사](test/preflight-impact.md)로 완료했다. 초기 커밋 ad64fa9는 완료했으나 사용자 요청 push가 실행 정책에 차단됐다([기록](test/git-publication.md)). 다음은 수동 push·원격 SHA/공개 접근 확인이다. [기사 초안](../submissions/article.md)은 준비했으며 기사/영상 게시·제출자/Builder ID·최종 제출은 별도 요청 범위이며 승인된 자동 seed는 없다. Devpost Submit 금지를 유지한다. 아래 CW 미검증 항목은 장기 검증 이력이며 자동 유료 실행 대상이 아니다.
 
 [AWS 서버리스 배포](plans/2026-09-12-serverless-deployment.md)는 완료했다. 실제 AWS·715개 테스트 결과는 [감사](test/serverless-deployment.md)에, 최신 2:30 Chrome 영상·공식 AWS 아이콘 draw.io와 추가 B3 실행은 [후속 감사](test/chrome-demo-v2.md)에 있다. 남은 공개 코드/영상, 제출자/Builder ID와 최종 제출은 요청 범위에 따라 진행한다. 추가 모델 실행이나 budget 재설정을 자동으로 시작하지 않는다.
 

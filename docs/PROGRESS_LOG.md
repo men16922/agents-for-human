@@ -2,6 +2,12 @@
 
 이전 기록: [2026-09 보관본](archive/progress-2026-09.md).
 
+## 2026-09-12 — AWS Builder Center 기사 초안
+
+- Changed: 예시 글의 문제→설계→검증 흐름을 참고해 영어 [기사](../submissions/article.md)·[게시 준비](../submissions/article-publication.md)를 작성하고 Devpost bonus 항목에 연결. 실제 화면/공식 AWS 그림 4개 포함.
+- Verified: 구현과 원본 12칸 결과·7 Nova 호출/16,929토큰/$0.006197·900초 만료 대조, 로컬 링크·문서 gate·diff 검사 PASS. 신규 모델/클라우드 실행 없음.
+- Next: Git push는 앞선 정책 차단 상태다. 기사·영상 공개 URL/에디터 검수와 게시는 별도이며 Builder Center 게시·Devpost Submit 없음.
+
 ## 2026-09-12 — 초기 Git 커밋과 push 정책 차단
 
 - Changed: 현재 소스/증거/제출 자료 5,706개를 명시적으로 stage하고 ad64fa9 커밋. 영상 transcript를 현재 preflight 영상과 일치시켰다. [상세](test/git-publication.md).
@@ -109,9 +115,3 @@
 - Verified: 최종 `cw00-5b4262f60244-buyer` 실제 COMPLETE 380·4판단/1차단·SDK 9호출/180토큰/가상 252 micro-USD. 원속도 영상+별도 보존 결과 카드·285.021초 1080p H.264/AAC/영어 자막 33개·전체 디코딩/Chromium 재생/8개 seek·최종 판정 프레임 확인.
 - Gate/Evidence: `make check` PASS(Python 663·mypy 57), 이후 최종 카메라 위치는 실제 녹화/Node 문법으로 검사. 73개 artifact·영상 hash·복사본 두 attestation/실행 요약·실제 비밀값/포트 6개/기존 컨테이너 4개/볼륨 2개 확인. [상세](test/submission-video.md).
 - Next: 잔여 요구/증거 감사. 사람의 전체 음성/영상 검수·실제 모델/미공개 평가·독립 재현·공개/제출은 남았다. 다운로드/설치·AWS·커밋·푸시·게시 없음.
-
-## 2026-09-09 — 영어 제출 초안과 현재 구현/증거 대조
-
-- Changed: README·영어 PROJECT/TESTING/ARCHITECTURE/VIDEO_SCRIPT/READINESS·SVG. 원래 pilot의 미실행 셀과 별도 네 방식 SDK 명부 구별, 공통 원장/반응 UI/두 판정·재현/영상 출처와 한계 반영.
-- Verified: 실제 UI 38개/네 방식 119개 artifact hash·수치·CLI 대조, 영어 링크 47개/Make target 19개 확인, `make check-docs` PASS. SVG 43개 텍스트 경계/동일 소스 HTML 인라인 Chromium 렌더 확인; 직접 SVG 캡처 timeout은 별도 기록. [상세](test/submission-refresh.md).
-- Next: 설치된 로컬 도구로 실제 SDK/Medusa UI 시연 영어 영상 초안. 이번 제품 gate/모델/Medusa/규칙 재조회/설치/커밋/푸시/게시 없음.

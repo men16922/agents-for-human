@@ -185,7 +185,7 @@ Copy the following instructions into the application testing field:
 
 ### Optional Bonus Blog Post URL
 
-Leave blank. No bonus post has been published on builder.aws. If one is prepared, use a title containing “Agents for Humans” as required by the supplied form.
+Leave blank until publication and anonymous-access verification. The English [AWS Builder Center article draft](article.md) is prepared with “Agents for Humans” in its title; [publication notes](article-publication.md) identify the image and link replacements needed. No bonus post has been published on builder.aws.
 
 ## Final draft review — preparation notes, not form content
 

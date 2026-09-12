@@ -384,3 +384,9 @@
 - Verified: `reaction-ui_c900888b02084a2d87daa91a028617ae` PASS. 실제 B COMPLETE 380·예약 0·5판단/1차단·SDK 9호출/180토큰/가상 252 micro-USD. 실행자 cursor 28/브라우저 30, 실행 중/종료 후 export 두 건 독립 판정 일치.
 - Gate/Evidence: `make check` PASS(Python 663·mypy 57), 실제 API/SSE/브라우저 연결 PASS·요청 27 GET/Authorization 없음·콘솔/넘침 0. 38개 artifact·73소스 hash·복사본 재판정/실제 비밀값/포트 6개/기존 컨테이너 4개/볼륨 2개 대조. [상세](../test/execution-reaction-ui.md).
 - Next: 현재 구현/증거에 맞춰 영어 제출 초안·재현·시연 범위 갱신. 실제 모델 효과·설치·AWS·커밋·푸시 없음.
+
+## 2026-09-09 — 영어 제출 초안과 현재 구현/증거 대조
+
+- Changed: README·영어 PROJECT/TESTING/ARCHITECTURE/VIDEO_SCRIPT/READINESS·SVG. 원래 pilot의 미실행 셀과 별도 네 방식 SDK 명부 구별, 공통 원장/반응 UI/두 판정·재현/영상 출처와 한계 반영.
+- Verified: 실제 UI 38개/네 방식 119개 artifact hash·수치·CLI 대조, 영어 링크 47개/Make target 19개 확인, `make check-docs` PASS. SVG 43개 텍스트 경계/동일 소스 HTML 인라인 Chromium 렌더 확인; 직접 SVG 캡처 timeout은 별도 기록. [상세](../test/submission-refresh.md).
+- Next: 설치된 로컬 도구로 실제 SDK/Medusa UI 시연 영어 영상 초안. 이번 제품 gate/모델/Medusa/규칙 재조회/설치/커밋/푸시/게시 없음.
